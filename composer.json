@@ -1,8 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "geekbrains/cities",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Cities Of Russia",
+    "keywords": [
+        "cities"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
