@@ -17,9 +17,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'index')->name('index');
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
     Route::get('/cities/{city:slug?}', [CityController::class, 'index'])->name('index');
