@@ -16,13 +16,11 @@ return new class extends Migration
         Schema::create('comment_sights', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->unique()
                 ->nullable(false)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignId('sight_id')
-                ->unique()
                 ->nullable(false)
                 ->constrained()
                 ->cascadeOnDelete()

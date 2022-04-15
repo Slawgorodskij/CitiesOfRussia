@@ -26,6 +26,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->text('description'); //TODO возможно ли использование текста в слайдах
+            $table->timestamps();
         });
     }
 

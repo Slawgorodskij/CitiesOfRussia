@@ -15,6 +15,7 @@ class Sight extends Model
         'city_id',
         'name',
         'description',
+        'slug',
     ];
 
     public function articles()

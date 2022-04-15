@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('article_sights', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('article_id')
                 ->nullable(false)
                 ->constrained()
@@ -24,6 +25,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->timestamps();
         });
     }
 

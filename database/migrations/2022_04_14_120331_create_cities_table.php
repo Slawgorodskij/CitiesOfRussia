@@ -23,7 +23,9 @@ return new class extends Migration {
                 ->unique()
                 ->nullable(false);
             $table->text('description');
+            $table->string('slug', 50);
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

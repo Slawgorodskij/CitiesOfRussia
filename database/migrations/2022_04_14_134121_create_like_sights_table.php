@@ -13,6 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('like_sights', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')
                 ->unique()
                 ->nullable(false)

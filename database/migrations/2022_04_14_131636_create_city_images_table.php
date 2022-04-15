@@ -25,6 +25,7 @@ return new class extends Migration {
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
             $table->text('description'); //TODO возможно ли использование текста в слайдах
+            $table->timestamps();
         });
     }
 
