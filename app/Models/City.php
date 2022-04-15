@@ -14,6 +14,7 @@ class City extends Model
         'image_id',
         'name',
         'description',
+        'slug',
     ];
 
     public function articles()
