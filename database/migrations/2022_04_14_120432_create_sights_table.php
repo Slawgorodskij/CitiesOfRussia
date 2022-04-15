@@ -30,6 +30,7 @@ return new class extends Migration
                 ->nullable(false);
             $table->text('description');
             $table->string('slug', 255);
+            $table->index('slug');
             $table->softDeletes();
             $table->timestamps();
         });
