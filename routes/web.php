@@ -6,6 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\SightController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\SightController as AdminSightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +23,16 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
-    Route::get('/cities/{city:slug?}', [CityController::class, 'index'])->name('index');
+    Route::get('/{city:slug}', [CityController::class, 'index'])->name('index');
 });
 
-Route::group(['as' => 'sights.', 'prefix' => 'sights'], function () {
+Route::group(['as' => 'sights.'], function () {
     Route::get('/cities/{city:slug}/{sight:slug}', [SightController::class, 'index'])->name('index');
 });
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::view('/', 'admin.index')->name('index');
     Route::resource('/cities', AdminCityController::class);
+    Route::resource('/sights', AdminSightController::class);
     Route::resource('/users', AdminUserController::class);
 });

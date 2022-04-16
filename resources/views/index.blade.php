@@ -28,7 +28,7 @@
                         {{$city->name}}
                     </div>
                     <div class="presentation-block__hover">
-                        <a class="presentation-block__hover_link" href="#">
+                        <a class="presentation-block__hover_link" href="{{ route('cities.index', ['city' => $city]) }}">
                             <h3>{{$city->description}}</h3>
                         </a>
                     </div>
