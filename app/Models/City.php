@@ -12,7 +12,6 @@ class City extends Model
     use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
-        'image_id',
         'name',
         'description',
         'slug',
@@ -20,7 +19,7 @@ class City extends Model
 
     public function articles()
     {
-        return $this->hasMany(ArticleCity::class, 'city_id');
+       return $this->belongsToMany(Article::class, 'article_cities', 'city_id', 'article_id');
     }
 
     public function sights()
@@ -33,14 +32,9 @@ class City extends Model
         return $this->hasMany(CommentCity::class, 'city_id');
     }
 
-    public function like()
+    public function images()
     {
-        return $this->hasMany(LikeCity::class, 'city_id');
-    }
-
-    public function image()
-    {
-        return $this->belongsTo(Image::class, 'city_id');
+        return $this->belongsToMany(Image::class, 'city_images', 'city_id', 'image_id');
     }
 
     public function sluggable(): array

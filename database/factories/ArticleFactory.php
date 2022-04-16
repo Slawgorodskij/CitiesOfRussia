@@ -17,7 +17,6 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            'image_id' =>rand(1,400),
             'user_id'=>rand(1,10),
             'title' => $this->faker->sentence(9),
             'description'=>$this->faker->text(50),

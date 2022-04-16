@@ -16,13 +16,4 @@ class CommentSight extends Model
         'comment_body',
     ];
 
-    public function sight()
-    {
-        return $this->hasMany(Sight::class);
-    }
-
-    public function user()
-    {
-        return $this->hasMany(User::class);
-    }
 }

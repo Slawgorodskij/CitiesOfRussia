@@ -14,11 +14,6 @@ return new class extends Migration {
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('image_id')
-                ->nullable(true)
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
             $table->foreignId('user_id')
                 ->nullable(true)
                 ->constrained()
@@ -30,7 +25,7 @@ return new class extends Migration {
                 ->nullable(true);
             $table->string('article_body')
                 ->nullable(false); //последняя строка название файла со статьей включая расширение
-            $table->string('slug', 50)
+            $table->string('slug', 255)
                 ->nullable(true);
             $table->softDeletes();
             $table->timestamps();
