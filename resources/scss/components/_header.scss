@@ -1,6 +1,5 @@
 .header {
     @include flex-all-sb;
-    position: absolute;
     width: 100%;
     background-color: var(--color-background);
     height: 150px;
