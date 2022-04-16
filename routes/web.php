@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\SightController;
@@ -17,7 +18,8 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |
 */
 
-Route::view('/', 'index')->name('index');
+//Route::view('/', 'index')->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
     Route::get('/cities/{city:slug?}', [CityController::class, 'index'])->name('index');

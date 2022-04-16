@@ -15,16 +15,11 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('image_id')
-                ->nullable(false)
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
             $table->string('name', 50)
                 ->unique()
                 ->nullable(false);
             $table->text('description');
-            $table->string('slug', 50);
+            $table->string('slug', 255);
             $table->index('slug');
             $table->softDeletes();
             $table->timestamps();

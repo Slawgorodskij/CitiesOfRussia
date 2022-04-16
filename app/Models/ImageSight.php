@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ImageSight extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'sight_id',
+        'image_id',
+        'description',
+    ];
 }

@@ -15,6 +15,6 @@ class ImageSightSeeder extends Seeder
      */
     public function run()
     {
-        ImageSight::factory(200)->create();
+        ImageSight::factory(400)->create();
     }
 }

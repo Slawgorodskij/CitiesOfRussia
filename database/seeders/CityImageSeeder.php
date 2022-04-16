@@ -15,6 +15,6 @@ class CityImageSeeder extends Seeder
      */
     public function run()
     {
-        CityImage::factory(20)->create();
+        CityImage::factory(80)->create();
     }
 }

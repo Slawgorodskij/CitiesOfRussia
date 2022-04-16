@@ -17,7 +17,6 @@ class SightFactory extends Factory
     public function definition()
     {
         return [
-            'image_id' => rand(1, 400),
             'city_id' => rand(1, 20),
             'name' => $this->faker->sentence(5),
             'description' => $this->faker->text(200),

@@ -35,7 +35,7 @@
 }
 :root {
   --color-body: #e1eefd;
-  --color-background: rgba(10, 25, 39, 0.4);
+  --color-background: rgba(10, 25, 39, 0.6);
   --color-background-text: #8cb4d4;
   --color-footer: rgb(10, 25, 39);
   --color-black: #000;
@@ -189,5 +189,69 @@ ul {
   margin: 0;
   padding-bottom: 15px;
   text-align: center;
+}
+
+.performance {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-image: url(/storage/images/russia.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+}
+
+.presentation {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.presentation-block {
+  position: relative;
+  height: 40vh;
+  cursor: pointer;
+}
+.presentation-block__photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 2;
+}
+.presentation-block__text {
+  position: absolute;
+  bottom: 2vh;
+  width: 100%;
+  height: 4vh;
+  text-align: center;
+  background: var(--color-background);
+  font-weight: 900;
+  color: var(--color-white);
+  z-index: 3;
+}
+.presentation-block__hover {
+  position: absolute;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-background);
+  z-index: 0;
+  transition: all 0.3s linear;
+}
+.presentation-block__hover_link {
+  color: var(--color-white);
+}
+.presentation-block:hover .presentation-block__hover {
+  z-index: 5;
 }
 

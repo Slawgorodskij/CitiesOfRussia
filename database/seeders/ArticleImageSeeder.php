@@ -15,6 +15,6 @@ class ArticleImageSeeder extends Seeder
      */
     public function run()
     {
-        ArticleImage::factory(220)->create();
+        ArticleImage::factory(440)->create();
     }
 }
