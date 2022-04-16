@@ -8,11 +8,11 @@
             <div class="burger__line"></div>
         </button>
         <ul class="header__menu" id="menu">
-            <li class="header__menu_item">
-                <a href="{{ route('index') }}" class="header__menu_link">Главная</a>
+            <li class="header__menu-item">
+                <a href="{{ route('index') }}" class="header__menu-link">Главная</a>
             </li>
-            <li class="header__menu_item">
-                <a href="{{ route('admin.index') }}" class="header__menu_link">В админку</a>
+            <li class="header__menu-item">
+                <a href="{{ route('admin.index') }}" class="header__menu-link">В админку</a>
             </li>
         </ul>
     </nav>

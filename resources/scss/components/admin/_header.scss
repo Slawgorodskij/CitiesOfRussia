@@ -1,0 +1,16 @@
+.admin-header {
+    @include flex-all-sb;
+    width: 100%;
+    background-color: var(--color-background);
+    border-bottom: 1px solid #c1c1c169;
+
+    .admin-menu {
+        @include flex-all-sa;
+
+        &__link {
+            display: block;
+            padding: 20px;
+            color: var(--color-black);
+        }
+    }
+}

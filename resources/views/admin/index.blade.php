@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('title')
 Панель управления - @parent
 @stop
 
-@section('content')
-<div class="container">
+@section('admin-content')
+<main>
 
-</div>
+</main>
 @endsection

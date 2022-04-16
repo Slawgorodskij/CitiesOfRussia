@@ -20,3 +20,5 @@ mix.sass('resources/scss/app.scss', 'public/css').options({
 mix.postCss('resources/css/app.css', 'public/css', [
     //
 ]);
+
+mix.sass('resources/scss/admin.scss', 'public/css');
