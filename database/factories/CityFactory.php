@@ -20,7 +20,6 @@ class CityFactory extends Factory
             'image_id' => rand(1, 400),
             'name' => $this->faker->city(),
             'description' => $this->faker->text(150),
-            'slug' => $this->faker->word(),
         ];
     }
 }
