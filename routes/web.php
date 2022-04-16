@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\SightController as AdminSightController;
 |
 */
 
-//Route::view('/', 'index')->name('index');
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
