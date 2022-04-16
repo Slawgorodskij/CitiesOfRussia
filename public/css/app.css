@@ -207,10 +207,9 @@ ul {
   box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.4);
   margin: 0;
 }
-.header__menu_item {
-  padding: 20px;
-}
 .header__menu_link {
+  display: block;
+  padding: 20px;
   color: var(--color-black);
 }
 

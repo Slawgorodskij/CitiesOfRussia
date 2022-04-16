@@ -27,11 +27,9 @@
         margin: 0;
     }
 
-    &__menu_item {
-        padding: 20px;
-    }
-
     &__menu_link {
+        display: block;
+        padding: 20px;
         color: var(--color-black);
     }
 }
