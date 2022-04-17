@@ -42,14 +42,6 @@
   --color-white: #fff;
   --color-green: #2a862a;
   --color-title: #e6d0d0;
-  --color-body: #e1eefd;
-  --color-background: var(--color-white);
-  --color-background-text: #8cb4d4;
-  --color-footer: rgb(10, 25, 39);
-  --color-black: #000;
-  --color-white: #fff;
-  --color-green: #2a862a;
-  --color-title: #e6d0d0;
 }
 
 :root {
@@ -144,7 +136,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--color-background);
+  background-color: var(--color-white);
   height: 150px;
   top: 0;
   border-bottom: 1px solid rgba(193, 193, 193, 0.4117647059);
@@ -207,7 +199,7 @@ ul {
   align-items: center;
   justify-content: space-around;
   position: absolute;
-  background: var(--color-background);
+  background: var(--color-white);
   top: 150px;
   left: 0;
   width: 100%;

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\City;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CityController extends Controller
 {
@@ -14,7 +15,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::simplePaginate(10);
+        return view('admin.cities.index', ['cities' => $cities]);
     }
 
     /**

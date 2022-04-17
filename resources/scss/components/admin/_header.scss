@@ -1,7 +1,7 @@
 .admin-header {
     @include flex-all-sb;
     width: 100%;
-    background-color: var(--color-background);
+    background-color: var(--color-white);
     border-bottom: 1px solid #c1c1c169;
 
     .admin-menu {

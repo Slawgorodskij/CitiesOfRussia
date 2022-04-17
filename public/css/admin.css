@@ -42,14 +42,6 @@
   --color-white: #fff;
   --color-green: #2a862a;
   --color-title: #e6d0d0;
-  --color-body: #e1eefd;
-  --color-background: var(--color-white);
-  --color-background-text: #8cb4d4;
-  --color-footer: rgb(10, 25, 39);
-  --color-black: #000;
-  --color-white: #fff;
-  --color-green: #2a862a;
-  --color-title: #e6d0d0;
 }
 
 :root {
@@ -144,7 +136,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--color-background);
+  background-color: var(--color-white);
   border-bottom: 1px solid rgba(193, 193, 193, 0.4117647059);
 }
 .admin-header .admin-menu {
@@ -156,4 +148,55 @@ ul {
   display: block;
   padding: 20px;
   color: var(--color-black);
+}
+
+.admin-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid currentColor;
+}
+.admin-panel__button {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #6c757d;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+  border-radius: 0.2rem;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.admin-panel__button:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+.admin-panel__table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  vertical-align: top;
+  border: 1px solid currentColor;
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+.admin-panel__table tbody,
+.admin-panel__table td,
+.admin-panel__table tfoot,
+.admin-panel__table th,
+.admin-panel__table thead,
+.admin-panel__table tr {
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.5rem;
+}
+.admin-panel__table thead {
+  border-bottom: 2px solid currentColor;
 }

@@ -1,7 +1,7 @@
 .header {
     @include flex-all-sb;
     width: 100%;
-    background-color: var(--color-background);
+    background-color: var(--color-white);
     height: 150px;
     top: 0;
     border-bottom: 1px solid #c1c1c169;
@@ -18,7 +18,7 @@
     &__menu--opened {
         @include flex-all-sa;
         position: absolute;
-        background: var(--color-background);
+        background: var(--color-white);
         top: 150px;
         left: 0;
         width: 100%;

@@ -4,8 +4,6 @@
 Панель управления - @parent
 @stop
 
-@section('admin-content')
-<main>
-
-</main>
+@section('content-header')
+<h1>Панель управления</h1>
 @endsection
