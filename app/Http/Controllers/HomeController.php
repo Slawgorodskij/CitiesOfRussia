@@ -10,12 +10,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function city()
     {
-        return view('index', [
-            'cities' => City::with('images')
-                ->take(6)
-                ->get(),
-        ]);
+        $city = City::with('images')->offset(request('offset'))->take(6)->get();
+        return response()->json($city);
     }
+
 }
