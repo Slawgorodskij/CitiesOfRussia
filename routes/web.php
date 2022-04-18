@@ -18,8 +18,8 @@ use App\Http\Controllers\Admin\SightController as AdminSightController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::view('/', 'index')->name('index');
+Route::get('/city', [HomeController::class, 'city']);
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
     Route::get('/{city:slug}', [CityController::class, 'index'])->name('index');

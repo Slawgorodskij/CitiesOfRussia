@@ -14,11 +14,17 @@
 </head>
 
 <body>
-    <x-header />
+
+<div id="app">
+
+    <x-header/>
 
     @yield('content')
 
-    <x-footer />
+    <x-footer/>
+
+</div>
+
 </body>
 
 </html>
