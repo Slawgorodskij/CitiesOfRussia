@@ -1,6 +1,6 @@
 <template>
 
-    <div class="presentation-block" v-for="city in cityArray">
+    <div class="presentation-block" v-for="city in cityArray" :key="city.id">
         <img class="presentation-block__photo" :src="city.images[0]['name']" alt="фотография города">
         <div class="presentation-block__text">
             {{ city.name }}
@@ -29,7 +29,7 @@ export default {
     methods: {
         fetch(offset = 0) {
             this.loading = true;
-            axios.get('/city', {
+            axios.get('/api/cities', {
                 params: {
                     offset: offset
                 }

@@ -19,7 +19,10 @@ use App\Http\Controllers\Admin\SightController as AdminSightController;
 |
 */
 Route::view('/', 'index')->name('index');
-Route::get('/city', [HomeController::class, 'city']);
+
+Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
+    Route::get('/cities', [HomeController::class, 'index'])->name('index');
+});
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
     Route::get('/{city:slug}', [CityController::class, 'index'])->name('index');
