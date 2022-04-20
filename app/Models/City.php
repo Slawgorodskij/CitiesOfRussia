@@ -17,14 +17,8 @@ class City extends Model
         'slug',
     ];
 
-    public function articles()
-    {
-       return $this->belongsToMany(Article::class, 'article_cities', 'city_id', 'article_id');
-    }
-
-    public function sights()
-    {
-        return $this->hasMany(Sight::class, 'city_id');
+    public function articles(){
+        return $this->hasMany(Article::class);
     }
 
     public function comments()
@@ -32,9 +26,14 @@ class City extends Model
         return $this->hasMany(CommentCity::class, 'city_id');
     }
 
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
+
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'city_images', 'city_id', 'image_id');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     public function sluggable(): array

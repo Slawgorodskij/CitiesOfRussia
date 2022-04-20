@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\SightController as AdminSightController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::view('/', 'index')->name('index');
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
@@ -38,3 +40,29 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::resource('/sights', AdminSightController::class);
     Route::resource('/users', AdminUserController::class);
 });
+
+
+// роуты для теста wysiwyg-редактора summernote при создании статьи
+
+Route::group([
+    'as' => 'admin::test::',
+    'prefix' => '/admin/test'
+], function () {
+    Route::get( '/',[TestController::class, 'index'])
+        ->name('index');
+
+    Route::get('/create',[TestController::class, 'create'])
+        ->name('create');
+
+    Route::post( '/save',[TestController::class, 'save'])
+        ->name('save');
+
+    Route::get('/update/{article}',[TestController::class, 'update'])
+        ->where('article', '[0-9]+')
+        ->name('update');
+
+    Route::get('/delete/{id}',[TestController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('delete');
+});
+// ****************************************************
