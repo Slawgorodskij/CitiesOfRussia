@@ -19,6 +19,7 @@ class CityFactory extends Factory
         return [
             'name' => $this->faker->city(),
             'description' => $this->faker->text(150),
+            'article_id'=>rand(1,220)
         ];
     }
 }

@@ -16,18 +16,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ImageSeeder::class,
+            ArticleSeeder::class,
             CitySeeder::class,
             SightSeeder::class,
-            ArticleSeeder::class,
-            ArticleCitySeeder::class,
-            ArticleSightSeeder::class,
             ArticleImageSeeder::class,
             CityImageSeeder::class,
             ImageSightSeeder::class,
             CommentCitySeeder::class,
             CommentSightSeeder::class,
-           // LikeCitySeeder::class,
-           // LikeSightSeeder::class,
+            // LikeCitySeeder::class,
+            // LikeSightSeeder::class,
         ]);
     }
 }
