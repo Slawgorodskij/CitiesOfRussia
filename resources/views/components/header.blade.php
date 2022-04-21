@@ -12,6 +12,9 @@
                 <a href="{{ route('index') }}" class="header__menu-link">Главная</a>
             </li>
             <li class="header__menu-item">
+                <a href="{{ route('home') }}" class="header__menu-link">Кабинет</a>
+            </li>
+            <li class="header__menu-item">
                 <a href="{{ route('admin.index') }}" class="header__menu-link">В админку</a>
             </li>
         </ul>

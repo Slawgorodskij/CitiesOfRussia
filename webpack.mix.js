@@ -13,8 +13,9 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/scss/app.scss', 'public/css').options({
+    .sass('resources/scss/app.scss', 'public/css')
+    .sass('resources/scss/auth.scss', 'public/css')
+    .sass('resources/scss/admin.scss', 'public/css')
+    .options({
     processCssUrls: false
 });
-
-mix.sass('resources/scss/admin.scss', 'public/css');

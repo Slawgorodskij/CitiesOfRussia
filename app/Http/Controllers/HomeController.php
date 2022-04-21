@@ -2,14 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $city = City::with('images')->offset(request('offset'))->take(6)->get();
-        return response()->json($city);
+        $this->middleware('auth');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
 }
