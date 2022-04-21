@@ -21,6 +21,11 @@
             </div>
         </div>
 
+        <div> Карусель фотографий</div>
+
+        <article>
+            Много текста про место
+        </article>
 
         <section class="presentation container wrapper">
 
@@ -45,7 +50,13 @@
 
         </section>
 
+        <section>
+            Приглашение найти попутчика
+        </section>
 
+        <div>
+            отзывы и приглашение оставить отзыв
+        </div>
     </main>
 
 @endsection
