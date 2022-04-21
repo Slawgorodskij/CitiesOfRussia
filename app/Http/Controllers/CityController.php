@@ -13,6 +13,7 @@ class CityController extends Controller
         return view('destination', [
             'destination_data' => $city,
             'sights' => $city->sights,
+            'citySlug' => $city->slug,
         ]);
     }
 }

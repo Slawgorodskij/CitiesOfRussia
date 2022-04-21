@@ -8,7 +8,9 @@
     <main>
 
         <div class="destination wrapper">
-            <img class="destination__photo" src="{{$destination_data->images[0]['name']}}" alt="">
+            @isset($destination_data->images[0])
+                <img class="destination__photo" src="{{$destination_data->images[0]['name']}}" alt="">
+            @endisset
             <div class="destination__description">
                 <h1 class="destination__title">
                     {{$destination_data->name}}
@@ -34,7 +36,7 @@
                     </div>
                     <div class="presentation-block__hover">
                         <a class="presentation-block__hover_link"
-                           href="{{route('index',$destination_data->slug, $sight->slug)}}">
+                           href="{{route('sights.index',['city'=>$citySlug, 'sight'=>$sight->slug])}}">
                             <h3>{{$sight->description}}</h3>
                         </a>
                     </div>

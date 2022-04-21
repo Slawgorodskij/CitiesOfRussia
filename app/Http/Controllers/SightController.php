@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Sight;
 
 class SightController extends Controller
 {
-    public function index($slug)
+    public function index($citySlug, $sightSlug)
     {
-        $sight = Sight::with('images', 'articles')->where('slug', $slug)
+        $city = City::with('sights')->where('slug', $citySlug)
+            ->first();
+        $sight = Sight::with('images', 'articles')->where('slug', $sightSlug)
             ->first();
 
         return view('destination', [
             'destination_data' => $sight,
+            'sights' => $city->sights,
+            'citySlug'=> $city->slug,
         ]);
     }
 }
