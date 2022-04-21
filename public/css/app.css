@@ -37,6 +37,7 @@
   --color-body: #e1eefd;
   --color-background: rgba(10, 25, 39, 0.6);
   --color-background-text: #8cb4d4;
+  --color-background-dark: #6283a1;
   --color-footer: rgb(10, 25, 39);
   --color-black: #000;
   --color-white: #fff;
@@ -298,4 +299,27 @@ ul {
 }
 .presentation-block:hover .presentation-block__hover {
   z-index: 5;
+}
+
+.destination {
+  position: relative;
+  height: 100vh;
+  background-color: var(--color-background-dark);
+  color: var(--color-white);
+}
+.destination__photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.destination__description {
+  position: absolute;
+  width: 75vw;
+  top: 25vh;
+  left: 10vw;
+  z-index: 3;
 }

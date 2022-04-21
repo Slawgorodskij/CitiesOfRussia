@@ -15,11 +15,12 @@ class City extends Model
         'name',
         'description',
         'slug',
+        'article_id'
     ];
 
     public function articles()
     {
-       return $this->belongsToMany(Article::class, 'article_cities', 'city_id', 'article_id');
+        return $this->belongsTo(Article::class, 'article_id');
     }
 
     public function sights()

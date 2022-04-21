@@ -1,0 +1,22 @@
+.destination {
+    position: relative;
+    height: 100vh;
+    background-color: var(--color-background-dark);
+    color: var(--color-white);
+
+    &__photo {
+        @include photo-image;
+    }
+
+    &__description {
+        position: absolute;
+        width: 75vw;
+        top: 25vh;
+        left: 10vw;
+        z-index: 3;
+    }
+
+    &__text {
+
+    }
+}

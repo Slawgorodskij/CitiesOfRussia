@@ -28,6 +28,7 @@ Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
     Route::get('/{city:slug}', [CityController::class, 'index'])->name('index');
 });
 
+
 Route::group(['as' => 'sights.'], function () {
     Route::get('/cities/{city:slug}/{sight:slug}', [SightController::class, 'index'])->name('index');
 });
