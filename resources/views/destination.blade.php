@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Города России - @parent
+    {{$destination_data->name}} - @parent
 @stop
 
 @section('content')
