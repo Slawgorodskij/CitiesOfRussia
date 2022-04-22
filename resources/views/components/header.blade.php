@@ -9,14 +9,41 @@
         </button>
         <ul class="header__menu" id="menu">
             <li class="header__menu-item">
-                <a href="{{ route('index') }}" class="header__menu-link">Главная</a>
+                <a class="header__menu-link" href="{{ route('index') }}">Главная</a>
             </li>
+
+            @guest
+
+            @if (Route::has('login'))
             <li class="header__menu-item">
-                <a href="{{ route('home') }}" class="header__menu-link">Кабинет</a>
+                <a class="header__menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
+            @endif
+
+            @else
+
             <li class="header__menu-item">
-                <a href="{{ route('admin.index') }}" class="header__menu-link">В админку</a>
+                <a class="header__menu-link" href="{{ route('home') }}">Кабинет</a>
             </li>
+
+            @if (Auth::user()->is_admin)
+            <li class="header__menu-item">
+                <a class="header__menu-link" href="{{ route('admin.index') }}">Админка</a>
+            </li>
+            @endif
+
+            <li class="header__menu-item">
+                <a class="header__menu-link" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
+
+            @endguest
+
         </ul>
     </nav>
 </header>
