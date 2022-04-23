@@ -4,6 +4,10 @@
     background-color: var(--color-white);
     border-bottom: 1px solid #c1c1c169;
 
+    &__logo {
+        height: 75px;
+    }
+
     .admin-menu {
         @include flex-all-sa;
 

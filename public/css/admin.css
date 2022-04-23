@@ -140,6 +140,9 @@ ul {
   background-color: var(--color-white);
   border-bottom: 1px solid rgba(193, 193, 193, 0.4117647059);
 }
+.admin-header__logo {
+  height: 75px;
+}
 .admin-header .admin-menu {
   display: flex;
   align-items: center;

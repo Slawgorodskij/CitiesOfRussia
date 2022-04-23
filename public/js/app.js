@@ -45005,10 +45005,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/auth.scss":
-/*!**********************************!*\
-  !*** ./resources/scss/auth.scss ***!
-  \**********************************/
+/***/ "./resources/scss/admin.scss":
+/*!***********************************!*\
+  !*** ./resources/scss/admin.scss ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -45018,10 +45018,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/scss/admin.scss ***!
-  \***********************************/
+/***/ "./resources/scss/auth.scss":
+/*!**********************************!*\
+  !*** ./resources/scss/auth.scss ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -45726,8 +45726,8 @@ function compileToFunction(template, options) {
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/scss/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/scss/auth.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/scss/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/scss/admin.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/auth","css/admin","css/app"], () => (__webpack_require__("./resources/scss/auth.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

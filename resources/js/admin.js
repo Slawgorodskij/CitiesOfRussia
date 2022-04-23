@@ -27,5 +27,5 @@ const app = createApp({
 });
 
 app.use(CKEditor);
-console.log(document.getElementById('app'));
+
 app.mount("#app");
