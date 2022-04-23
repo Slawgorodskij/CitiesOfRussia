@@ -10,32 +10,27 @@
 
     <title>@section('title'){{ config('app.name', 'CitiesOfRussia') }}@show</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/admin.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
 <body>
 
-    <div id="app">
+    <x-admin.header />
 
-        <x-admin.header />
+    <main class="admin-panel container">
 
-        <main class="admin-panel container">
+        <div class="admin-panel__header">
+            @yield('content-header')
+        </div>
 
-            <div class="admin-panel__header">
-                @yield('content-header')
-            </div>
+        @yield('content')
 
-            @yield('content')
+    </main>
 
-        </main>
+    <script src="{{ asset('js/admin.js') }}"></script>
 
-        @stack('js')
-
-    </div>
+    @stack('js')
 
 </body>
 

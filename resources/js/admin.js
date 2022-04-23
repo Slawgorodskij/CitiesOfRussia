@@ -1,31 +1,18 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-require('./bootstrap');
-
-import { createApp } from 'vue';
-
-import CKEditor from '@ckeditor/ckeditor5-vue';
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
 import "@ckeditor/ckeditor5-build-classic/build/translations/ru";
 
-const app = createApp({
-    name: "app",
-    data() {
-        return {
-            editor: ClassicEditor,
-            editorData: "",
-            editorConfig: {
-                // Run the editor with the Russian UI.
-                language: "ru",
+const editor = document.getElementById('editor');
+
+if (editor) {
+    ClassicEditor
+        .create(editor, {
+            language: "ru",
+            ckfinder: {
+                uploadUrl: '/ckfinder/connector?command=QuickUpload&type=Images&responseType=json',
+                options: {
+                    resourceType: 'Images',
+                    language: "ru",
+                },
             },
-        };
-    },
-});
-
-app.use(CKEditor);
-
-app.mount("#app");
+        });
+}

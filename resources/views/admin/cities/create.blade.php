@@ -9,5 +9,9 @@
 @endsection
 
 @section('content')
-<ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+<form method="post" enctype="multipart/form-data">
+    @csrf
+    <textarea name="editor" id="editor" class="form-control">{!! old('editor') !!}</textarea>
+    <button type="submit">Сохранить</button>
+</form>
 @endsection
