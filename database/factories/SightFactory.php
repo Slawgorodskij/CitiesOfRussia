@@ -20,7 +20,6 @@ class SightFactory extends Factory
             'city_id' => rand(1, 20),
             'name' => $this->faker->sentence(5),
             'description' => $this->faker->text(200),
-            'article_id' => rand(1, 220)
         ];
     }
 }
