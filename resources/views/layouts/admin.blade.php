@@ -15,6 +15,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+
+    <x-head.tinymce-config />
 </head>
 
 <body>
