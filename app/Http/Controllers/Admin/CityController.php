@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CityFormRequest;
+use App\Models\Article;
 
 class CityController extends Controller
 {
@@ -38,21 +39,23 @@ class CityController extends Controller
      */
     public function store(CityFormRequest $request)
     {
-        @dump($request);
         $validated = $request->validated();
-        @dd($validated);
-        if ($request->has('article')) {
-            $validated['article'] = app(UploadService::class)->saveFile($request->input('article'));
+        $articleText = $request->input('article');
+        $articleFile = app(UploadService::class)->saveText($articleText, 'articles');
+        $article = Article::create(['article_body' => $articleFile]);
+        $validated['article_id'] = $article->id;
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = app(UploadService::class)->saveFile($request->file('image'), 'images');
         }
+
         $created = City::create($validated);
         if ($created) {
+            $created->articles()->associate($article);
             return to_route('admin.cities.index');
         }
 
         return back()->withInput();
-
-        City::create($request->validated());
-
     }
 
     /**

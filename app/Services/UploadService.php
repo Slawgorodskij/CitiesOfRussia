@@ -4,16 +4,29 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class UploadService
 {
-    public function saveFile(UploadedFile $file): string
+    public function saveFile(UploadedFile $file, ?string $path = 'files'): string
     {
-        $filename = $file->storeAs('files', $file->hashName(), 'public');
-        if (!$filename) {
+        $fileName = $file->store($path, 'public');
+
+        if (!$fileName) {
             throw new \Exception("File wasn't upload");
         }
-        return $filename;
+        return $fileName;
+    }
+
+    public function saveText(string $text, ?string $path = 'files'): string
+    {
+        $fileName = Str::random(40);
+
+        if (!Storage::put('public/' . $path . '/' . $fileName, $text)) {
+            throw new \Exception("File wasn't upload");
+        }
+        return $fileName;
     }
 }

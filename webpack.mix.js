@@ -20,4 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
     processCssUrls: false
 });
 
-mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
+mix.copyDirectory([
+    'vendor/tinymce/tinymce',
+    'vendor/pradosoft/tinymce-langs'
+], 'public/js/tinymce');
