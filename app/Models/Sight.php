@@ -19,10 +19,16 @@ class Sight extends Model
         'article_id'
     ];
 
+
     public function articles()
     {
-        return $this->belongsTo(Article::class, 'article_id');
+        return $this->belongsToMany(Article::class, 'article_sights', 'sight_id', 'article_id');
     }
+
+//    public function articles()
+//    {
+//        return $this->belongsTo(Article::class, 'article_id');
+//    }
 
     public function cities()
     {

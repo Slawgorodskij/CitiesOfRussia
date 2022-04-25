@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\CityFormRequest;
+use App\Models\Article;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,62 +28,62 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cities.newCity');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CityFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityFormRequest $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        City::create($request->validated());
+        return to_route('admin.cities.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param City $city
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(City $city)
     {
-        //
+        return view('admin.cities.newCity', [
+            'city' => $city,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CityFormRequest $request
+     * @param City $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityFormRequest $request, City $city)
     {
-        //
+        $city->update($request->validated());
+        return to_route('admin.cities.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param City $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        //
+        try {
+            $city->delete();
+            return response()->json('ok');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('City error destroy', [$e]);
+            return response()->json('error', 400);
+        }
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SightController;
-use App\Http\Controllers\Api\CityController as ApiCityController;
+use App\Http\Controllers\Api\ApiCityController as ApiCityController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;

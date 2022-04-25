@@ -23,7 +23,7 @@ return new class extends Migration {
                 ->nullable(true);
             $table->text('description')
                 ->nullable(true);
-            $table->string('article_body')
+            $table->text('article_body')
                 ->nullable(false); //последняя строка название файла со статьей включая расширение
             $table->string('slug', 255)
                 ->nullable(true);
