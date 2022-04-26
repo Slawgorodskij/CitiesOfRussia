@@ -23,7 +23,7 @@
 
         <section class="presentation container wrapper">
 
-            <city/>
+            <city :city="{{ \App\Models\CityImage::query()->limit(3)->get() }}"></city>
 
         </section>
 
