@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sight>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ArticleCity>
  */
-class SightFactory extends Factory
+class ArticleCityFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,8 @@ class SightFactory extends Factory
     public function definition()
     {
         return [
+            'article_id' => rand(1, 220),
             'city_id' => rand(1, 20),
-            'name' => $this->faker->sentence(5),
-            'description' => $this->faker->text(200),
         ];
     }
 }

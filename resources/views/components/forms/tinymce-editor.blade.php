@@ -1,1 +1,1 @@
-<textarea name="article" id="editor">{!! old('editor') !!}</textarea>
+<textarea name="article" id="editor">{!! old('article') !!}</textarea>

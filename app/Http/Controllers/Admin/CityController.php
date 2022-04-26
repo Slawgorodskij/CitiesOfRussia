@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
+use App\Models\Image;
+use App\Models\Article;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CityFormRequest;
-use App\Models\Article;
 
 class CityController extends Controller
 {
@@ -40,18 +41,26 @@ class CityController extends Controller
     public function store(CityFormRequest $request)
     {
         $validated = $request->validated();
-        $articleText = $request->input('article');
-        $articleFile = app(UploadService::class)->saveText($articleText, 'articles');
-        $article = Article::create(['article_body' => $articleFile]);
-        $validated['article_id'] = $article->id;
-
-        if ($request->hasFile('image')) {
-            $validated['image'] = app(UploadService::class)->saveFile($request->file('image'), 'images');
-        }
+        $article = Article::create([
+            'article_body' => app(UploadService::class)->saveText(
+                $request->input('article'),
+                'articles',
+            )
+        ]);
 
         $created = City::create($validated);
         if ($created) {
-            $created->articles()->associate($article);
+            $created->articles()->attach($article);
+
+            if ($validated['images']) {
+                foreach ($validated['images'] as $image) {
+                    $image = Image::create([
+                        'name' => app(UploadService::class)->saveFile($image, 'images')
+                    ]);
+                    $created->images()->attach($image);
+                }
+            }
+
             return to_route('admin.cities.index');
         }
 

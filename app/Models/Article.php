@@ -11,13 +11,19 @@ class Article extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'user_id',
+        'title',
+        'description',
         'article_body',
     ];
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function images()
     {
         return $this->belongsToMany(Image::class, 'article_images', 'article_id', 'image_id');
     }
-
 }

@@ -10,7 +10,8 @@
 
 @section('content')
 <div class="block-form container">
-    <form method="POST" action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}">
+    <form method="POST" action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}"
+        enctype="multipart/form-data">
         @csrf
 
         @if(isset($city))
@@ -31,6 +32,11 @@
         @error('description')
         <p class="block-form__text-error">{{ $message }}</p>
         @enderror
+
+        <div>
+            <label for="images">Загрузить изображения</label>
+            <input type="file" name="images[]" id="images" multiple>
+        </div>
 
         <x-forms.tinymce-editor />
 
