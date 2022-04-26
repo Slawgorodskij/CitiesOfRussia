@@ -13,4 +13,6 @@ yarn-error.log
 /.idea
 /.vscode
 
-public
+/public/css/
+/public/js/
+docker-compose.yml
