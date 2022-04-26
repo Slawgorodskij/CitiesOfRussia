@@ -17,6 +17,7 @@ class City extends Model
         'slug',
     ];
 
+
     public function articles()
     {
         return $this->belongsToMany(Article::class, 'article_cities', 'city_id', 'article_id');

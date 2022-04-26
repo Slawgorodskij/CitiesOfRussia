@@ -17,7 +17,7 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->city(),
+            'name' => $this->faker->city(),
             'description' => $this->faker->text(150),
         ];
     }

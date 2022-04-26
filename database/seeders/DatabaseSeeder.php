@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             ImageSightSeeder::class,
             CommentCitySeeder::class,
             CommentSightSeeder::class,
-            // LikeCitySeeder::class,
-            // LikeSightSeeder::class,
+           // LikeCitySeeder::class,
+           // LikeSightSeeder::class,
         ]);
     }
 }

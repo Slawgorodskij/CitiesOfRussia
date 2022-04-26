@@ -18,6 +18,7 @@ class Sight extends Model
         'slug',
     ];
 
+
     public function articles()
     {
         return $this->belongsToMany(Article::class, 'article_sights', 'sight_id', 'article_id');
@@ -26,6 +27,11 @@ class Sight extends Model
     // {
     //     return $this->belongsTo(Article::class, 'article_id');
     // }
+
+//    public function articles()
+//    {
+//        return $this->belongsTo(Article::class, 'article_id');
+//    }
 
     public function cities()
     {
