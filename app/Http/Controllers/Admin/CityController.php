@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\CityFormRequest;
-use App\Models\Article;
 use App\Models\City;
-use Illuminate\Http\Request;
+use App\Models\Image;
+use App\Models\Article;
+use App\Services\UploadService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CityFormRequest;
 
 class CityController extends Controller
 {
@@ -39,9 +40,31 @@ class CityController extends Controller
      */
     public function store(CityFormRequest $request)
     {
+        $validated = $request->validated();
+        $created = City::create($validated);
 
-        City::create($request->validated());
-        return to_route('admin.cities.index');
+        if ($created) {
+            $article = Article::create([
+                'article_body' => app(UploadService::class)->saveText(
+                    $request->input('article'),
+                    'articles',
+                )
+            ]);
+            $created->articles()->attach($article);
+
+            if ($validated['images']) {
+                foreach ($validated['images'] as $image) {
+                    $image = Image::create([
+                        'name' => 'storage/' . app(UploadService::class)->saveFile($image, 'images')
+                    ]);
+                    $created->images()->attach($image);
+                }
+            }
+
+            return to_route('admin.cities.index');
+        }
+
+        return back()->withInput();
     }
 
     /**

@@ -26,5 +26,4 @@ class Article extends Model
     {
         return $this->belongsToMany(Image::class, 'article_images', 'article_id', 'image_id');
     }
-
 }

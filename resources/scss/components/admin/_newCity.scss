@@ -28,11 +28,10 @@
         transition: all 0.4s linear;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             background-color: var(--color-background-hover);
             border: var(--color-border-hover) solid 2px;
             box-shadow: 0 15px 25px -2px rgba(34, 60, 80, 0.35);
         }
     }
 }
-

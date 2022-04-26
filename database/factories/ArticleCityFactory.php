@@ -17,8 +17,8 @@ class ArticleCityFactory extends Factory
     public function definition()
     {
         return [
-            'article_id'=>rand(1,220),
-            'city_id'=>rand(1,20),
+            'article_id' => rand(1, 220),
+            'city_id' => rand(1, 20),
         ];
     }
 }

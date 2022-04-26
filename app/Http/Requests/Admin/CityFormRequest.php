@@ -24,8 +24,11 @@ class CityFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'min:5', 'max:50'],
-            'description' => ['required', 'min:10', 'max:100'],
+            'name' => ['required', 'string' , 'min:2', 'max:50'],
+            'description' => ['required', 'string' , 'min:10', 'max:100'],
+            'article' => ['required', 'string'],
+            'images' => ['nullable'],
+            'images.*' => ['mimes:jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp,svg'],
         ];
     }
 }

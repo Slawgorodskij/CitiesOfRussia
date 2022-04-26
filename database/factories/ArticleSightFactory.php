@@ -17,8 +17,8 @@ class ArticleSightFactory extends Factory
     public function definition()
     {
         return [
-            'article_id'=>rand(1,220),
-            'sight_id'=>rand(1,200),
+            'article_id' => rand(1, 220),
+            'sight_id' => rand(1, 200),
         ];
     }
 }
