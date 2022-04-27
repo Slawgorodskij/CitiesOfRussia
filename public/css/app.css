@@ -258,11 +258,20 @@ ul {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+.presentation-carousel {
+    display: grid;
+    grid-auto-columns: calc(25% - 30px);
+    grid-auto-flow: column;
+    gap: 20px;
+    overflow-x: auto;
+}
+
 .presentation-block {
   position: relative;
   height: 40vh;
   cursor: pointer;
 }
+
 .presentation-block__photo {
   position: absolute;
   top: 0;

@@ -21,7 +21,13 @@
             </div>
         </div>
 
-        <div> Карусель фотографий</div>
+<div class="carousel presentation-carousel container wrapper">
+
+    <carousel> :city="{{ \App\Models\CityImage::all() }}" </carousel>
+
+</div>
+
+
 
         <article>
             Много текста про место
@@ -60,3 +66,9 @@
     </main>
 
 @endsection
+<script>
+    import Caruosel from "../js/components/Carousel";
+    export default {
+        components: {Caruosel}
+    }
+</script>
