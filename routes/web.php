@@ -26,7 +26,16 @@ Auth::routes();
 
 Route::view('/', 'index')->name('index');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+        Route::view('/', 'admin.index')->name('index');
+        Route::resource('/cities', AdminCityController::class);
+        Route::resource('/sights', AdminSightController::class);
+        Route::resource('/users', AdminUserController::class);
+    });
+});
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cities', [ApiCityController::class, 'index']);
@@ -39,11 +48,4 @@ Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
 
 Route::group(['as' => 'sights.', 'prefix' => 'cities'], function () {
     Route::get('/{city:slug}/{sight:slug}', [SightController::class, 'index'])->name('index');
-});
-
-Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
-    Route::view('/', 'admin.index')->name('index');
-    Route::resource('/cities', AdminCityController::class);
-    Route::resource('/sights', AdminSightController::class);
-    Route::resource('/users', AdminUserController::class);
 });
