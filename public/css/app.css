@@ -328,3 +328,16 @@ ul {
   left: 10vw;
   z-index: 3;
 }
+.destination__advert {
+  position: absolute;
+  text-align: center;
+  top: 50vh;
+  left: 10vw;
+  right: 10vw;
+  z-index: 3;
+}
+.destination__advertlink {
+  font-size: 30px;
+  color: blue;
+  text-decoration: underline;
+}

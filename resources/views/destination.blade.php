@@ -52,6 +52,9 @@
 
         <section>
             Приглашение найти попутчика
+        <div>
+            @include('components.advert')
+        </div>
         </section>
 
         <div>
