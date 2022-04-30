@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Добавить город - @parent
+Редактор города - @parent
 @stop
 
 @section('content-header')
-<h1>{{ isset($sity) ? ('Редактирование информации о городе:' . ' ' . $sity->name) : ('Добавление города') }}</h1>
+<h1>{{ isset($city) ? ('Редактирование информации о городе: ' . $city->name) : ('Добавление города') }}</h1>
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
         @endif
 
         <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
-            placeholder="Название города" value="{{ $city->name ?? '' }}" />
+            placeholder="Название города" value="{{ $city->name ?? old('name') }}" />
 
         @error('name')
         <p class="block-form__text-error">{{ $message }}</p>
@@ -27,7 +27,7 @@
 
         <input name="description" type="text"
             class="block-form__input @error('description') block-form__input_error @enderror"
-            placeholder="Короткая информация о городе" value="{{ $city->description ?? '' }}" />
+            placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}" />
 
         @error('description')
         <p class="block-form__text-error">{{ $message }}</p>
@@ -37,8 +37,6 @@
             <label for="images">Загрузить изображения</label>
             <input type="file" name="images[]" id="images" multiple>
         </div>
-
-        <x-forms.tinymce-editor />
 
         <button type="submit"
             class="block-form__button text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium"

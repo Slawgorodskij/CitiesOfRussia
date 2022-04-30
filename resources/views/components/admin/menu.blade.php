@@ -19,6 +19,12 @@
             </a>
         </li>
         <li class="admin-menu__item">
+            <a class="admin-menu__link @if(request()->routeIs('admin.articles.*')) admin-menu__link--active @endif"
+                href="{{ route('admin.articles.index') }}">
+                Статьи
+            </a>
+        </li>
+        <li class="admin-menu__item">
             <a class="admin-menu__link @if(request()->routeIs('admin.users.*')) admin-menu__link--active @endif"
                 href="{{ route('admin.users.index') }}">
                 Пользователи

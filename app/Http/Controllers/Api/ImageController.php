@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
-    public function upload(Request $request)
+    public function store(Request $request)
     {
         $fileName = app(UploadService::class)->saveFile($request->file('file'), 'images');
         return response()->json(['location' => "/storage/$fileName"]);

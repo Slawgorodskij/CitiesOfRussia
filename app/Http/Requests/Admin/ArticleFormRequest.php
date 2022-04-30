@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CityFormRequest extends FormRequest
+class ArticleFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class CityFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string' , 'min:2', 'max:50'],
-            'description' => ['required', 'string' , 'min:10', 'max:100'],
-            'images' => ['nullable'],
-            'images.*' => ['mimes:jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp,svg'],
+            'user_id' => ['nullable', 'integer'],
+            'title' => ['nullable', 'string', 'max:150'],
+            'description' => ['nullable', 'string'],
+            'article_body' => ['required', 'string'],
+            'articleable_id' => ['required', 'integer'],
+            'articleable_type' => ['required', 'string'],
         ];
     }
 }
