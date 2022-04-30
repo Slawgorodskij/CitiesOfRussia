@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             SightSeeder::class,
             ArticleSeeder::class,
-            ArticleCitySeeder::class,
-            ArticleSightSeeder::class,
             ArticleImageSeeder::class,
             CityImageSeeder::class,
             ImageSightSeeder::class,

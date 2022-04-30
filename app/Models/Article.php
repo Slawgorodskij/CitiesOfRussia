@@ -15,6 +15,8 @@ class Article extends Model
         'title',
         'description',
         'article_body',
+        'articleable_id',
+        'articleable_type',
     ];
 
     public function users()
@@ -25,5 +27,10 @@ class Article extends Model
     public function images()
     {
         return $this->belongsToMany(Image::class, 'article_images', 'article_id', 'image_id');
+    }
+
+    public function articleable()
+    {
+        return $this->morphTo();
     }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-Список городов - @parent
+Список статей - @parent
 @stop
 
 @section('content-header')
-<h1>Список городов</h1>
-<a href="{{ route('admin.cities.create') }}" class="admin-panel__button">
-    Добавить город
+<h1>Список статей</h1>
+<a href="{{ route('admin.articles.create') }}" class="admin-panel__button">
+    Добавить статью
 </a>
 @endsection
 
@@ -22,28 +22,24 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($cities as $city)
+        @foreach ($articles as $article)
         <tr>
-            <td>{{ $city->id }}</td>
-            <td>{{ $city->name }}</td>
-            <td>{{ $city->created_at }}</td>
+            <td>{{ $article->id }}</td>
+            <td>{{ $article->title }}</td>
+            <td>{{ $article->created_at }}</td>
             <td>
-                <a href="{{ route('admin.cities.edit', ['city' => $city]) }}" class="admin-panel__button">
+                <a href="{{ route('admin.articles.edit', ['article' => $article]) }}" class="admin-panel__button">
                     Редактировать
                 </a>
-                <a href="javascript:;" class="admin-panel__button delete" rel="{{ $city->id }}">
+                <a href="javascript:;" class="admin-panel__button delete" rel="{{ $article->id }}">
                     Удалить
-                </a>
-                <a href="{{ route('admin.articles.create', ['articleable_type' => class_basename($city::class), 'articleable_id' => $city->id]) }}"
-                    class="admin-panel__button">
-                    Добавить статью
                 </a>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-{{ $cities->links() }}
+{{ $articles->links() }}
 @endsection
 
 @push('js')
@@ -53,8 +49,8 @@
         elems.forEach(element => {
             element.addEventListener('click', function() {
                 const id = this.getAttribute('rel');
-                if (confirm(`Подтвердите удаление города с #ID ${id}?`)) {
-                    send(`/admin/cities/${id}`).then(() => {
+                if (confirm(`Подтвердите удаление статьи с #ID ${id}?`)) {
+                    send(`/admin/articles/${id}`).then(() => {
                         location.reload();
                     });
                 }

@@ -31,7 +31,7 @@
         },
         image_title: true,
         automatic_uploads: true,
-        images_upload_url: '/api/images/upload',
+        images_upload_url: '/api/images/store',
         file_picker_types: 'image',
         file_picker_callback: function(cb, value, meta) {
             var input = document.createElement('input');

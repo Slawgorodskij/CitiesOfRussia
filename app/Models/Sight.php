@@ -21,17 +21,8 @@ class Sight extends Model
 
     public function articles()
     {
-        return $this->belongsToMany(Article::class, 'article_sights', 'sight_id', 'article_id');
+        return $this->morphMany(Article::class, 'articleable');
     }
-    // public function articles()
-    // {
-    //     return $this->belongsTo(Article::class, 'article_id');
-    // }
-
-//    public function articles()
-//    {
-//        return $this->belongsTo(Article::class, 'article_id');
-//    }
 
     public function cities()
     {
