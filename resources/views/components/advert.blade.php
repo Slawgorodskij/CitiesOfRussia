@@ -9,7 +9,7 @@
                 <a href='/login' class="destination__advertlink">
                     Только зарегистрируйтесь!
                 </a>
-                <h2">
+                <h2>
                     Счастливых путешествий и новых открытий!
                 </h2>
             @else
