@@ -19,7 +19,7 @@
         @endif
 
         <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
-            placeholder="Название города" value="{{ $city->name ?? old('name') }}" />
+            placeholder="Название города" value="{{ $city->name ?? old('name') }}" required />
 
         @error('name')
         <p class="block-form__text-error">{{ $message }}</p>
@@ -27,7 +27,8 @@
 
         <input name="description" type="text"
             class="block-form__input @error('description') block-form__input_error @enderror"
-            placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}" />
+            placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}"
+            required />
 
         @error('description')
         <p class="block-form__text-error">{{ $message }}</p>

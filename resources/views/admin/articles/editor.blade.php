@@ -19,11 +19,24 @@
         @method('PUT')
         @endif
 
-        {{-- CHANGE IT --}}
-        <input type="text" name="articleable_type" id="articleable_type" value="{{ request()->get('articleable_type') }}" required>
-        <input type="text" name="articleable_id" id="articleable_id" value="{{ request()->get('articleable_id') }}" required>
+        <select-articleable selected-type="{{ request()->get('articleable_type') }}"
+            selected-id="{{ request()->get('articleable_id') }}"></select-articleable>
 
-        <textarea name="article_body" id="editor">{!! $article->article_body ?? old('article_body') !!}</textarea>
+        @error('articleable_type')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        @error('articleable_id')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        <textarea name="article_body" id="editor">
+            {!! $article->article_body ?? old('article_body') !!}
+        </textarea>
+
+        @error('article_body')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
 
         <button type="submit"
             class="block-form__button text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium"

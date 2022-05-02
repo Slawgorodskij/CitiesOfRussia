@@ -23,7 +23,7 @@
 
         <section class="presentation container wrapper">
 
-            <city/>
+            <city></city>
 
         </section>
 

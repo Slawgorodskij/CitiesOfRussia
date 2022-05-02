@@ -31,9 +31,9 @@
                 <a href="{{ route('admin.articles.edit', ['article' => $article]) }}" class="admin-panel__button">
                     Редактировать
                 </a>
-                <a href="javascript:;" class="admin-panel__button delete" rel="{{ $article->id }}">
-                    Удалить
-                </a>
+                <delete-button url="/admin/articles/{{ $article->id }}"
+                    confirmation="Подтвердите удаление статьи с #ID {{ $article->id }}?">
+                </delete-button>
             </td>
         </tr>
         @endforeach
@@ -41,33 +41,3 @@
 </table>
 {{ $articles->links() }}
 @endsection
-
-@push('js')
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        const elems = document.querySelectorAll('.delete');
-        elems.forEach(element => {
-            element.addEventListener('click', function() {
-                const id = this.getAttribute('rel');
-                if (confirm(`Подтвердите удаление статьи с #ID ${id}?`)) {
-                    send(`/admin/articles/${id}`).then(() => {
-                        location.reload();
-                    });
-                }
-            });
-        });
-    });
-
-    async function send(url) {
-        let response = await fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        });
-
-        let result = await response.json();
-        return result.ok;
-    }
-</script>
-@endpush
