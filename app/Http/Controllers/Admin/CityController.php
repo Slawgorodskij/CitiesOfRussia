@@ -43,16 +43,6 @@ class CityController extends Controller
         $created = City::create($validated);
 
         if ($created) {
-
-            if (array_key_exists('images', $validated)) {
-                foreach ($validated['images'] as $image) {
-                    $image = Image::create([
-                        'name' => 'storage/' . app(UploadService::class)->saveFile($image, 'images')
-                    ]);
-                    $created->images()->attach($image);
-                }
-            }
-
             return to_route('admin.cities.index');
         }
 

@@ -56,7 +56,7 @@
         @enderror
 
         <button type="submit"
-            class="block-form__button text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium"
+            class="block-form__button"
             value="save">
             Сохранить
         </button>
