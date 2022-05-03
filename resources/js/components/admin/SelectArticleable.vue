@@ -46,7 +46,7 @@ export default {
       });
     },
     onChange() {
-        this.articleableId = '';
+      this.articleableId = "";
     },
   },
   created() {
