@@ -30,6 +30,8 @@ Route::view('/', 'index')->name('index');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    Route::view('/trip', 'trip')->name('trip');
+
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::view('/', 'admin.index')->name('index');
         Route::resource('/cities', AdminCityController::class)->except(['show']);

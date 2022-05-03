@@ -1,0 +1,118 @@
+.trip-presentation {
+    position: relative;
+    height: 40vh;
+    // @include adaptive-value("margin-bottom", 100, 5, 0);
+    background-color: var(--color-background-dark);
+    color: var(--color-white);
+
+    &__photo {
+        @include photo-image;
+    }
+
+    &__description {
+        position: absolute;
+        width: 75vw;
+        top: 10vh;
+        left: 10vw;
+        z-index: 3;
+    }
+
+    &__text {
+
+    }
+}
+
+.trip {
+    @include adaptive-value("margin-bottom", 150, 5, 0);
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    min-height: 100vh;
+    font-size: 20px;
+    color: var(--color-text);
+    background-color: var(--color-background-dark);
+    background-image: url(/storage/images/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    &__title {
+        font-size: 35px;
+
+        &_mb100 {
+            @include adaptive-value("margin-bottom", 100, 5, 0);
+        }
+    }
+
+    &-description {
+        @include adaptive-value("margin-bottom", 100, 5, 0);
+        padding-top: 5%;
+        padding-bottom: 5%;
+        //background-color: var(--color-background-dark);
+    }
+
+    &-rules {
+        @include adaptive-value("margin-bottom", 100, 5, 0);
+
+
+        &__items {
+            margin-bottom: 10vh;
+            display: flex;
+        }
+
+        &__item {
+            flex: 1 0 33.333%;
+            min-height: 30vh;
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: space-between;
+            padding: 15px;
+            box-shadow: 0 15px 10px -7px rgba(36, 57, 97, 75);
+        }
+    }
+
+    &-form {
+        @include adaptive-value("margin-bottom", 150, 5, 0);
+    }
+
+}
+
+.block-form {
+    width: 100%;
+
+    &__input {
+        margin-bottom: 2vh;
+        width: 100%;
+        height: 8vh;
+        border: var(--color-border) solid 2px;
+
+        &_error {
+            border: var(--color-error) solid 2px;
+        }
+    }
+    &__label{
+        padding-bottom: 3px;
+    }
+
+    &__text-error {
+        font-weight: bold;
+        color: var(--color-error);
+    }
+
+    &__button {
+        width: 100%;
+        height: 8vh;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--color-white);
+        background-color: var(--color-background-dark);
+        border: var(--color-border) solid 2px;
+        transition: all 0.4s linear;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--color-background-hover);
+            border: var(--color-border-hover) solid 2px;
+            box-shadow: 0 15px 25px -2px rgba(34, 60, 80, 0.35);
+        }
+    }
+}

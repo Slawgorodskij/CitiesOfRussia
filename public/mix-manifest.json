@@ -3,6 +3,6 @@
     "/css/auth.css": "/css/auth.css",
     "/css/admin.css": "/css/admin.css",
     "/css/app.css": "/css/app.css",
-    "/js/tinymce/README.md": "/js/tinymce/README.md",
-    "/js/tinymce/composer.json": "/js/tinymce/composer.json"
+    "/js/tinymce/composer.json": "/js/tinymce/composer.json",
+    "/js/tinymce/README.md": "/js/tinymce/README.md"
 }

@@ -1,48 +1,49 @@
 @extends('layouts.admin')
 
 @section('title')
-Редактор города - @parent
+    Редактор города - @parent
 @stop
 
 @section('content-header')
-<h1>{{ isset($city) ? ('Редактирование информации о городе: ' . $city->name) : ('Добавление города') }}</h1>
+    <h1>{{ isset($city) ? ('Редактирование информации о городе: ' . $city->name) : ('Добавление города') }}</h1>
 @endsection
 
 @section('content')
-<div class="block-form container">
-    <form method="POST" action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}"
-        enctype="multipart/form-data">
-        @csrf
+    <div class="block-form container">
+        <form method="POST"
+              action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}"
+              enctype="multipart/form-data">
+            @csrf
 
-        @if(isset($city))
-        @method('PUT')
-        @endif
+            @if(isset($city))
+                @method('PUT')
+            @endif
 
-        <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
-            placeholder="Название города" value="{{ $city->name ?? old('name') }}" />
+            <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
+                   placeholder="Название города" value="{{ $city->name ?? old('name') }}"/>
 
-        @error('name')
-        <p class="block-form__text-error">{{ $message }}</p>
-        @enderror
+            @error('name')
+            <p class="block-form__text-error">{{ $message }}</p>
+            @enderror
 
-        <input name="description" type="text"
-            class="block-form__input @error('description') block-form__input_error @enderror"
-            placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}" />
+            <input name="description" type="text"
+                   class="block-form__input @error('description') block-form__input_error @enderror"
+                   placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}"/>
 
-        @error('description')
-        <p class="block-form__text-error">{{ $message }}</p>
-        @enderror
+            @error('description')
+            <p class="block-form__text-error">{{ $message }}</p>
+            @enderror
 
-        <div>
-            <label for="images">Загрузить изображения</label>
-            <input type="file" name="images[]" id="images" multiple>
-        </div>
+            <div class="block-form__input">
+                <label for="images">Загрузить изображения</label>
+                <input type="file" name="images[]" id="images" multiple>
+            </div>
 
-        <button type="submit"
-            class="block-form__button text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium"
-            value="save">
-            Сохранить
-        </button>
-    </form>
-</div>
+            <button type="submit"
+                    class="block-form__button"
+                    value="save">
+                Сохранить
+            </button>
+        </form>
+    </div>
 @endsection

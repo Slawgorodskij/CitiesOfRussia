@@ -54,8 +54,30 @@
             Приглашение найти попутчика
         </section>
 
-        <div>
-            отзывы и приглашение оставить отзыв
+        <div class="feedback-block">
+
+            <h2 class="title">Отзывы наших пользователей</h2>
+
+            <div class="feedback-block__items container">
+
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+
+            </div>
+
         </div>
     </main>
 

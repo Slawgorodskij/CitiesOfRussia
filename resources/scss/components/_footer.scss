@@ -1,20 +1,20 @@
 .footer {
-  background-color: var(--color-background);
+    background-color: var(--color-background-elem);
 
-  &__block {
-    @include flex-all-sb;
-  }
-&__logo{
-  padding-top: 15px;
-}
-  &__social {
-    @include flex-all-sb;
-    column-gap: 10px;
-  }
+    &__block {
+        @include flex-all-sa;
+    }
 
-  &__signature {
-    margin: 0;
-    padding-bottom: 15px;
-    text-align: center;
-  }
+    &__logo {
+        padding-top: 15px;
+    }
+
+    &__link {
+        color: var(--color-text);
+
+        &:hover {
+            color: var(--color-text-hover);
+        }
+    }
+
 }
