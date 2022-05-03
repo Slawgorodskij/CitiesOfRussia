@@ -24,11 +24,6 @@ class Article extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function images()
-    {
-        return $this->belongsToMany(Image::class, 'article_images', 'article_id', 'image_id');
-    }
-
     public function articleable()
     {
         return $this->morphTo();

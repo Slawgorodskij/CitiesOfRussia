@@ -9,6 +9,45 @@
 @endsection
 
 @section('content')
+
+<div class="block-form container">
+    <form method="POST" action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}"
+        enctype="multipart/form-data">
+        @csrf
+
+        @if(isset($city))
+        @method('PUT')
+        @endif
+
+        <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
+            placeholder="Название города" value="{{ $city->name ?? old('name') }}" required />
+
+        @error('name')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        <input name="description" type="text"
+            class="block-form__input @error('description') block-form__input_error @enderror"
+            placeholder="Короткая информация о городе" value="{{ $city->description ?? old('description') }}"
+            required />
+
+        @error('description')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        <div>
+            <label for="images">Загрузить изображения</label>
+            <input type="file" name="images[]" id="images" multiple>
+        </div>
+
+        <button type="submit"
+            class="block-form__button text-center w-full bg-blue-900 rounded-md text-white py-3 font-medium"
+            value="save">
+            Сохранить
+        </button>
+    </form>
+</div>
+
     <div class="block-form container">
         <form method="POST"
               action="{{ isset($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}"
@@ -46,4 +85,5 @@
             </button>
         </form>
     </div>
+
 @endsection

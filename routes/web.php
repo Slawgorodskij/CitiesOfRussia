@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cities', [ApiCityController::class, 'index']);
+    Route::get('/articleables', [ApiArticleableController::class, 'index']);
     Route::post('/images/store', [ApiImageController::class, 'store']);
 });
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
 use App\Models\Image;
-use App\Models\Article;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CityFormRequest;
