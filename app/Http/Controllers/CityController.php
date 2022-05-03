@@ -8,7 +8,8 @@ class CityController extends Controller
 {
     public function index($slug)
     {
-        $city = City::with('images', 'articles', 'sights')->where('slug', $slug)
+        $city = City::with('images', 'articles', 'sights')
+            ->where('slug', $slug)
             ->first();
         return view('destination', [
             'destination_data' => $city,

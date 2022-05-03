@@ -1,0 +1,25 @@
+.feedback-block {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    min-height: 50vh;
+    font-size: 20px;
+    color: var(--color-text);
+    background-color: var(--color-background-dark);
+    background-image: url(/storage/images/feedback.jpg);
+    @include bg-cover;
+    background-attachment: fixed;
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        width: 70%;
+    }
+
+    &__author {
+        font-style: italic;
+        text-align: right;
+    }
+}

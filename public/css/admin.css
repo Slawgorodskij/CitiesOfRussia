@@ -36,6 +36,9 @@
 :root {
   --color-body: #e1eefd;
   --color-background: rgba(10, 25, 39, 0.6);
+  --color-background-elem: #96bce8;
+  --color-text: #1859aa;
+  --color-text-hover: #ece435;
   --color-background-text: #8cb4d4;
   --color-background-dark: #6283a1;
   --color-background-hover: #5ea7e8;
@@ -134,6 +137,19 @@ ul {
 .wrapper {
   padding-top: calc(5px + 95 * ((100vw - 320px) / 1600));
   margin-bottom: calc(5px + 95 * ((100vw - 320px) / 1600));
+}
+
+.title {
+  margin-top: 0;
+  text-align: center;
+}
+
+.text {
+  text-indent: 25px;
+}
+
+.model {
+  height: 30vh;
 }
 
 .admin-header {
