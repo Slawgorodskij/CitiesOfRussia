@@ -52,27 +52,29 @@
 
         <section class="destination-invitation">
             <div class="destination-invitation__advert">
+                <div class="container">
+                    @unless (Auth::check())
+                        <h2>
+                            Отправляйтесь в путешествие прямо сейчас! <br>
+                            Выбирайте привлекательные города России, комбинируйте их в маршруты, и посетите проверенные
+                            достопримечательности в нескучной компании случайных попутчиков!
+                        </h2>
+                        <a class="destination-invitation__advertlink" href='/login'>
+                            Только зарегистрируйтесь!
+                        </a>
+                        <h2>
+                            Счастливых путешествий и новых открытий!
+                        </h2>
+                    @else
+                        <h2>
+                            Вы уже с нами!
+                        </h2>
+                        <a class="destination-invitation__advertlink" href='/home'>
+                            Выберите маршрут и попутчика прямо сейчас!
+                        </a>
+                    @endunless
+                </div>
 
-                @unless (Auth::check())
-                    <h2>
-                        Отправляйтесь в путешествие прямо сейчас! <br>
-                        Выбирайте привлекательные города России, комбинируйте их в маршруты, и посетите проверенные
-                        достопримечательности в нескучной компании случайных попутчиков!
-                    </h2>
-                    <a class="destination-invitation__advertlink" href='/login'>
-                        Только зарегистрируйтесь!
-                    </a>
-                    <h2>
-                        Счастливых путешествий и новых открытий!
-                    </h2>
-                @else
-                    <h2>
-                        Вы уже с нами!
-                    </h2>
-                    <a class="destination-invitation__advertlink" href='/home'>
-                        Выберите маршрут и попутчика прямо сейчас!
-                    </a>
-                @endunless
 
             </div>
         </section>
