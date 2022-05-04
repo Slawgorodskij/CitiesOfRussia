@@ -265,13 +265,11 @@ ul {
     gap: 20px;
     overflow-x: auto;
 }
-
 .presentation-block {
   position: relative;
   height: 40vh;
   cursor: pointer;
 }
-
 .presentation-block__photo {
   position: absolute;
   top: 0;

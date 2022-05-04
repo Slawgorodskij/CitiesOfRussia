@@ -23,7 +23,7 @@
 
 <div class="carousel presentation-carousel container wrapper">
 
-    <carousel> :city="{{ \App\Models\CityImage::all() }}" </carousel>
+    <carousel> :sight="{{ \App\Models\ImageSight::query()->limit(3)->get() }}" </carousel>
 
 </div>
 
@@ -67,8 +67,8 @@
 
 @endsection
 <script>
-    import Caruosel from "../js/components/Carousel";
+    import Carousel from "../js/components/Carousel";
     export default {
-        components: {Caruosel}
+        components: {Carousel}
     }
 </script>

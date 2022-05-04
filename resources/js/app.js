@@ -16,11 +16,11 @@ import carousel from "./components/Carousel";
 
 const app=createApp({})
 
-app.component('carousel', city)
+
 
 app.component('city' , city);
 
-
+app.component('carousel', carousel);
 
 app.mount("#app")
 

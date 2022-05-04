@@ -1,14 +1,6 @@
 <template>
-    <div class="presentation-block" v-for="city in cityArray" :key="city.id">
-        <img class="presentation-block__photo" :src="city.images[0]['name']" alt="фотография города">
-        <div class="presentation-block__text">
-            {{ city.name }}
-        </div>
-        <div class="presentation-block__hover">
-            <a class="presentation-block__hover_link" :href="'cities/' + city.slug">
-                <h3>{{ city.description }}</h3>
-            </a>
-        </div>
+    <div class="presentation-block" v-for="sight in sightArray" :key="sight.id">
+        <img class="presentation-block__photo" :src="sight.images[0]['name']" alt="достопримечательность города">
     </div>
 </template>
 
@@ -19,28 +11,27 @@ export default {
 
     data() {
         return {
-            cityArray: [],
+            sightArray: [],
             loading: false,
         }
     },
     methods: {
         fetch(offset = 0) {
             this.loading = true;
-            axios.get('/api/cities', {
+            axios.get('/cities/sight', {
                 params: {
                     offset: offset
                 }
             })
                 .then(response => {
                     console.log(response);
-                    this.cityArray = this.cityArray.concat(response.data)
+                    this.sightArray = this.sightArray.concat(response.data)
                 })
                 .finally(response => this.loading = false)
         }
     },
     created() {
         this.fetch()
-
         const eventHandler = () => {
             const block = document.querySelector('.carousel');
             const viewportHeight = window.innerHeight; // размер экрана
@@ -51,12 +42,13 @@ export default {
 
             if ((offsetTop + clientHeight - scrollTopDoc) < viewportHeight) {
                 console.log('выполняю запрос')
-                this.fetch(this.cityArray.length)
+                this.fetch(this.sightArray.length)
             }
 
         }
         let delayedHandler = _.debounce(eventHandler, 400)
         document.addEventListener('scroll', delayedHandler);
+
     }
 }
 </script>

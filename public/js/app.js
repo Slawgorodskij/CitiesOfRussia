@@ -22668,7 +22668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      cityArray: [],
+      sightArray: [],
       loading: false
     };
   },
@@ -22678,13 +22678,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       this.loading = true;
-      axios.get('/api/cities', {
+      axios.get('/cities/sight', {
         params: {
           offset: offset
         }
       }).then(function (response) {
         console.log(response);
-        _this.cityArray = _this.cityArray.concat(response.data);
+        _this.sightArray = _this.sightArray.concat(response.data);
       })["finally"](function (response) {
         return _this.loading = false;
       });
@@ -22708,7 +22708,7 @@ __webpack_require__.r(__webpack_exports__);
       if (offsetTop + clientHeight - scrollTopDoc < viewportHeight) {
         console.log('выполняю запрос');
 
-        _this2.fetch(_this2.cityArray.length);
+        _this2.fetch(_this2.sightArray.length);
       }
     };
 
@@ -22803,34 +22803,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = ["src"];
-var _hoisted_2 = {
-  "class": "presentation-block__text"
-};
-var _hoisted_3 = {
-  "class": "presentation-block__hover"
-};
-var _hoisted_4 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cityArray, function (city) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.sightArray, function (sight) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "presentation-block",
-      key: city.id
+      key: sight.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       "class": "presentation-block__photo",
-      src: city.images[0]['name'],
-      alt: "фотография города"
+      src: sight.images[0]['name'],
+      alt: "достопримечательность города"
     }, null, 8
     /* PROPS */
-    , _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(city.name), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-      "class": "presentation-block__hover_link",
-      href: 'cities/' + city.slug
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(city.description), 1
-    /* TEXT */
-    )], 8
-    /* PROPS */
-    , _hoisted_4)])]);
+    , _hoisted_1)]);
   }), 128
   /* KEYED_FRAGMENT */
   );
@@ -22920,8 +22904,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
-app.component('carousel', _components_City_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.component('city', _components_City_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+app.component('carousel', _components_Carousel__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.mount("#app");
 
 /***/ }),

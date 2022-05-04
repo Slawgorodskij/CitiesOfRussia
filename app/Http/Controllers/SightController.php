@@ -16,8 +16,10 @@ class SightController extends Controller
 
         return view('destination', [
             'destination_data' => $sight,
-            'sights' => $city->sights,
-            'citySlug'=> $city->slug,
+            'sight' => $city->sight,
+            'citySlug'=> $city->citySlug,
+            'sightSlug'=>$city->sightSlug,
+
         ]);
     }
 }
