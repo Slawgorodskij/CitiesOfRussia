@@ -19,6 +19,8 @@
         @method('PUT')
         @endif
 
+        <input type="hidden" name="user_id" id="userId" value="{{ Auth::user()->id }}">
+
         <select-articleable selected-type="{{ request()->get('articleable_type') }}"
             selected-id="{{ request()->get('articleable_id') }}"></select-articleable>
 
@@ -27,6 +29,21 @@
         @enderror
 
         @error('articleable_id')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        <input name="title" type="text" class="block-form__input @error('title') block-form__input_error @enderror"
+            placeholder="Заголовок" value="{{ $article->title ?? old('title') }}" />
+
+        @error('title')
+        <p class="block-form__text-error">{{ $message }}</p>
+        @enderror
+
+        <input name="description" type="text"
+            class="block-form__input @error('description') block-form__input_error @enderror"
+            placeholder="Краткое описание" value="{{ $article->description ?? old('description') }}" />
+
+        @error('description')
         <p class="block-form__text-error">{{ $message }}</p>
         @enderror
 

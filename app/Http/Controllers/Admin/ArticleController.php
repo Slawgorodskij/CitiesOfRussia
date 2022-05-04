@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\City;
 use App\Models\Sight;
 use App\Models\Article;
+use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArticleFormRequest;
 
@@ -44,6 +45,10 @@ class ArticleController extends Controller
             class_basename(City::class) => City::class,
             class_basename(Sight::class) => Sight::class,
         };
+        $validated['article_body'] = app(UploadService::class)->saveText(
+            $validated['article_body'],
+            'articles',
+        );
         $created = Article::create($validated);
 
         if ($created) {
