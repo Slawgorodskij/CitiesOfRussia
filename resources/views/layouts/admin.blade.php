@@ -11,8 +11,7 @@
     <title>@section('title'){{ config('app.name', 'CitiesOfRussia') }}@show</title>
 
     <!-- Scripts -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-
+    <script src="{{ asset('js/admin.js') }}" defer></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
@@ -22,21 +21,22 @@
 
 <body>
 
-<x-admin.header/>
+    <div id="app">
 
-<main class="admin-panel container">
+        <x-admin.header />
 
-    <div class="admin-panel__header">
-        @yield('content-header')
+        <main class="admin-panel container">
+
+            <div class="admin-panel__header">
+                @yield('content-header')
+            </div>
+
+            @yield('content')
+
+        </main>
+
     </div>
 
-    @yield('content')
-
-</main>
-
-@stack('js')
-
-@stack('scripts')
 </body>
 
 </html>

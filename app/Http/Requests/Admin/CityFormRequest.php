@@ -26,7 +26,6 @@ class CityFormRequest extends FormRequest
         return [
             'name' => ['required', 'string' , 'min:2', 'max:50'],
             'description' => ['required', 'string' , 'min:10', 'max:100'],
-            'article' => ['required', 'string'],
             'images' => ['nullable'],
             'images.*' => ['mimes:jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp,svg'],
         ];

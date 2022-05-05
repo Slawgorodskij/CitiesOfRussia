@@ -14,33 +14,37 @@
 
             @guest
 
-            @if (Route::has('login'))
-            <li class="header__menu-item">
-                <a class="header__menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @endif
+                @if (Route::has('login'))
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
 
             @else
 
-            <li class="header__menu-item">
-                <a class="header__menu-link" href="{{ route('home') }}">Кабинет</a>
-            </li>
+                <li class="header__menu-item">
+                    <a class="header__menu-link" href="{{ route('home') }}">Кабинет</a>
+                </li>
 
-            @if (Auth::user()->is_admin)
-            <li class="header__menu-item">
-                <a class="header__menu-link" href="{{ route('admin.index') }}">Админка</a>
-            </li>
-            @endif
+                <li class="header__menu-item">
+                    <a class="header__menu-link" href="{{ route('trip') }}">Совместные поездки</a>
+                </li>
 
-            <li class="header__menu-item">
-                <a class="header__menu-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </li>
+                @if (Auth::user()->is_admin)
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="{{ route('admin.index') }}">Админка</a>
+                    </li>
+                @endif
+
+                <li class="header__menu-item">
+                    <a class="header__menu-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
 
             @endguest
 

@@ -20,12 +20,8 @@ class City extends Model
 
     public function articles()
     {
-        return $this->belongsToMany(Article::class, 'article_cities', 'city_id', 'article_id');
+        return $this->morphMany(Article::class, 'articleable');
     }
-    // public function articles()
-    // {
-    //     return $this->belongsTo(Article::class, 'article_id');
-    // }
 
     public function sights()
     {

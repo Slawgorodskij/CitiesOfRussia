@@ -16,22 +16,35 @@
         z-index: 3;
     }
 
-    &__text {
+    &-invitation {
+        position: relative;
+        min-height: 60vh;
+        background-color: var(--color-background-dark);
+        background-image: url(/storage/images/car.jpg);
+        @include bg-cover;
+
+        &__advert {
+            position: absolute;
+            @include flex-all-center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: var(--color-white);
+            background-image: url(/storage/images/dots.png);
+
+        }
+
+        &__advertlink {
+            font-size: 30px;
+            color: var(--color-text);
+            text-decoration: underline;
+
+            &:hover {
+                color: var(--color-text-hover);
+            }
+        }
 
     }
 
-    &__advert {
-        position: absolute;
-        text-align:center;
-        top: 50vh;
-        left: 10vw;
-        right: 10vw;
-        z-index: 3;
-    }
-
-    &__advertlink{
-    font-size: 30px;
-    color: blue;
-    text-decoration: underline;
-    }
 }

@@ -31,8 +31,12 @@
                 <a href="{{ route('admin.cities.edit', ['city' => $city]) }}" class="admin-panel__button">
                     Редактировать
                 </a>
-                <a href="javascript:;" class="admin-panel__button delete" rel="{{ $city->id }}">
-                    Удалить
+                <delete-button url="/admin/cities/{{ $city->id }}"
+                    confirmation="Подтвердите удаление города с #ID {{ $city->id }}?">
+                </delete-button>
+                <a href="{{ route('admin.articles.create', ['articleable_type' => class_basename($city::class), 'articleable_id' => $city->id]) }}"
+                    class="admin-panel__button">
+                    Добавить статью
                 </a>
             </td>
         </tr>
@@ -41,33 +45,3 @@
 </table>
 {{ $cities->links() }}
 @endsection
-
-@push('js')
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        const elems = document.querySelectorAll('.delete');
-        elems.forEach(element => {
-            element.addEventListener('click', function() {
-                const id = this.getAttribute('rel');
-                if (confirm(`Подтвердите удаление города с #ID ${id}?`)) {
-                    send(`/admin/cities/${id}`).then(() => {
-                        location.reload();
-                    });
-                }
-            });
-        });
-    });
-
-    async function send(url) {
-        let response = await fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        });
-
-        let result = await response.json();
-        return result.ok;
-    }
-</script>
-@endpush

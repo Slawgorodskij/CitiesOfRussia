@@ -50,15 +50,57 @@
 
         </section>
 
-        <section>
-            Приглашение найти попутчика
-        <div>
-            @include('components.advert')
-        </div>
+        <section class="destination-invitation">
+            <div class="destination-invitation__advert">
+
+                @unless (Auth::check())
+                    <h2>
+                        Отправляйтесь в путешествие прямо сейчас! <br>
+                        Выбирайте привлекательные города России, комбинируйте их в маршруты, и посетите проверенные
+                        достопримечательности в нескучной компании случайных попутчиков!
+                    </h2>
+                    <a class="destination-invitation__advertlink" href='/login'>
+                        Только зарегистрируйтесь!
+                    </a>
+                    <h2>
+                        Счастливых путешествий и новых открытий!
+                    </h2>
+                @else
+                    <h2>
+                        Вы уже с нами!
+                    </h2>
+                    <a class="destination-invitation__advertlink" href='/home'>
+                        Выберите маршрут и попутчика прямо сейчас!
+                    </a>
+                @endunless
+
+            </div>
         </section>
 
-        <div>
-            отзывы и приглашение оставить отзыв
+        <div class="feedback-block">
+
+            <h2 class="title">Отзывы наших пользователей</h2>
+
+            <div class="feedback-block__items container">
+
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+                <div class="feedback-block__item">
+                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
+                    </p>
+                    <p class="feedback-block__author">Иван Иванов</p>
+                </div>
+
+            </div>
+
         </div>
     </main>
 

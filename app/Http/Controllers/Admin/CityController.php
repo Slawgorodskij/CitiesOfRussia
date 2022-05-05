@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
 use App\Models\Image;
-use App\Models\Article;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CityFormRequest;
@@ -29,7 +28,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('admin.cities.newCity');
+        return view('admin.cities.editor');
     }
 
     /**
@@ -44,15 +43,8 @@ class CityController extends Controller
         $created = City::create($validated);
 
         if ($created) {
-            $article = Article::create([
-                'article_body' => app(UploadService::class)->saveText(
-                    $request->input('article'),
-                    'articles',
-                )
-            ]);
-            $created->articles()->attach($article);
 
-            if ($validated['images']) {
+            if (array_key_exists('images', $validated)) {
                 foreach ($validated['images'] as $image) {
                     $image = Image::create([
                         'name' => 'storage/' . app(UploadService::class)->saveFile($image, 'images')
@@ -75,7 +67,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        return view('admin.cities.newCity', [
+        return view('admin.cities.editor', [
             'city' => $city,
         ]);
     }

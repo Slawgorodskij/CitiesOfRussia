@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\ImageController as ApiImageController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +31,21 @@ Route::view('/', 'index')->name('index');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    Route::view('/trip', 'trip')->name('trip');
+
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::view('/', 'admin.index')->name('index');
-        Route::resource('/cities', AdminCityController::class);
-        Route::resource('/sights', AdminSightController::class);
-        Route::resource('/users', AdminUserController::class);
+        Route::resource('/cities', AdminCityController::class)->except(['show']);
+        Route::resource('/sights', AdminSightController::class)->except(['show']);
+        Route::resource('/articles', AdminArticleController::class)->except(['show']);
+        Route::resource('/users', AdminUserController::class)->except(['show']);
     });
 });
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cities', [ApiCityController::class, 'index']);
-    Route::post('/images/upload', [ApiImageController::class, 'upload']);
+    Route::get('/articleables', [ApiArticleableController::class, 'index']);
+    Route::post('/images/store', [ApiImageController::class, 'store']);
 });
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
