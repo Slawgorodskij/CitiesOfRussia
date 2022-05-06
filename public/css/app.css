@@ -33,6 +33,70 @@
     height: 34px;
   }
 }
+@-webkit-keyframes leftInAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes leftInAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes leftOutAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes leftOutAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes rightInAnimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes rightInAnimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes rightOutAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes rightOutAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
 :root {
   --color-body: #e1eefd;
   --color-background: rgba(10, 25, 39, 0.6);
@@ -40,7 +104,7 @@
   --color-text: #1859aa;
   --color-text-hover: #ece435;
   --color-background-text: #8cb4d4;
-  --color-background-dark: #6283a1;
+  --color-background-dark: #91b5d4;
   --color-background-hover: #5ea7e8;
   --color-footer: rgb(10, 25, 39);
   --color-black: #000;
@@ -71,7 +135,7 @@ html {
 body {
   margin: 0;
   font-family: "Rubik", sans-serif;
-  color: var(--color-black);
+  color: var(--color-text);
   background-color: var(--color-body);
 }
 
@@ -307,7 +371,7 @@ ul {
   height: 100%;
   background: var(--color-background);
   z-index: 0;
-  transition: all 0.3s linear;
+  transition: all 0.4s linear;
 }
 .presentation-block__hover_link {
   color: var(--color-white);
@@ -338,6 +402,41 @@ ul {
   left: 10vw;
   z-index: 3;
 }
+.destination-invitation {
+  position: relative;
+  min-height: 60vh;
+  background-color: var(--color-background-dark);
+  background-image: url(/storage/images/car.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.destination-invitation__advert {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: var(--color-white);
+  background-image: url(/storage/images/dots.png);
+}
+.destination-invitation__advertlink {
+  font-size: 30px;
+  color: var(--color-text);
+  text-decoration: underline;
+}
+.destination-invitation__advertlink:hover {
+  color: var(--color-text-hover);
+}
+
+.carousel {
+  padding-bottom: calc(5px + 95 * ((100vw - 320px) / 1600));
+  background-color: var(--color-background-dark);
+}
+
 .trip-presentation {
   position: relative;
   height: 40vh;
