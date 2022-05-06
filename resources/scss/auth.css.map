@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,OAAO,CAAC,qDAAI",
+    "sources": [
+        "auth.scss",
+        "_auth_variables.scss"
+    ],
+    "names": [],
+    "file": "auth.css"
+}
