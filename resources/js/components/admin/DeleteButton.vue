@@ -1,7 +1,5 @@
 <template>
-  <a href="javascript:;" class="admin-panel__button delete" @click="onClick">
-    Удалить
-  </a>
+  <a href="javascript:;" class="admin-panel__button delete" @click="onClick">Удалить</a>
 </template>
 
 <script>

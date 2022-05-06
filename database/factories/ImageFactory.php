@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
+use App\Models\Sight;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,14 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
+        $imageables = [City::class, Sight::class];
+        $imageable_type = $imageables[array_rand($imageables)];
+
         return [
             'name' => $this->faker->imageUrl(800, 800),
+            'description' => $this->faker->text(150),
+            'imageable_id' => $imageable_type == City::class ? rand(1, 20) : rand(1, 200),
+            'imageable_type' => $imageable_type,
         ];
     }
 }

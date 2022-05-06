@@ -16,6 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->string('name', '255')
                 ->nullable(false); // название файла с расширением, сам файл хранится в соответствующей папке
+            $table->text('description')
+                ->nullable(); //TODO возможно ли использование текста в слайдах
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }

@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/cities', AdminCityController::class)->except(['show']);
         Route::resource('/sights', AdminSightController::class)->except(['show']);
         Route::resource('/articles', AdminArticleController::class)->except(['show']);
-        Route::resource('/images', AdminImageController::class)->except(['store', 'show', 'edit', 'update']);
+        Route::resource('/images', AdminImageController::class)->except(['show', 'edit', 'update']);
         Route::resource('/users', AdminUserController::class)->except(['show']);
     });
 });

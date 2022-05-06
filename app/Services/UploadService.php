@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadService
 {
-    public function saveFile(UploadedFile $file, ?string $path = 'files'): string
+    public function saveFile(UploadedFile $file, ?string $path = 'files', ?string $fileName = null): string
     {
-        $fileName = $file->store($path, 'public');
+        $fileName = $fileName ? $file->storeAs($path, $fileName, 'public') : $file->store($path, 'public');
 
         if (!$fileName) {
             throw new \Exception("File wasn't upload");
@@ -20,9 +20,9 @@ class UploadService
         return $fileName;
     }
 
-    public function saveText(string $text, ?string $path = 'files'): string
+    public function saveText(string $text, ?string $path = 'files', ?string $fileName = null): string
     {
-        $fileName = Str::random(40);
+        $fileName = $fileName ?? Str::random(40);
 
         if (!Storage::put('public/' . $path . '/' . $fileName, $text)) {
             throw new \Exception("File wasn't upload");

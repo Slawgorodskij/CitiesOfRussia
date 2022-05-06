@@ -24,9 +24,9 @@ class ImageFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'images' => ['required'],
-            'images.*' => ['mimes:jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp,svg'],
-            'description' => ['nullable', 'string'],
+            'file' => ['required'],
+            'file.*' => ['mimes:jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp,svg'],
+            'description' => ['nullable'],
             'imageable_id' => ['nullable', 'integer'],
             'imageable_type' => ['nullable', 'string'],
         ];

@@ -10,7 +10,8 @@
 
 @section('content')
 <div class="block-form container">
-    <form>
+    <form method="POST" action="{{ route('admin.images.store') }}" enctype="multipart/form-data">
+        @csrf
 
         <select-imageable selected-type="{{ request()->get('imageable_type') }}"
             selected-id="{{ request()->get('imageable_id') }}"></select-imageable>
@@ -32,6 +33,10 @@
         @error('description')
         <p class="block-form__text-error">{{ $message }}</p>
         @enderror
+
+        <button type="submit" class="block-form__button" value="save">
+            Отправить
+        </button>
 
     </form>
 </div>

@@ -19,11 +19,7 @@
     required
     v-model="imageableId"
   >
-    <option
-      v-for="item of imageables[imageableType]"
-      :value="item.id"
-      :key="item.id"
-    >
+    <option v-for="item of imageables[imageableType]" :value="item.id" :key="item.id">
       {{ item.name }}
     </option>
   </select>

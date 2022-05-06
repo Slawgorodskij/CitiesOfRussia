@@ -21,8 +21,10 @@
 
         <input type="hidden" name="user_id" id="userId" value="{{ Auth::user()->id }}">
 
-        <select-articleable selected-type="{{ request()->get('articleable_type') }}"
-            selected-id="{{ request()->get('articleable_id') }}"></select-articleable>
+        <select-articleable
+            selected-type="{{ isset($article) ? class_basename($article->articleable_type) : old('articleable_type') ?? request()->get('articleable_type') }}"
+            selected-id="{{ $article->articleable_id ?? old('articleable_id') ?? request()->get('articleable_id') }}">
+        </select-articleable>
 
         @error('articleable_type')
         <p class="block-form__text-error">{{ $message }}</p>
@@ -48,7 +50,7 @@
         @enderror
 
         <textarea name="article_body" id="editor">
-            {!! $article->article_body ?? old('article_body') !!}
+            {!! isset($article) ? Storage::get('public/articles/' . $article->article_body) : old('article_body') !!}
         </textarea>
 
         @error('article_body')

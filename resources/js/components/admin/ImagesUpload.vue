@@ -6,31 +6,25 @@
     ref="files"
     multiple
     @change="handleFilesUpload()"
-    style="visibility: hidden"
+    hidden
   />
   <div v-for="(item, key) in files" :key="key">
     {{ item.file.name }}
-    <input
-      v-model="item.description"
-      type="text"
-      :name="'description[' + key + ']'"
-      class="block-form__input"
-      placeholder="Описание"
-    />
-    <button type="button" @click="removeFile(key)" class="block-form__input">
-      Удалить
-    </button>
+    <div class="block-form__group">
+      <input
+        v-model="item.description"
+        type="text"
+        :name="'description[' + key + ']'"
+        class="block-form__input"
+        placeholder="Описание"
+      />
+      <button type="button" @click="removeFile(key)" class="block-form__button">
+        Удалить
+      </button>
+    </div>
   </div>
   <button type="button" @click="addFiles()" class="block-form__button">
     Добавить фото
-  </button>
-  <button
-    type="button"
-    class="block-form__button"
-    value="save"
-    @click="submitFiles()"
-  >
-    Загрузить
   </button>
 </template>
 
@@ -45,29 +39,6 @@ export default {
     addFiles() {
       this.$refs.files.click();
     },
-    submitFiles() {
-      let formData = new FormData();
-      for (var i = 0; i < this.files.length; i++) {
-        let item = this.files[i];
-        formData.append("files[" + i + "]", item.file);
-        formData.append("description[" + i + "]", item.description);
-      }
-      axios
-        .post("/api/images/store", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRF-TOKEN": document
-              .querySelector('meta[name="csrf-token"]')
-              .getAttribute("content"),
-          },
-        })
-        .then(function () {
-          console.log("SUCCESS!!");
-        })
-        .catch(function () {
-          console.log("FAILURE!!");
-        });
-    },
     handleFilesUpload() {
       let uploadedFiles = this.$refs.files.files;
       for (var i = 0; i < uploadedFiles.length; i++) {
@@ -76,9 +47,18 @@ export default {
           description: "",
         });
       }
+      this.setFileList(this.files);
     },
     removeFile(key) {
       this.files.splice(key, 1);
+      this.setFileList(this.files);
+    },
+    setFileList(files) {
+      let list = new DataTransfer();
+      files.forEach((item) => {
+        list.items.add(item.file);
+      });
+      this.$refs.files.files = list.files;
     },
   },
 };

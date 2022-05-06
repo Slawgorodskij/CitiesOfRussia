@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\City;
 use App\Models\Image;
+use App\Models\Sight;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ImageFormRequest;
@@ -43,17 +45,20 @@ class ImageController extends Controller
             class_basename(City::class) => City::class,
             class_basename(Sight::class) => Sight::class,
         };
-        $validated['image_body'] = app(UploadService::class)->saveText(
-            $validated['image_body'],
-            'images',
-        );
-        $created = Image::create($validated);
 
-        if ($created) {
+        try {
+            for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {
+                Image::create([
+                    'name' => 'storage/' . app(UploadService::class)->saveFile($files[$i], 'images'),
+                    'description' => $validated['description'][$i],
+                    'imageable_id' => $validated['imageable_id'],
+                    'imageable_type' => $validated['imageable_type'],
+                ]);
+            }
             return to_route('admin.images.index');
+        } catch (\Exception $e) {
+            return back()->withInput();
         }
-
-        return back()->withInput();
     }
 
     /**
