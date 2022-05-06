@@ -12,12 +12,16 @@ import { createApp } from 'vue';
 
 import city from './components/City.vue';
 
+import carousel from './components/Carousel/Carousel.vue';
+
 
 
 const app=createApp({})
 
 
 app.component('city' , city);
+
+app.component('carousel' , carousel);
 
 
 

@@ -7,7 +7,7 @@
 @section('content')
     <main>
 
-        <div class="destination wrapper">
+        <div class="destination">
             @isset($destination_data->images[0])
                 <img class="destination__photo" src="{{$destination_data->images[0]['name']}}" alt="">
             @endisset
@@ -21,7 +21,11 @@
             </div>
         </div>
 
-        <div> Карусель фотографий</div>
+        <div class="carousel wrapper">
+            <h2 class="title">Что вы можете увидеть посетив "{{$destination_data->name}}" </h2>
+            <carousel type="{{ class_basename($destination_data::class) }}" id="{{ $destination_data->id }}"></carousel>
+        </div>
+
 
         <article>
             Много текста про место
@@ -107,3 +111,10 @@
     </main>
 
 @endsection
+<script>
+    import Carousel from "../js/components/Carousel/Carousel";
+
+    export default {
+        components: {Carousel}
+    }
+</script>
