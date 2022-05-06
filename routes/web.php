@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 Auth::routes();
 
 Route::view('/', 'index')->name('index');
+Route::get('/account', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');

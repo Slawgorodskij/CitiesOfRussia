@@ -23,7 +23,7 @@
             @else
 
                 <li class="header__menu-item">
-                    <a class="header__menu-link" href="{{ route('home') }}">Кабинет</a>
+                    <a class="header__menu-link" href="{{ route('account') }}">Кабинет</a>
                 </li>
 
                 <li class="header__menu-item">
