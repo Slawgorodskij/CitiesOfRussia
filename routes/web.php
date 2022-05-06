@@ -6,6 +6,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SightController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
+use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
+use App\Http\Controllers\Api\CarouselSightController as ApiCarouselSightController;
 use App\Http\Controllers\Api\ImageController as ApiImageController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -45,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cities', [ApiCityController::class, 'index']);
+    Route::get('/carousel/City/{id}', [ApiCarouselCityController::class, 'index']);
+    Route::get('/carousel/Sight/{id}', [ApiCarouselSightController::class, 'index']);
     Route::get('/articleables', [ApiArticleableController::class, 'index']);
     Route::post('/images/store', [ApiImageController::class, 'store']);
 });
