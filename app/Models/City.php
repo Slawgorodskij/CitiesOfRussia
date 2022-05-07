@@ -30,7 +30,7 @@ class City extends Model
 
     public function comments()
     {
-        return $this->hasMany(CommentCity::class, 'city_id');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function images()

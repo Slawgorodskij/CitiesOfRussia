@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->text('description')
                 ->nullable(true);
             $table->text('article_body')
-                ->nullable(false); //последняя строка название файла со статьей включая расширение
+                ->nullable(false);
             $table->morphs('articleable');
             $table->softDeletes();
             $table->timestamps();
