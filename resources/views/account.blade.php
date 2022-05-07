@@ -38,8 +38,8 @@
   <div class="row">
     <div class="col-sm-4">
       <img src="/storage/images/face.jpg" class="rounded" alt="Cinque Terre">
-      <h2>{{$name}}</h2>
-      <h5>{{$email}}</h5>
+      <h2>{{$user->name}}</h2>
+      <h5>{{$user->email}}</h5>
       <p>Информация обо мне</p>
       <h3 class="mt-4">Переход по странице</h3>
       <p>Lorem ipsum dolor sit ame.</p>
@@ -68,29 +68,25 @@
       <hr class="d-sm-none">
     </div>
 
-    @php
-    //dump($city);
-    @endphp
-
     <div class="col-sm-8">
-
-        <h2 class="text-primary">Город {{$city}}</h2>
-
-    @foreach($citycomment as $item)
-        <h5>Комментарии от {{$item->created_at}}</h5>
-        <p>"{{$item->comment_body}}"</p>
-    @endforeach
+      @foreach ($cityComments as $key => $array)
+          <h2 class="text-primary">Город {{$array['city']->name}}</h2>
+          @foreach($array['comments'] as $comment)
+              <h5>Комментарий от {{$comment->created_at}}</h5>
+              <p>"{{$comment->comment_body}}"</p>
+          @endforeach
+      @endforeach
 
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 
-    @foreach($sight as $item)
-        <h2 class="mt-5 text-primary">Достопримечательность<br>{{$item->name}}</h2>
-    @endforeach
-    @foreach($sightcomment as $item)
-        <h5>{{$item->created_at}}</h5>
-        <p>"{{$item->comment_body}}"</p>
-    @endforeach
+      @foreach ($sightComments as $key => $array)
+          <h2 class="mt-5 text-primary">Достопримечательность<br>{{$array['sight']->name}}</h2>
+          @foreach($array['comments'] as $comment)
+              <h5>{{$comment->created_at}}</h5>
+              <p>"{{$comment->comment_body}}"</p>
+          @endforeach
+      @endforeach
 
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>

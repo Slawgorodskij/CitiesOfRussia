@@ -27,35 +27,44 @@ class AccountController extends Controller
 
         $user = User::find(1);   // для отладки
 
-        // Выбор города по последней дате комментария
+        $cityComments = [];
 
-        $citycomment = Comment::select('commentable_id', 'comment_body', 'created_at')
+        foreach (Comment::select('commentable_id', 'comment_body', 'created_at')
             ->where('user_id', $user->id)
             ->where('commentable_type', City::class)
             ->orderByDesc('created_at')
-            ->limit(1)
-            ->first();
+            ->get() as $comment) {
+            if (array_key_exists($comment->commentable_id, $cityComments)) {
+                $cityComments[$comment->commentable_id]['comments'][] = $comment;
+            } else {
+                $cityComments[$comment->commentable_id] = [
+                    'city' => City::find($comment->commentable_id),
+                    'comments' => [$comment],
+                ];
+            }
+        }
 
-        $city = City::find($citycomment->commentable_id);
+        $sightComments = [];
 
-        // Выбор достопримечательности по последней дате комментария
-
-        $sightcomment = Comment::select('commentable_id', 'comment_body', 'created_at')
+        foreach (Comment::select('commentable_id', 'comment_body', 'created_at')
             ->where('user_id', $user->id)
             ->where('commentable_type', Sight::class)
             ->orderByDesc('created_at')
-            ->limit(1)
-            ->first();
-
-        $sight = Sight::find($sightcomment->commentable_id);
+            ->get() as $comment) {
+            if (array_key_exists($comment->commentable_id, $sightComments)) {
+                $sightComments[$comment->commentable_id]['comments'][] = $comment;
+            } else {
+                $sightComments[$comment->commentable_id] = [
+                    'sight' => Sight::find($comment->commentable_id),
+                    'comments' => [$comment],
+                ];
+            }
+        }
 
         return view('account', [
-            'name' => $user->name,
-            'email' => $user->email,
-            'city' => $city,
-            'citycomment' => $citycomment,
-            'sight' => $sight,
-            'sightcomment' => $sightcomment,
+            'user' => $user,
+            'cityComments' => $cityComments,
+            'sightComments' => $sightComments,
         ]);
     }
 }
