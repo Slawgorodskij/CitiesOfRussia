@@ -12,20 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('like_sights', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->unique()
                 ->nullable(false)
                 ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-            $table->foreignId('sight_id')
-                ->unique()
-                ->nullable(false)
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->cascadeOnDelete();
+            $table->text('comment_body');
+            $table->morphs('commentable');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -37,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('like_sights');
+        Schema::dropIfExists('comments');
     }
 };

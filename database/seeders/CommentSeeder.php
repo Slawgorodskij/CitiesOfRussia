@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\CommentSight;
+use App\Models\Comment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CommentSightSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CommentSightSeeder extends Seeder
      */
     public function run()
     {
-        CommentSight::factory(400)->create();
+        Comment::factory(400)->create();
     }
 }

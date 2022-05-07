@@ -15,9 +15,9 @@ return new class extends Migration {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('name', '255')
-                ->nullable(false); // название файла с расширением, сам файл хранится в соответствующей папке
+                ->nullable(false);
             $table->text('description')
-                ->nullable(); //TODO возможно ли использование текста в слайдах
+                ->nullable();
             $table->morphs('imageable');
             $table->timestamps();
         });

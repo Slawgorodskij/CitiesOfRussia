@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             SightSeeder::class,
             ArticleSeeder::class,
-            CommentCitySeeder::class,
-            CommentSightSeeder::class,
-           // LikeCitySeeder::class,
-           // LikeSightSeeder::class,
+            ProfileSeeder::class,
+            DriverSeeder::class,
+            TripSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }

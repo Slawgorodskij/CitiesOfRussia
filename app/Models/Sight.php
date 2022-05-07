@@ -31,7 +31,7 @@ class Sight extends Model
 
     public function comments()
     {
-        return $this->hasMany(CommentSight::class, 'sight_id');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function images()

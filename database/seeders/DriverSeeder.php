@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\CommentCity;
+use App\Models\Driver;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CommentCitySeeder extends Seeder
+class DriverSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CommentCitySeeder extends Seeder
      */
     public function run()
     {
-        CommentCity::factory(50)->create();
+        Driver::factory(20)->create();
     }
 }
