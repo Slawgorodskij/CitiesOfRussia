@@ -38,6 +38,10 @@
                     class="admin-panel__button">
                     Добавить статью
                 </a>
+                <a href="{{ route('admin.images.create', ['imageable_type' => class_basename($city::class), 'imageable_id' => $city->id]) }}"
+                    class="admin-panel__button">
+                    Загрузить фото
+                </a>
             </td>
         </tr>
         @endforeach

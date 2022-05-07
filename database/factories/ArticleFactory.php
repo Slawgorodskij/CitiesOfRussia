@@ -26,7 +26,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(9),
             'description' => $this->faker->text(50),
             'article_body' => $this->faker->text(100),
-            'articleable_id' => $articleable_type == City::class ? rand(1, 20) : rand(1, 220),
+            'articleable_id' => $articleable_type == City::class ? rand(1, 20) : rand(1, 200),
             'articleable_type' => $articleable_type,
         ];
     }

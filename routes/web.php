@@ -11,8 +11,10 @@ use App\Http\Controllers\Api\CarouselSightController as ApiCarouselSightControll
 use App\Http\Controllers\Api\ImageController as ApiImageController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Api\ImageableController as ApiImageableController;
 use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 
 /*
@@ -41,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/cities', AdminCityController::class)->except(['show']);
         Route::resource('/sights', AdminSightController::class)->except(['show']);
         Route::resource('/articles', AdminArticleController::class)->except(['show']);
+        Route::resource('/images', AdminImageController::class)->except(['show', 'edit', 'update']);
         Route::resource('/users', AdminUserController::class)->except(['show']);
     });
 });
@@ -50,7 +53,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/carousel/City/{id}', [ApiCarouselCityController::class, 'index']);
     Route::get('/carousel/Sight/{id}', [ApiCarouselSightController::class, 'index']);
     Route::get('/articleables', [ApiArticleableController::class, 'index']);
-    Route::post('/images/store', [ApiImageController::class, 'store']);
+    Route::get('/imageables', [ApiImageableController::class, 'index']);
+    Route::post('/images/store', [ApiImageController::class, 'store'])->name('images.store');
 });
 
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {

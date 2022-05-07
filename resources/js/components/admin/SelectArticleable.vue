@@ -19,11 +19,7 @@
     required
     v-model="articleableId"
   >
-    <option
-      v-for="item of articleables[articleableType]"
-      :value="item.id"
-      :key="item.id"
-    >
+    <option v-for="item of articleables[articleableType]" :value="item.id" :key="item.id">
       {{ item.name }}
     </option>
   </select>

@@ -35,7 +35,7 @@ class City extends Model
 
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'city_images', 'city_id', 'image_id');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     public function sluggable(): array

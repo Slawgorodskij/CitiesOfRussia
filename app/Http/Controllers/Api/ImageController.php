@@ -11,7 +11,6 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $fileName = app(UploadService::class)->saveFile($request->file('file'), 'images');
-        return response()->json(['location' => "/storage/$fileName"]);
+        return response()->json(['location' => "/../storage/$fileName"]);
     }
-
 }

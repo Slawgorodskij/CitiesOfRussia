@@ -25,6 +25,12 @@
             </a>
         </li>
         <li class="admin-menu__item">
+            <a class="admin-menu__link @if(request()->routeIs('admin.images.*')) admin-menu__link--active @endif"
+                href="{{ route('admin.images.index') }}">
+                Фото
+            </a>
+        </li>
+        <li class="admin-menu__item">
             <a class="admin-menu__link @if(request()->routeIs('admin.users.*')) admin-menu__link--active @endif"
                 href="{{ route('admin.users.index') }}">
                 Пользователи

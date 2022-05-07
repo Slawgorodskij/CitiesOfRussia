@@ -9,11 +9,15 @@ require('./bootstrap');
 import { createApp } from 'vue';
 
 import selectArticleable from './components/admin/SelectArticleable.vue';
+import selectImageable from './components/admin/SelectImageable.vue';
+import imagesUpload from './components/admin/ImagesUpload.vue';
 import deleteButton from './components/admin/DeleteButton.vue';
 
 const app = createApp({})
 
 app.component('select-articleable', selectArticleable)
+    .component('select-imageable', selectImageable)
+    .component('images-upload', imagesUpload)
     .component('delete-button', deleteButton);
 
 app.mount("#app")

@@ -36,7 +36,7 @@ class Sight extends Model
 
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'image_sights', 'sight_id', 'image_id');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     public function sluggable(): array
