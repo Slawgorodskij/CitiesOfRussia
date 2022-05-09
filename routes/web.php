@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\SightController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
 use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
@@ -31,10 +31,9 @@ use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 Auth::routes();
 
 Route::view('/', 'index')->name('index');
-Route::get('/account', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
 
     Route::view('/trip', 'trip')->name('trip');
 
