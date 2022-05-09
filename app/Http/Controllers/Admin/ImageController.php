@@ -49,7 +49,7 @@ class ImageController extends Controller
         try {
             for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {
                 Image::create([
-                    'name' => 'storage/' . app(UploadService::class)->saveFile($files[$i], 'images'),
+                    'name' => '/../storage/' . app(UploadService::class)->saveFile($files[$i], 'images'),
                     'description' => $validated['description'][$i],
                     'imageable_id' => $validated['imageable_id'],
                     'imageable_type' => $validated['imageable_type'],

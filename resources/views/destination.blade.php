@@ -9,7 +9,7 @@
 
         <div class="destination">
             @isset($destination_data->images[0])
-                <img class="destination__photo" src="{{$destination_data->images[0]['name']}}" alt="">
+                <img class="destination__photo" src="{{ asset($destination_data->images[0]['name']) }}" alt="">
             @endisset
             <div class="destination__description">
                 <h1 class="destination__title">
@@ -26,10 +26,12 @@
             <carousel type="{{ class_basename($destination_data::class) }}" id="{{ $destination_data->id }}"></carousel>
         </div>
 
-
-        <article>
-            Много текста про место
-        </article>
+        @isset($destination_data->articles[0])
+            <article>
+                {!! Storage::get('public/articles/' . $destination_data->articles[0]->article_body) ??
+                $destination_data->articles[0]->article_body !!}
+            </article>
+        @endisset
 
         <section class="presentation container wrapper">
 
