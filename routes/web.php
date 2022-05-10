@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\SightController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\SightController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
+use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
+use App\Http\Controllers\Api\CarouselSightController as ApiCarouselSightController;
 use App\Http\Controllers\Api\ImageController as ApiImageController;
 use App\Http\Controllers\Admin\CityController as AdminCityController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -14,8 +16,6 @@ use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Api\ImageableController as ApiImageableController;
 use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
-use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
-use App\Http\Controllers\Api\CarouselSightController as ApiCarouselSightController;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,9 +1,0 @@
-{
-    "/js/app.js": "/js/app.js",
-    "/js/admin.js": "/js/admin.js",
-    "/css/auth.css": "/css/auth.css",
-    "/css/admin.css": "/css/admin.css",
-    "/css/app.css": "/css/app.css",
-    "/js/tinymce/README.md": "/js/tinymce/README.md",
-    "/js/tinymce/composer.json": "/js/tinymce/composer.json"
-}
