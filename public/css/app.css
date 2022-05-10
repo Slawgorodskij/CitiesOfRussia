@@ -537,9 +537,11 @@ ul {
 }
 
 .feedback-block {
-  padding-top: 10vh;
-  padding-bottom: 10vh;
-  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 70vh;
   font-size: 20px;
   color: var(--color-text);
   background-color: var(--color-background-dark);
@@ -555,6 +557,15 @@ ul {
 }
 .feedback-block__item {
   width: 70%;
+}
+.feedback-block__link {
+  margin-bottom: calc(5px + 45 * ((100vw - 320px) / 1600));
+  font-size: 30px;
+  color: var(--color-text);
+  text-decoration: underline;
+}
+.feedback-block__link:hover {
+  color: var(--color-text-hover);
 }
 .feedback-block__author {
   font-style: italic;

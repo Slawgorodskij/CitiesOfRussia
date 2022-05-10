@@ -1,7 +1,7 @@
 .feedback-block {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    min-height: 50vh;
+    @include flex-all-center;
+    flex-direction: column;
+    min-height: 70vh;
     font-size: 20px;
     color: var(--color-text);
     background-color: var(--color-background-dark);
@@ -16,6 +16,17 @@
 
     &__item {
         width: 70%;
+    }
+
+    &__link {
+        @include adaptive-value("margin-bottom", 50, 5, 0);
+        font-size: 30px;
+        color: var(--color-text);
+        text-decoration: underline;
+
+        &:hover {
+            color: var(--color-text-hover);
+        }
     }
 
     &__author {
