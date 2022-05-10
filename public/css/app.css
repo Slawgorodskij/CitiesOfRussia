@@ -145,6 +145,19 @@ ul {
   height: 150px;
   top: 0;
   border-bottom: 1px solid rgba(193, 193, 193, 0.4117647059);
+    background-image: url(/storage/images/flag.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+.logo {
+    background: transparent;
+    opacity: 0.8;
+}
+.header-img {
+    display: block;
+    max-height: 150px;
+
 }
 .header .burger {
   position: relative;
@@ -220,6 +233,10 @@ ul {
 
 .footer {
   background-color: var(--color-background);
+    height: 150px;
+    background-image: url(/storage/images/fon2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .footer__block {
   display: flex;

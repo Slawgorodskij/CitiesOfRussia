@@ -25,6 +25,8 @@ Auth::routes();
 
 Route::view('/', 'index')->name('index');
 
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {

@@ -1,7 +1,11 @@
 <header class="header">
     <a href="{{ route('index') }}">
-        <img src="/storage/images/logo.png" alt="logo">
+        <img class="logo" src="/storage/images/logo.png" alt="logo">
     </a>
+    <div> <img class="header-img" src="/storage/images/coat_russia.png"></div>
+
+
+
     <nav>
         <button class="burger" onclick="this.classList.toggle('burger--active');
         menu.classList.toggle('header__menu--opened')">
