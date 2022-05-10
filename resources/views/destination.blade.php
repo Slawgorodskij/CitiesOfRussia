@@ -65,7 +65,7 @@
                             Выбирайте привлекательные города России, комбинируйте их в маршруты, и посетите проверенные
                             достопримечательности в нескучной компании случайных попутчиков!
                         </h2>
-                        <a class="destination-invitation__advertlink" href='/login'>
+                        <a class="destination-invitation__advertlink" href="{{ route('login') }}">
                             Только зарегистрируйтесь!
                         </a>
                         <h2>
@@ -75,7 +75,7 @@
                         <h2>
                             Вы уже с нами!
                         </h2>
-                        <a class="destination-invitation__advertlink" href='/home'>
+                        <a class="destination-invitation__advertlink" href="{{ route('account')}}">
                             Выберите маршрут и попутчика прямо сейчас!
                         </a>
                     @endunless
