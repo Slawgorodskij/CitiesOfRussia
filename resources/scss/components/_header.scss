@@ -5,10 +5,24 @@
     height: 150px;
     top: 0;
     border-bottom: 1px solid #c1c1c169;
+    background-image: url(/images/flag.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
 
     .burger {
         @include burger;
         margin: 20px;
+    }
+
+    &__logo {
+        background: transparent;
+        opacity: 0.8;
+    }
+
+    &__img {
+        display: block;
+        max-height: 150px;
     }
 
     &__menu {
