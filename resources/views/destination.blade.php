@@ -26,12 +26,14 @@
             <carousel type="{{ class_basename($destination_data::class) }}" id="{{ $destination_data->id }}"></carousel>
         </div>
 
-        @isset($destination_data->articles[0])
-            <article>
-                {!! Storage::get('public/articles/' . $destination_data->articles[0]->article_body) ??
-                $destination_data->articles[0]->article_body !!}
-            </article>
-        @endisset
+        <div class="container wrapper">
+            @isset($destination_data->articles[0])
+                <article>
+                    {!! Storage::get('public/articles/' . $destination_data->articles[0]->article_body) ??
+                    $destination_data->articles[0]->article_body !!}
+                </article>
+            @endisset
+        </div>
 
         <section class="presentation container wrapper">
 

@@ -6,23 +6,17 @@
 
 require('./bootstrap');
 
-import { createApp } from 'vue';
-
-//import hello from './components/ExampleComponent.vue';
+import {createApp} from 'vue';
 
 import city from './components/City.vue';
-
 import carousel from './components/Carousel/Carousel.vue';
 
 
+const app = createApp({})
 
-const app=createApp({})
 
-
-app.component('city' , city);
-
-app.component('carousel' , carousel);
-
+app.component('city', city)
+    .component('carousel', carousel);
 
 
 app.mount("#app")
