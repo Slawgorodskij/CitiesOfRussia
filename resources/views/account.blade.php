@@ -1,8 +1,12 @@
-@extends('layouts.auth')
+@extends('layouts.main')
+
+@section('title')
+    Личный кабинет - @parent
+@stop
 
 @section('content')
 
-<div id="app">
+<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 
 <div class="container-fluid p-5 text-center bg-white border">
   <h1>Картинка</h1>
@@ -232,7 +236,6 @@
     </div>
 </div>
 
-</div>
 </div>
 
 @endsection
