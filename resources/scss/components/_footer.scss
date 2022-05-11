@@ -1,5 +1,9 @@
 .footer {
     background-color: var(--color-background-elem);
+    height: 150px;
+    background-image: url(/images/fon2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 
     &__block {
         @include flex-all-sa;
