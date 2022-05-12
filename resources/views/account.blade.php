@@ -4,9 +4,8 @@
 
 <div id="app">
 
-<div class="container-fluid p-5 text-center bg-white border">
-  <h1>Картинка</h1>
-  <p>Текст</p>
+<div class="container-fluid p-3 text-center bg-white border" style="background-image: url(/storage/images/road.jpg); background-size: cover;">
+<h3 class="text-white-50">Добро пожаловать!</h3>
 </div>
 
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -45,20 +44,20 @@
       <p>Lorem ipsum dolor sit ame.</p>
 
       <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#s1">Мой статус</a>
+      <li class="nav-item">
+          <a class="nav-link" href="#s1">Мой статус</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#s2">Стать водителем</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#s2">Стать пасажиром</a>
+          <a class="nav-link" href="#s3">Стать попутчиком</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#s3">Оставить комментарий</a>
+          <a class="nav-link" href="#s4">Оставить комментарий</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#s4">Отзывы обо мне</a>
+          <a class="nav-link" href="#s5">Отзывы обо мне</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Полезная информация</a>
@@ -108,37 +107,67 @@
 
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
-        <div class="col">
+    <div class="col">
             <h4 id="s2" class="text-primary">Стать водителем</h4>
+            <p>Введите необходимые данные о водителе:</p>
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
-  <div class="form-group">
-    <label for="uname">Ваше имя:</label>
-    <input type="text" class="form-control" id="drivername" placeholder="Имя водителя" name="drivername" required>
+<div class="row">
+  <div class="form-group col">
+    <label for="uname">Имя:</label>
+    <input type="text" class="form-control" class="firstname" placeholder="" name="firstname" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
-  <div class="form-group">
-    <label for="pwd">Паспортные данные:</label>
-    <input type="password" class="form-control" id="pasport" placeholder="Номер паспорта и дата выдачи" name="pasport" required>
+  <div class="form-group col">
+    <label for="uname">Фамилия:</label>
+    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
+  <div class="form-group col">
+    <label for="uname">Отчество:</label>
+    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+</div>
+
   <div class="form-group">
     <label for="pwd">Водительское удостоверение:</label>
-    <input type="password" class="form-control" id="licence" placeholder="Номер удостоверения и дата выдачи" name="licence" required>
+    <input type="password" class="form-control" id="licence" placeholder="Номер и дата выдачи" name="driving_license" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+<div class="row">
+   <div class="form-group col">
+    <label for="pwd">Марка автомобиля:</label>
+    <input type="password" class="form-control" id="car" placeholder="" name="car" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+   <div class="form-group col">
+    <label for="pwd">Номер автомобиля:</label>
+    <input type="password" class="form-control" id="reg_number" placeholder="" name="registration_number" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+</div>
+  <div class="form-group">
+    <label for="pwd">Данные тех паспорта:</label>
+    <input type="password" class="form-control" id="sertificate" placeholder="Номер и дата выдачи" name="vechile_registration_sertificate" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
   <div class="form-group">
     <label for="pwd">Обо мне:</label>
-    <input type="password" class="form-control" id="drinfo" placeholder="Краткая информация о водителе" name="drinfo">
+    <input type="password" class="form-control" id="driverinfo" placeholder="Краткая информация о водителе" name="driverinfo">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
   <div class="form-group form-check">
     <label class="form-check-label">
-      <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня.
+      <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Check this checkbox to continue.</div>
     </label>
@@ -146,17 +175,37 @@
   <button type="submit" class="btn btn-primary">Ввести</button>
 </form>
 
-            </div>
-              <div class="col">
-                 <h4 id="s2" class="text-primary">Стать попутчиком</h4>
+        </div>
+        </div>
+</div>
+
+<div class="container p-5 mt-4 bg-white">
+    <div class="row">
+    <div class="col">
+                 <h4 id="s3" class="text-primary">Стать попутчиком</h4>
+                  <p>Введите необходимые данные о пассажире:</p>
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
-  <div class="form-group">
-    <label for="uname">Ваше имя:</label>
-    <input type="text" class="form-control" id="passname" placeholder="Имя паcсажира" name="passname" required>
+<div class="row">
+  <div class="form-group col">
+    <label for="uname">Имя:</label>
+    <input type="text" class="form-control" class="firstname" placeholder="" name="firstname" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
+  <div class="form-group col">
+    <label for="uname">Фамилия:</label>
+    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group col">
+    <label for="uname">Отчество:</label>
+    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+</div>
   <div class="form-group">
     <label for="pwd">Паспортные данные:</label>
     <input type="password" class="form-control" id="pasport" placeholder="Номер паспорта и дата выдачи" name="pasport" required>
@@ -165,13 +214,13 @@
   </div>
   <div class="form-group">
     <label for="pwd">Обо мне:</label>
-    <input type="password" class="form-control" id="passinfo" placeholder="Краткая информация о водителе" name="passinfo">
+    <input type="password" class="form-control" id="passinfo" placeholder="Краткая информация о пассажире" name="passinfo">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
   <div class="form-group form-check">
     <label class="form-check-label">
-      <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня.
+      <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Check this checkbox to continue.</div>
     </label>
@@ -184,19 +233,40 @@
 
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
-        <h4 id="s3" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
+        <h4 id="s4" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
+
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
+<div class="row">
+  <div class="col-sm-4">
+    <label for="sel1">Выберите город:</label>
+     <select class="form-control" id="focusedInput" name="cityname">
+        <option>Москва</option>
+        <option>Санкт-Петербург</option>
+        <option>Нижний Новгород</option>
+      </select>
+<!--    <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
+-->
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="col">
+
   <div class="form-group">
-    <label for="uname">Ввести название города или достопримечательности:</label>
-    <input type="text" class="form-control" id="destname" placeholder="" name="destname" required>
+    <label for="comment_body">Комментарий:</label>
+    <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body" required></textarea>
+  </div>
+    </div>
+</div>
+  <div class="form-group">
+    <label for="uname">Выберите достопрмечательность или введите свою:</label>
+   <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
-  </div>  <div class="form-group">
-    <label for="pwd">Комментарий:</label>
-    <input type="password" class="form-control" id="citycomment" placeholder="" name="citycomment" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group">
+    <label for="comment_body">Комментарий:</label>
+     <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body" required></textarea>
   </div>
 <br>
   <button type="submit" class="btn btn-primary">Добавить</button>
