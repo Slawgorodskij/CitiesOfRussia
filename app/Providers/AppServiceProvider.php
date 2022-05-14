@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\TripService;
 use App\Services\UploadService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UploadService::class);
+        $this->app->bind(TripService::class);
     }
 
     /**

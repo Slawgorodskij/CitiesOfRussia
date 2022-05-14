@@ -1,9 +1,20 @@
 .footer {
+    position: relative;
     background-color: var(--color-background-elem);
     height: 150px;
     background-image: url(/images/fon2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+
+    &__wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(/images/dots.png);
+        z-index: 2;
+    }
 
     &__block {
         @include flex-all-sa;
@@ -13,11 +24,15 @@
         padding-top: 15px;
     }
 
+    &__text {
+        color: var(--color-white);
+    }
+
     &__link {
-        color: var(--color-text);
+        color: var(--color-link);
 
         &:hover {
-            color: var(--color-text-hover);
+            color: var(--color-link-hover);
         }
     }
 

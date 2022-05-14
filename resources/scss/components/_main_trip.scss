@@ -30,7 +30,7 @@
     font-size: 20px;
     color: var(--color-text);
     background-color: var(--color-background-dark);
-    background-image: url(/storage/images/background.jpg);
+    background-image: url(/images/background.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -62,9 +62,6 @@
         &__item {
             flex: 1 0 33.333%;
             min-height: 30vh;
-            //display: flex;
-            //flex-direction: column;
-            //justify-content: space-between;
             padding: 15px;
             box-shadow: 0 15px 10px -7px rgba(36, 57, 97, 75);
         }
@@ -104,7 +101,7 @@
         font-size: 20px;
         font-weight: 700;
         color: var(--color-white);
-        background-color: var(--color-background-dark);
+        background-color: var(--color-background-body-dark);
         border: var(--color-border) solid 2px;
         transition: all 0.4s linear;
         cursor: pointer;

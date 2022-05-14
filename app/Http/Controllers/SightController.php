@@ -15,15 +15,17 @@ class SightController extends Controller
         $sight = Sight::with('images', 'articles')->where('slug', $sightSlug)
             ->first();
 
-        $comments = [];
+        $arrayComments = [];
 
         foreach ($sight->comments as $commentItem) {
             $user = Profile::find($commentItem->user_id);
             $comment['comment_body'] = $commentItem->comment_body;
             $comment['firstname'] = $user->firstname;
             $comment['lastname'] = $user->lastname;
-            $comments[] = $comment;
+            $arrayComments[] = $comment;
         }
+
+        $comments = array_slice($arrayComments, 0, 5);
 
         return view('destination', [
             'destination_data' => $sight,
