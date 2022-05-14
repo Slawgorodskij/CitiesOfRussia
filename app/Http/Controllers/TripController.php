@@ -10,7 +10,7 @@ class TripController extends Controller
     public function index()
     {
         $commentsDB = Comment::orderByRaw("RAND()")->take(4)->get();
-        $comments = TripService::tripComment($commentsDB);
+        $comments = app(TripService::class)->tripComment($commentsDB);
         return view('trip', [
             'comments' => $comments,
         ]);

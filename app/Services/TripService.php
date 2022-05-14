@@ -9,7 +9,7 @@ use App\Models\User;
 
 class TripService
 {
-    public static function tripComment($commentsDB)
+    public function tripComment($commentsDB)
     {
         $comments = [];
         foreach ($commentsDB as $commentItem) {
@@ -23,26 +23,22 @@ class TripService
         return $comments;
     }
 
-    private static function dataUser($userId)
+    private function dataUser($userId)
     {
         return Profile::find($userId);
     }
 
-    private static function dataObject($commentableType, $commentableId)
+    private function dataObject($commentableType, $commentableId)
     {
-        switch ($commentableType){
-            case 'App\Models\City':
-                $city = City::find($commentableId);
-                return "О городе: $city->name";
-            case 'App\Models\Sight':
-                $sight = Sight::find($commentableId);
-                return "О достопримечательности: $sight->name";
-            case 'App\Models\User':
-                $user = User::find($commentableId);
-                return "О пользователе: $user->name";
-
-        }
-
+        return sprintf(
+            '%s : %s',
+            match ($commentableType) {
+                City::class => 'О городе',
+                Sight::class => 'О достопримечательности',
+                User::class => 'О пользователе',
+            },
+            $commentableType::find($commentableId)->name,
+        );
     }
 
 
