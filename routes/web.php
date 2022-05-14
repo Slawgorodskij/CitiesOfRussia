@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
@@ -34,8 +35,7 @@ Route::view('/', 'index')->name('index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');
-
-    Route::view('/trip', 'trip')->name('trip');
+    Route::get('/trip', [TripController::class, 'index'])->name('trip');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::view('/', 'admin.index')->name('index');

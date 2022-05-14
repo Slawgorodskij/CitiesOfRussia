@@ -20,9 +20,9 @@
         border-radius: 0.2rem;
         padding: 0.25rem 0.5rem;
         transition: color .15s ease-in-out,
-            background-color .15s ease-in-out,
-            border-color .15s ease-in-out,
-            box-shadow .15s ease-in-out;
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out;
 
         &:hover {
             color: #fff;
@@ -39,6 +39,7 @@
         border: 1px solid currentColor;
         caption-side: bottom;
         border-collapse: collapse;
+        background-color: var(--color-table-backgraund);
 
         tbody,
         td,
@@ -51,7 +52,12 @@
             padding: 0.5rem;
         }
 
+        tr:nth-child(2n) {
+            background-color: var(--color-table-backgraund-two);
+        }
+
         thead {
+            background-color: var(--color-body);
             border-bottom: 2px solid currentColor;
         }
     }
