@@ -90,21 +90,13 @@
 
             <div class="feedback-block__items container">
 
-                <div class="feedback-block__item">
-                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
-                    </p>
-                    <p class="feedback-block__author">Иван Иванов</p>
-                </div>
-                <div class="feedback-block__item">
-                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
-                    </p>
-                    <p class="feedback-block__author">Иван Иванов</p>
-                </div>
-                <div class="feedback-block__item">
-                    <p class="feedback-block__text text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span><span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
-                    </p>
-                    <p class="feedback-block__author">Иван Иванов</p>
-                </div>
+                @foreach($comments as $comment)
+                    <div class="feedback-block__item">
+                        <p class="feedback-block__text text">{{$comment['object']}}</p>
+                        <p class="feedback-block__text text">{{$comment['comment_body']}}</p>
+                        <p class="feedback-block__author">{{$comment['firstname']}} {{$comment['lastname']}}</p>
+                    </div>
+                @endforeach
 
             </div>
 

@@ -1,7 +1,7 @@
 .destination {
     position: relative;
     height: 100vh;
-    background-color: var(--color-background-dark);
+    background-color: var(--color-background-body-dark);
     color: var(--color-white);
 
     &__photo {
@@ -19,7 +19,7 @@
     &-invitation {
         position: relative;
         min-height: 60vh;
-        background-color: var(--color-background-dark);
+        background-color: var(--color-background-body-dark);
         background-image: url(/storage/images/car.jpg);
         @include bg-cover;
 
@@ -37,11 +37,11 @@
 
         &__advertlink {
             font-size: 30px;
-            color: var(--color-text);
+            color: var(--color-link);
             text-decoration: underline;
 
             &:hover {
-                color: var(--color-text-hover);
+                color: var(--color-link-hover);
             }
         }
 
@@ -51,5 +51,5 @@
 
 .carousel {
     @include adaptive-value("padding-bottom", 100, 5, 0);
-    background-color: var(--color-background-dark);
+    background-color: var(--color-background-body-dark);
 }

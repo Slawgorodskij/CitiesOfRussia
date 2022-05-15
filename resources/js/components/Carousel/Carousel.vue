@@ -137,7 +137,8 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background: var(--color-background);
+        background-image: url(/images/dots.png);
+        color: var(--color-link);
         z-index: 0;
         transition: all 0.4s linear;
     }

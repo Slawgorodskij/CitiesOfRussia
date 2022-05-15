@@ -1,11 +1,12 @@
 .feedback-block {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    min-height: 50vh;
+    @include adaptive-value('padding', 100, 20, 0);
+    @include flex-all-center;
+    flex-direction: column;
+    min-height: 70vh;
     font-size: 20px;
     color: var(--color-text);
     background-color: var(--color-background-dark);
-    background-image: url(/storage/images/feedback.jpg);
+    background-image: url(/images/feedback.jpg);
     @include bg-cover;
     background-attachment: fixed;
 
@@ -16,6 +17,17 @@
 
     &__item {
         width: 70%;
+    }
+
+    &__link {
+        @include adaptive-value("margin-bottom", 50, 5, 0);
+        font-size: 30px;
+        color: var(--color-link);
+        text-decoration: underline;
+
+        &:hover {
+            color: var(--color-link-hover);
+        }
     }
 
     &__author {
