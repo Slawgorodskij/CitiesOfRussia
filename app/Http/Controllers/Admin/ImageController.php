@@ -18,8 +18,31 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::simplePaginate(10);
-        return view('admin.images.index', ['images' => $images]);
+        return view('admin.images.index', [
+            'data' => Image::get([
+                'id',
+                'name',
+                'created_at',
+            ]),
+            'options' => [
+                'url' => "/admin/images/",
+                'fields' => [
+                    [
+                        'key' => 'id',
+                        'name' => '#ID',
+                    ],
+                    [
+                        'key' => 'name',
+                        'name' => 'Название',
+                    ],
+                    [
+                        'key' => 'created_at',
+                        'name' => 'Дата добавления',
+                    ],
+                ],
+                'deleteConfirmation' => "Подтвердите удаление фото с #ID",
+            ],
+        ]);
     }
 
     /**

@@ -15,8 +15,45 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::simplePaginate(10);
-        return view('admin.cities.index', ['cities' => $cities]);
+        return view('admin.cities.index', [
+            'data' => City::get([
+                'id',
+                'name',
+                'created_at',
+            ]),
+            'options' => [
+                'url' => "/admin/cities/",
+                'fields' => [
+                    [
+                        'key' => 'id',
+                        'name' => '#ID',
+                    ],
+                    [
+                        'key' => 'name',
+                        'name' => 'Название',
+                    ],
+                    [
+                        'key' => 'created_at',
+                        'name' => 'Дата добавления',
+                    ],
+                ],
+                'deleteConfirmation' => "Подтвердите удаление города с #ID",
+                'polymorphic' => [
+                    [
+                        'key' => 'articleable',
+                        'url' => route('admin.articles.create'),
+                        'type' => class_basename(City::class),
+                        'message' => 'Добавить статью',
+                    ],
+                    [
+                        'key' => 'imageable',
+                        'url' => route('admin.images.create'),
+                        'type' => class_basename(City::class),
+                        'message' => 'Загрузить фото',
+                    ],
+                ],
+            ],
+        ]);
     }
 
     /**

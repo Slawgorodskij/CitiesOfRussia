@@ -33,7 +33,8 @@ class UserFormRequest extends FormRequest
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised()
+                    ->uncompromised(),
+                'confirmed'
             ],
             'is_admin' => ['required', 'boolean'],
         ];

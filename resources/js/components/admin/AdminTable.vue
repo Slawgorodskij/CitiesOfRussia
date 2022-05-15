@@ -78,9 +78,9 @@ export default {
     data() {
         return {
             // loading: false,
-            items: this.fillItems(this.data),
+            items: this.fillItems(this.data, this.options.filterFields),
             url: this.options.url,
-            fields: this.options.fields.concat(this.options.filterFields),
+            fields: this.fillFields(this.options.fields, this.options.filterFields),
             filterFields: this.fillFilterFields(this.options.filterFields),
             deleteConfirmation: this.options.deleteConfirmation,
             polymorphic: this.options.polymorphic,
@@ -99,31 +99,46 @@ export default {
         //         })
         //         .finally((response) => (this.loading = false));
         // },
-        fillItems(items) {
-            return items.map((item) => {
-                this.options.filterFields.forEach((filterField) => {
-                    item[filterField["key"]] = item[filterField["key"]]["name"];
+        fillItems(items, filterFields) {
+            if (filterFields) {
+                return items.map((item) => {
+                    filterFields.forEach((filterField) => {
+                        item[filterField["key"]] = item[filterField["key"]]["name"];
+                    });
+                    return item;
                 });
-                return item;
-            });
+            } else {
+                return items;
+            }
+        },
+        fillFields(fields, filterFields) {
+            if (filterFields) {
+                return fields.concat(filterFields);
+            } else {
+                return fields;
+            }
         },
         fillFilterFields(filterFields) {
-            return filterFields.map((filterField) => {
-                let options = new Set();
-                this.data.forEach((item) => {
-                    let option = {};
-                    option["key"] = item[filterField["key"]];
-                    option["name"] = item[filterField["key"]];
-                    options.add(option);
+            if (filterFields) {
+                return filterFields.map((filterField) => {
+                    let options = new Set();
+                    this.data.forEach((item) => {
+                        let option = {};
+                        option["key"] = item[filterField["key"]];
+                        option["name"] = item[filterField["key"]];
+                        options.add(option);
+                    });
+                    filterField["options"] = Array.from(options);
+                    return filterField;
                 });
-                filterField["options"] = Array.from(options);
-                return filterField;
-            });
+            } else {
+                return filterFields;
+            }
         },
     },
-    created() {
-        // this.fetch();
-    },
+    // created() {
+    //     this.fetch();
+    // },
     computed: {
         sorted() {
             if (this.selectedSort) {
@@ -156,7 +171,9 @@ export default {
         },
         sortedFilteredAndSearched() {
             return this.sortedFiltered.filter((item) =>
-                item.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+                JSON.stringify(item)
+                    .toLowerCase()
+                    .includes(this.searchQuery.toLowerCase())
             );
         },
     },
