@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\UserFormRequest;
 
 class UserController extends Controller
 {
@@ -14,7 +15,39 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.users.index', [
+            'data' => User::get([
+                'id',
+                'name',
+                'created_at',
+            ]),
+            'options' => [
+                'url' => "/admin/users/",
+                'fields' => [
+                    [
+                        'key' => 'id',
+                        'name' => '#ID',
+                    ],
+                    [
+                        'key' => 'name',
+                        'name' => 'Имя',
+                    ],
+                    [
+                        'key' => 'created_at',
+                        'name' => 'Дата добавления',
+                    ],
+                ],
+                'deleteConfirmation' => "Подтвердите удаление пользователя с #ID",
+                'polymorphic' => [
+                    [
+                        'key' => 'imageable',
+                        'url' => route('admin.images.create'),
+                        'type' => class_basename(User::class),
+                        'message' => 'Загрузить фото',
+                    ],
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -24,62 +57,67 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.editor');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UserFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
-    }
+        // $validated = $request->validated();
+        // $created = User::create($validated);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        // if ($created) {
+        //     return to_route('admin.users.index');
+        // }
+
+        // return back()->withInput();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.users.editor', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UserFormRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, User $user)
     {
-        //
+        // $user->update($request->validated());
+        // return to_route('admin.users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            return response()->json('ok');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('User error destroy', [$e]);
+            return response()->json('error', 400);
+        }
     }
 }
