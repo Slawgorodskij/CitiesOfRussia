@@ -60,20 +60,12 @@
                 </select>
 
                 <p class="block-form__label">Выберите город отправления</p>
-                <select class="block-form__input" name="departure_city">
-                    <option disabled>Город отправления</option>
-                    {{--                    @foreach($cities as $city)--}}
-                    {{--                        <option value="{{$city->id}}">{{$city->name}}</option>--}}
-                    {{--                    @endforeach--}}
-                </select>
+
+                <my-select></my-select>
 
                 <p class="block-form__label">Выберите город прибытия</p>
-                <select class="block-form__input" name="city_arrival">
-                    <option disabled>Город прибытия</option>
-                    {{--                    @foreach($cities as $city)--}}
-                    {{--                        <option value="{{$city->id}}">{{$city->name}}</option>--}}
-                    {{--                    @endforeach--}}
-                </select>
+
+                <my-select></my-select>
 
                 <button type="submit"
                         class="block-form__button"

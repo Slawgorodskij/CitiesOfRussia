@@ -10,13 +10,13 @@ import {createApp} from 'vue';
 
 import city from './components/City.vue';
 import carousel from './components/Carousel/Carousel.vue';
-
+import mySelect from './components/UI/MySelect.vue';
 
 const app = createApp({})
 
-
 app.component('city', city)
-    .component('carousel', carousel);
+    .component('carousel', carousel)
+    .component('my-select', mySelect);
 
 
 app.mount("#app")
