@@ -170,11 +170,12 @@ export default {
             }
         },
         sortedFilteredAndSearched() {
-            return this.sortedFiltered.filter((item) =>
-                JSON.stringify(item)
+            return this.sortedFiltered.filter((item) => {
+                return Object.values(item)
+                    .join("\n")
                     .toLowerCase()
-                    .includes(this.searchQuery.toLowerCase())
-            );
+                    .includes(this.searchQuery.toLowerCase());
+            });
         },
     },
 };
