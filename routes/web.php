@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cities', [ApiCityController::class, 'index']);
+    Route::get('/cityList', [ApiCityController::class, 'cityList']);
     Route::get('/carousel/City/{id}', [ApiCarouselCityController::class, 'index']);
     Route::get('/carousel/Sight/{id}', [ApiCarouselSightController::class, 'index']);
     Route::get('/articleables', [ApiArticleableController::class, 'index']);
