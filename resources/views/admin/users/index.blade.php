@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-    Список фото - @parent
+    Список пользователей - @parent
 @stop
 
 @section('content-header')
-    <h1>Список фото</h1>
-    <a href="{{ route('admin.images.create') }}" class="admin-panel__button">
-        Загрузить фото
+    <h1>Список пользователей</h1>
+    <a href="{{ route('admin.users.create') }}" class="admin-panel__button">
+        Добавить пользователя
     </a>
 @endsection
 

@@ -18,8 +18,31 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::simplePaginate(10);
-        return view('admin.articles.index', ['articles' => $articles]);
+        return view('admin.articles.index', [
+            'data' => Article::get([
+                'id',
+                'title',
+                'created_at',
+            ]),
+            'options' => [
+                'url' => "/admin/articles/",
+                'fields' => [
+                    [
+                        'key' => 'id',
+                        'name' => '#ID',
+                    ],
+                    [
+                        'key' => 'title',
+                        'name' => 'Название',
+                    ],
+                    [
+                        'key' => 'created_at',
+                        'name' => 'Дата добавления',
+                    ],
+                ],
+                'deleteConfirmation' => "Подтвердите удаление статьи с #ID",
+            ],
+        ]);
     }
 
     /**
