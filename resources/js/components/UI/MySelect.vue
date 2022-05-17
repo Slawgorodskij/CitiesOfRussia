@@ -12,24 +12,24 @@
         <input
             class="my-select__input"
             v-if="selectedItem === '' "
-            v-model="searchCity"
+            v-model="searchElem"
             type="text"
-            placeholder="В ведите название города"
+            :placeholder="placeholderName"
         >
         <input
             class="my-select__input"
             v-else
             type="text"
-            name="departure_city"
+            :name="inputName"
             :value="selectedItem"
         >
         <div
             class="my-select__item"
             v-show="visibleItem"
-            @click="selectedCity(city.name)"
-            v-for="city in filterCity"
-            :key="city.id">
-            <p>{{ city.name }}</p>
+            @click="selectElem(elem.name)"
+            v-for="elem in filterElem"
+            :key="elem.id">
+            <p>{{ elem.name }}</p>
 
         </div>
 
@@ -40,44 +40,37 @@
 <script>
 
 export default {
-    name: "MySelect",
+    name: "my-select",
+    props: ['elemArray', 'placeholderName', 'inputName'],
     data() {
         return {
-            cityArray: [],
             visibleItem: false,
-            searchCity: '',
+            searchElem: '',
             selectedItem: '',
         }
     },
     computed: {
-        filterCity() {
-            if (this.searchCity === '') {
-                return this.cityArray
+        filterElem() {
+            if (this.searchElem === '') {
+                console.log(this.elemArray)
+                return this.elemArray
             }
-            return this.cityArray.filter(city => {
-                return Object.values(city).some((word) =>
+            return this.elemArray.filter(elem => {
+                return Object.values(elem).some((word) =>
                     String(word).toLowerCase().includes(
-                        this.searchCity.toLowerCase()
+                        this.searchElem.toLowerCase()
                     ))
             })
         },
     },
+
     methods: {
-        fetch() {
-            axios.get('/api/cityList', {})
-                .then(response => {
-                    console.log(response);
-                    this.cityArray = response.data;
-                })
-        },
-        selectedCity(city) {
-            this.selectedItem = city;
+        selectElem(elem) {
+            this.selectedItem = elem;
             this.visibleItem = false;
         }
     },
-    created() {
-        this.fetch()
-    }
+
 }
 
 </script>
@@ -101,6 +94,7 @@ export default {
         right: 15px;
         transform: rotate(-90deg);
         transition: all .4s linear;
+        cursor: pointer;
 
         &.dropdown {
             transform: rotate(90deg);
