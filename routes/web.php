@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JointTripController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::view('/', 'index')->name('index');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
+    Route::post('/joint-trip', [JointTripController::class, 'index'])->name('joint-trip');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::view('/', 'admin.index')->name('index');
