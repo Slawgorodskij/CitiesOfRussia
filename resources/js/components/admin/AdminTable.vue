@@ -1,24 +1,24 @@
 <template>
     <div class="block-form__group">
-        <search-input
+        <custom-input
             v-model="searchQuery"
             placeholder="Поиск...."
             class="block-form__input"
-        ></search-input>
-        <filter-select
+        ></custom-input>
+        <custom-select
             v-for="filterField in filterFields"
             :key="filterField.key"
             v-model="selectedFilters[filterField.key]"
             :options="filterField.options"
             :disabled-value="filterField.name"
             class="block-form__input"
-        ></filter-select>
-        <filter-select
+        ></custom-select>
+        <custom-select
             v-model="selectedSort"
             :options="fields"
             disabled-value="Способ сортировки"
             class="block-form__input"
-        ></filter-select>
+        ></custom-select>
     </div>
     <table class="admin-panel__table">
         <thead>
@@ -59,21 +59,17 @@
 </template>
 
 <script>
-import searchInput from "./../UI/SearchInput";
-import filterSelect from "./../UI/FilterSelect";
+import customInput from "./../UI/CustomInput";
+import customSelect from "./../UI/CustomSelect";
 
 export default {
     components: {
-        searchInput,
-        filterSelect,
+        customInput,
+        customSelect,
     },
     props: {
-        data: {
-            type: Object,
-        },
-        options: {
-            type: Object,
-        },
+        data: Array,
+        options: Object,
     },
     data() {
         return {
@@ -123,12 +119,16 @@ export default {
                 return filterFields.map((filterField) => {
                     let options = new Set();
                     this.data.forEach((item) => {
-                        let option = {};
-                        option["key"] = item[filterField["key"]];
-                        option["name"] = item[filterField["key"]];
-                        options.add(option);
+                        options.add(item[filterField["key"]]);
                     });
-                    filterField["options"] = Array.from(options);
+                    options = Array.from(options);
+                    options = options.map((option) => {
+                        return {
+                            key: option,
+                            name: option,
+                        };
+                    });
+                    filterField["options"] = options;
                     return filterField;
                 });
             } else {
@@ -170,11 +170,12 @@ export default {
             }
         },
         sortedFilteredAndSearched() {
-            return this.sortedFiltered.filter((item) =>
-                JSON.stringify(item)
+            return this.sortedFiltered.filter((item) => {
+                return Object.values(item)
+                    .join("\n")
                     .toLowerCase()
-                    .includes(this.searchQuery.toLowerCase())
-            );
+                    .includes(this.searchQuery.toLowerCase());
+            });
         },
     },
 };

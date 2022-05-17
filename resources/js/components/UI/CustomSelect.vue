@@ -9,18 +9,11 @@
 
 <script>
 export default {
-    name: "filter-select",
+    name: "custom-select",
     props: {
-        modelValue: {
-            type: String,
-        },
-        options: {
-            type: Array,
-            default: () => [],
-        },
-        disabledValue: {
-            type: String,
-        },
+        modelValue: String,
+        options: Array,
+        disabledValue: String,
     },
     methods: {
         changeOption(event) {

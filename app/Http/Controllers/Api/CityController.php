@@ -13,4 +13,10 @@ class CityController extends Controller
         return response()->json($city);
     }
 
+    public function cityList()
+    {
+        $city = City::orderBy('name')->get();
+        return response()->json($city);
+    }
+
 }

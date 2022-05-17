@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "search-input",
+    name: "custom-input",
     props: {
         modelValue: [String, Number],
     },
