@@ -7,17 +7,14 @@
             :placeholderName="placeholderNameRole"
             :inputName="inputNameRole"
         />
-        <!--        <select class="block-form__input" name="trip_role">-->
-        <!--            <option disabled>Выберите свою роль</option>-->
-        <!--            <option value="passenger">Пассажир</option>-->
-        <!--            <option value="driver">Водитель</option>-->
-        <!--        </select>-->
+
         <p class="block-form__label">Выберите город отправления</p>
 
         <my-select
             :elemArray="cityArray"
             :placeholderName="placeholderName"
             :inputName="inputNameDeparture"
+            :inputNameId="inputNameDepartureId"
         />
 
         <p class="block-form__label">Выберите город прибытия</p>
@@ -26,6 +23,7 @@
             :elemArray="cityArray"
             :placeholderName="placeholderName"
             :inputName="inputNameArrival"
+            :inputNameId="inputNameArrivalId"
         />
     </div>
 </template>
@@ -48,8 +46,10 @@ export default {
             ],
             placeholderName: "Введите название города",
             placeholderNameRole: "Введите роль в поездке",
-            inputNameDeparture: "departure_city",
-            inputNameArrival: "city_of_arrival",
+            inputNameDeparture: "departure_city_name",
+            inputNameDepartureId: "departure_city",
+            inputNameArrival: "city_of_arrival_name",
+            inputNameArrivalId: "city_of_arrival",
             inputNameRole: "trip_role",
         }
     },

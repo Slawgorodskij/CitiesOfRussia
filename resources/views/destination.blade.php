@@ -77,9 +77,16 @@
                         <h2>
                             Вы уже с нами!
                         </h2>
-                        <a class="destination-invitation__advertlink" href="{{ route('account')}}">
-                            Выберите маршрут и попутчика прямо сейчас!
-                        </a>
+                        <form method="POST" action="{{route('joint-trip')}}">
+                            @csrf
+                            <input type="hidden" name="city_of_arrival" value="{{$cityId}}">
+                            <input type="hidden" name="city_of_arrival_name" value="{{$cityName}}">
+
+                            <button class="destination-invitation__advertlink">
+                                Выберите маршрут и попутчика прямо сейчас!
+                            </button>
+                        </form>
+
                     @endunless
                 </div>
 
@@ -103,25 +110,19 @@
 
             @elseif(Auth::check())
 
-                <h2 >Еще ни кто не написал отзыв.</h2>
-                <h2 >Стань первым.</h2>
+                <h2>Еще ни кто не написал отзыв.</h2>
+                <h2>Стань первым.</h2>
             @else
 
-                <h2 >Еще ни кто не написал отзыв.</h2>
+                <h2>Еще ни кто не написал отзыв.</h2>
                 <a class="feedback-block__link" href="{{ route('login') }}">
                     Зарегистрируйтесь!
                 </a>
-                <h2 >И станьте первым.</h2>
+                <h2>И станьте первым.</h2>
 
             @endif
         </div>
     </main>
 
 @endsection
-<script>
-    import Carousel from "../js/components/Carousel/Carousel";
 
-    export default {
-        components: {Carousel}
-    }
-</script>
