@@ -5,19 +5,17 @@
             placeholder="Поиск...."
             class="block-form__input"
         ></custom-input>
-        <custom-select
+        <my-select
             v-for="filterField in filterFields"
             :key="filterField.key"
+            :elemArray="filterField.options"
+            :placeholder-name="filterField.name"
             v-model="selectedFilters[filterField.key]"
-            :options="filterField.options"
-            :disabled-value="filterField.name"
-            class="block-form__input"
-        ></custom-select>
+        ></my-select>
         <my-select
             :elemArray="fields"
             placeholder-name="Способ сортировки"
-            :modelValue="selectedSort"
-            @update:modelValue="newValue => selectedSort = newValue"
+            v-model="selectedSort"
         ></my-select>
     </div>
     <table class="admin-panel__table">
@@ -60,13 +58,11 @@
 
 <script>
 import customInput from "./../UI/CustomInput";
-import customSelect from "./../UI/CustomSelect";
 import mySelect from "./../UI/MySelect";
 
 export default {
     components: {
         customInput,
-        customSelect,
         mySelect,
     },
     props: {
