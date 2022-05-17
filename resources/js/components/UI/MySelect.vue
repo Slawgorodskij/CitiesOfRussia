@@ -77,7 +77,7 @@ export default {
             }
 
             this.visibleItem = false;
-            this.$emit("update:modelValue", this.selectedItem);
+            this.$emit("update:modelValue", elem.key);
         }
     },
 
