@@ -23,10 +23,15 @@
             :name="inputName"
             :value="selectedItem"
         >
+        <input
+            type="hidden"
+            :name="inputNameId"
+            :value="selectedItemId"
+        >
         <div
             class="my-select__item"
             v-show="visibleItem"
-            @click="selectElem(elem.name)"
+            @click="selectElem(elem)"
             v-for="elem in filterElem"
             :key="elem.id">
             <p>{{ elem.name }}</p>
@@ -41,18 +46,18 @@
 
 export default {
     name: "my-select",
-    props: ['elemArray', 'placeholderName', 'inputName'],
+    props: ['elemArray', 'placeholderName', 'inputName', 'inputNameId'],
     data() {
         return {
             visibleItem: false,
             searchElem: '',
             selectedItem: '',
+            selectedItemId: '',
         }
     },
     computed: {
         filterElem() {
             if (this.searchElem === '') {
-                console.log(this.elemArray)
                 return this.elemArray
             }
             return this.elemArray.filter(elem => {
@@ -66,7 +71,11 @@ export default {
 
     methods: {
         selectElem(elem) {
-            this.selectedItem = elem;
+            this.selectedItem = elem.name;
+            if (elem.id) {
+                this.selectedItemId = elem.id;
+            }
+
             this.visibleItem = false;
         }
     },

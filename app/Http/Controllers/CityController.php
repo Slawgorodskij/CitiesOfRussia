@@ -16,7 +16,7 @@ class CityController extends Controller
         $arrayComments = [];
 
         foreach ($city->comments as $commentItem) {
-            $user = Profile::find($commentItem->user_id);
+            $user = Profile::where('user_id', $commentItem->user_id)->first();
             $comment['comment_body'] = $commentItem->comment_body;
             $comment['firstname'] = $user->firstname;
             $comment['lastname'] = $user->lastname;
@@ -29,6 +29,8 @@ class CityController extends Controller
             'destination_data' => $city,
             'sights' => $city->sights,
             'comments' => $comments,
+            'cityId' => $city->id,
+            'cityName' => $city->name,
             'citySlug' => $city->slug,
         ]);
     }
