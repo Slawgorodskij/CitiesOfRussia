@@ -240,12 +240,14 @@
 <div class="row">
   <div class="col-sm-4">
     <label for="sel1">Выберите город:</label>
+    <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">
+<!--    
      <select class="form-control" id="focusedInput" name="cityname">
         <option>Москва</option>
         <option>Санкт-Петербург</option>
         <option>Нижний Новгород</option>
       </select>
-<!--    <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
+    <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
 -->
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
@@ -259,7 +261,7 @@
     </div>
 </div>
   <div class="form-group">
-    <label for="uname">Выберите достопрмечательность или введите свою:</label>
+    <label for="uname">Выберите достопримечательность или введите свою:</label>
    <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
