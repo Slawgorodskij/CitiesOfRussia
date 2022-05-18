@@ -1,7 +1,7 @@
 .performance {
     @include flex-v-center;
     height: 100vh;
-    background-image: url(/images/russia.jpg);
+    background-image: url(/images/russia.webp);
     @include bg-cover;
     color: var(--color-white);
 }
