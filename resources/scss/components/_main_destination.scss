@@ -38,6 +38,8 @@
         &__advertlink {
             font-size: 30px;
             color: var(--color-link);
+            background: transparent;
+            border: none;
             text-decoration: underline;
 
             &:hover {
