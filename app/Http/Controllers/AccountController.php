@@ -33,6 +33,7 @@ class AccountController extends Controller
             ->where('user_id', $user->id)
             ->where('commentable_type', City::class)
             ->orderByDesc('created_at')
+            ->take(2)
             ->get() as $comment) {
             if (array_key_exists($comment->commentable_id, $cityComments)) {
                 $cityComments[$comment->commentable_id]['comments'][] = $comment;
@@ -50,6 +51,7 @@ class AccountController extends Controller
             ->where('user_id', $user->id)
             ->where('commentable_type', Sight::class)
             ->orderByDesc('created_at')
+            ->take(2)
             ->get() as $comment) {
             if (array_key_exists($comment->commentable_id, $sightComments)) {
                 $sightComments[$comment->commentable_id]['comments'][] = $comment;
