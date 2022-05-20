@@ -20,7 +20,7 @@
         position: relative;
         min-height: 60vh;
         background-color: var(--color-background-body-dark);
-        background-image: url(/storage/images/car.jpg);
+        background-image: url(/images/car.webp);
         @include bg-cover;
 
         &__advert {
@@ -31,7 +31,7 @@
             height: 100%;
             text-align: center;
             color: var(--color-white);
-            background-image: url(/storage/images/dots.png);
+            background-image: url(/images/dots.png);
 
         }
 

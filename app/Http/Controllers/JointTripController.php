@@ -30,4 +30,31 @@ class JointTripController extends Controller
             'dataTrips' => $dataTrips,
         ]);
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $trip = Trip::create($request->validated());
+
+        return to_route('joint-trip');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param Trip $trip
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Trip $trip)
+    {
+        $trip->update($request->validated());
+        return to_route('joint-trip');
+    }
 }
