@@ -179,50 +179,48 @@
         </div>
 </div>
 
+@if(isset($user_id))
+        echo $user_id;
+@endif
+
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
     <div class="col">
                  <h4 id="s3" class="text-primary">Стать попутчиком</h4>
                   <p>Введите необходимые данные о пассажире:</p>
-<form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
+<form method="POST" 
+action="{{ isset($user_id) ? route('account', $user_id) : route('profile') }}"
+class="needs-validation" novalidate>
 @csrf
 <div class="row">
   <div class="form-group col">
     <label for="uname">Имя:</label>
-    <input type="text" class="form-control" class="firstname" placeholder="" name="firstname" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+
+    <input type="hidden" name="user_id" value="{{$user->id}}">
+    <input name="firstname" type="text" class="form-control block-form__input @error('firstname') block-form__input_error @enderror"
+            placeholder="" value="{{ $profile->firstname ?? old('firstname') }}" required/>
+
   </div>
   <div class="form-group col">
     <label for="uname">Фамилия:</label>
-    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>   
   </div>
+
   <div class="form-group col">
     <label for="uname">Отчество:</label>
-    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic"> 
   </div>
+
 </div>
-  <div class="form-group">
-    <label for="pwd">Паспортные данные:</label>
-    <input type="password" class="form-control" id="pasport" placeholder="Номер паспорта и дата выдачи" name="pasport" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-  </div>
-  <div class="form-group">
+<div class="form-group">
     <label for="pwd">Обо мне:</label>
     <input type="password" class="form-control" id="passinfo" placeholder="Краткая информация о пассажире" name="passinfo">
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+   
   </div>
   <div class="form-group form-check">
     <label class="form-check-label">
       <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня
-      <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Check this checkbox to continue.</div>
+      
     </label>
   </div>
   <button type="submit" class="btn btn-primary">Ввести</button>
@@ -231,6 +229,9 @@
     </div>
 </div>
 
+@php
+//dump();
+@endphp
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
         <h4 id="s4" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
@@ -240,14 +241,17 @@
 <div class="row">
   <div class="col-sm-4">
     <label for="sel1">Выберите город:</label>
-    <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">
-<!--    
+
+    <selectCityAcc></selectCityAcc>
+<!--    <select-city></select-city>
+
+ <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">   
      <select class="form-control" id="focusedInput" name="cityname">
         <option>Москва</option>
         <option>Санкт-Петербург</option>
         <option>Нижний Новгород</option>
       </select>
-    <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
+  <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
 -->
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>

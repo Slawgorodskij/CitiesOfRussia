@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SightController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
 use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
@@ -35,7 +36,8 @@ Auth::routes();
 Route::view('/', 'index')->name('index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get','post'],'/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get','post'],'/profile', [ProfileController::class, 'store'])->name('profile');
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
     Route::post('/joint-trip', [JointTripController::class, 'index'])->name('joint-trip');
 
