@@ -11,13 +11,16 @@ import {createApp} from 'vue';
 import city from './components/City.vue';
 import carousel from './components/Carousel/Carousel.vue';
 import SelectCity from './components/SelectCity.vue';
-
+import SelectCityAcc from './components/SelectCityAcc.vue';
+import selectRelation from './components/SelectRelation.vue';
 
 const app = createApp({})
 
 app.component('city', city)
     .component('carousel', carousel)
-    .component('selectCity', SelectCity);
+    .component('selectCity', SelectCity)
+    .component('selectCityAcc', SelectCityAcc)
+    .component('select-relation', selectRelation);
 
 
 app.mount("#app")

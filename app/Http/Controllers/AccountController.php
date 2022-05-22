@@ -8,6 +8,7 @@ use App\Models\Sight;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ModelService;
 
 class AccountController extends Controller
 {
@@ -63,10 +64,18 @@ class AccountController extends Controller
             }
         }
 
+        $commentRelations = [];
+        foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
+            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
+                $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
+            }
+        };
+
         return view('account', [
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
+            'commentRelations' => $commentRelations
         ]);
     }
 }

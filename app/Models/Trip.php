@@ -9,6 +9,9 @@ class Trip extends Model
 {
     use HasFactory;
 
+    const TITLE = 'Поездка';
+    const TABLE = 'trips';
+
     protected $fillable = [
         'driver',
         'passenger_first',

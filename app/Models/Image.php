@@ -9,6 +9,9 @@ class Image extends Model
 {
     use HasFactory;
 
+    const TITLE = 'Изображение';
+    const TABLE = 'images';
+
     protected $fillable = [
         'name',
         'description',

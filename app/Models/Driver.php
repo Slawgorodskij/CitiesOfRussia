@@ -9,6 +9,9 @@ class Driver extends Model
 {
     use HasFactory;
 
+    const TITLE = 'Водитель';
+    const TABLE = 'drivers';
+
     protected $fillable = [
         'user_id',
         'driving_license',

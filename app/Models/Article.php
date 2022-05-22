@@ -10,6 +10,9 @@ class Article extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const TITLE = 'Статья';
+    const TABLE = 'articles';
+
     protected $fillable = [
         'user_id',
         'title',

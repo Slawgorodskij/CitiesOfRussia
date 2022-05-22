@@ -8,6 +8,7 @@ use App\Models\Sight;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ImageFormRequest;
+use App\Services\ModelService;
 
 class ImageController extends Controller
 {
@@ -28,15 +29,15 @@ class ImageController extends Controller
                 'url' => "/admin/images/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'name',
+                        'id' => 'name',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
@@ -52,7 +53,13 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('admin.images.editor');
+        $relations = [];
+        foreach (app(ModelService::class)->getModelsByMethod("images") as $modelName) {
+            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
+                $relations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
+            }
+        };
+        return view('admin.images.editor', ['relations' => $relations]);
     }
 
     /**
@@ -65,8 +72,8 @@ class ImageController extends Controller
     {
         $validated = $request->validated();
         $validated['imageable_type'] = match ($validated['imageable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
+            City::TITLE => City::class,
+            Sight::TITLE => Sight::class,
         };
 
         try {
