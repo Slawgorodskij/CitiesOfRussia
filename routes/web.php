@@ -17,8 +17,6 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use App\Http\Controllers\Api\ImageableController as ApiImageableController;
-use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +54,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cityList', [ApiCityController::class, 'cityList']);
     Route::get('/carousel/City/{id}', [ApiCarouselCityController::class, 'index']);
     Route::get('/carousel/Sight/{id}', [ApiCarouselSightController::class, 'index']);
-    Route::get('/articleables', [ApiArticleableController::class, 'index']);
-    Route::get('/imageables', [ApiImageableController::class, 'index']);
     Route::post('/images/store', [ApiImageController::class, 'store'])->name('images.store');
 });
 
