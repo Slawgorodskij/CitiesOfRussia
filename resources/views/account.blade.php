@@ -233,54 +233,34 @@ class="needs-validation" novalidate>
 //dump();
 @endphp
 <div class="container p-5 mt-4 bg-white">
-    <div class="row">
-        <h4 id="s4" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
+  <h4 id="s4" class="text-primary">Отправить комментарий</h4>
+  <form method="POST" action="{{ route('comments.store') }}" class="needs-validation" novalidate>
+    @csrf
+    <select-relation relation-name="commentable" :relations="{{ json_encode($commentRelations) }}">
+    </select-relation>
 
-<form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
-@csrf
-<select-relation relation-name="commentable" selected-type="{{ request()->get('commentable_type') }}"
-    selected-id="{{ request()->get('commentable_id') }}" :relations="{{ json_encode($commentRelations) }}">
-</select-relation>
-<div class="row">
-  <div class="col-sm-4">
-    <label for="sel1">Выберите город:</label>
+    @error('commentable_type')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
 
-    <selectCityAcc></selectCityAcc>
-<!--    <select-city></select-city>
+    @error('commentable_id')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
 
- <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">
-     <select class="form-control" id="focusedInput" name="cityname">
-        <option>Москва</option>
-        <option>Санкт-Петербург</option>
-        <option>Нижний Новгород</option>
-      </select>
-  <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
--->
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-  </div>
-  <div class="col">
-
-  <div class="form-group">
-    <label for="comment_body">Комментарий:</label>
-    <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body" required></textarea>
-  </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="comment_body">Комментарий:</label>
+        <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body"
+          required></textarea>
+      </div>
     </div>
-</div>
-  <div class="form-group">
-    <label for="uname">Выберите достопримечательность или введите свою:</label>
-   <input type="text" class="form-control" class="comment_type" placeholder="" name="commentable_type" required>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-  </div>
-  <div class="form-group">
-    <label for="comment_body">Комментарий:</label>
-     <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body" required></textarea>
-  </div>
-<br>
-  <button type="submit" class="btn btn-primary">Добавить</button>
-</form>
-    </div>
+
+    @error('comment_body')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
 </div>
 
 <div class="container p-5 mt-4 bg-white">

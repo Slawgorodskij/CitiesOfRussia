@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::match(['get','post'],'/profile', [ProfileController::class, 'store'])->name('profile');
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
     Route::post('/joint-trip', [JointTripController::class, 'index'])->name('joint-trip');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::view('/', 'admin.index')->name('index');

@@ -26,8 +26,6 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        $user = User::find(1);   // для отладки
-
         $cityComments = [];
 
         foreach (Comment::select('commentable_id', 'comment_body', 'created_at')
