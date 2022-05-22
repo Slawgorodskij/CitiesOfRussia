@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 
 class ModelService
@@ -30,5 +29,15 @@ class ModelService
     public function checkModelHasColumn(string $modelName, string $column): bool
     {
         return Schema::hasColumn($modelName::TABLE, $column);
+    }
+
+    public function getModelByTitle(string $title): string|false
+    {
+        foreach ($this->getAvailableModels() as $model) {
+            if ($model::TITLE == $title) {
+                return $model;
+            }
+        }
+        return false;
     }
 }

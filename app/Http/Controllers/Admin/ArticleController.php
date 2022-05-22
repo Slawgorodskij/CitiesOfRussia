@@ -71,10 +71,7 @@ class ArticleController extends Controller
     public function store(ArticleFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = match ($validated['articleable_type']) {
-            City::TITLE => City::class,
-            Sight::TITLE => Sight::class,
-        };
+        $validated['articleable_type'] = app(ModelService::class)->getModelByTitle($validated['articleable_type']);
         $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
             'articles',

@@ -71,10 +71,7 @@ class ImageController extends Controller
     public function store(ImageFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['imageable_type'] = match ($validated['imageable_type']) {
-            City::TITLE => City::class,
-            Sight::TITLE => Sight::class,
-        };
+        $validated['imageable_type'] = app(ModelService::class)->getModelByTitle($validated['imageable_type']);
 
         try {
             for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {
