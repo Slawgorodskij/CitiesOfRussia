@@ -14,6 +14,7 @@
             v-model="searchElem"
             type="text"
             :placeholder="placeholderName"
+            @click="visibleItem = true"
         >
         <input
             class="my-select__input"
@@ -97,7 +98,6 @@ export default {
     border: var(--color-border) solid 2px;
     border-radius: 5px;
 
-
     &__arrow {
         position: absolute;
         top: 2.5vh;
@@ -122,6 +122,10 @@ export default {
         padding: 15px;
         width: 100%;
         height: 7vh;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     &__items {

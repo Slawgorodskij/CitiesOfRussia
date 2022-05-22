@@ -1,10 +1,10 @@
 <template>
     <div class="block-form__group">
-        <custom-input
+        <my-input
             v-model="searchQuery"
             placeholder="Поиск...."
             class="block-form__input"
-        ></custom-input>
+        ></my-input>
         <my-select
             v-for="filterField in filterFields"
             :key="filterField.id"
@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import customInput from "./../UI/CustomInput";
+import myInput from "./../UI/MyInput";
 import mySelect from "./../UI/MySelect";
 
 export default {
     components: {
-        customInput,
+        myInput,
         mySelect,
     },
     props: {

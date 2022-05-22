@@ -46,7 +46,7 @@
                 class="block-form__input @error('password') block-form__input_error @enderror" required
                 autocomplete="new-password">
 
-            <fieldset>
+            <fieldset class="block-form__fieldset">
                 <legend>Админ?</legend>
                 <div>
                     <input class="form-check-input" type="radio" name="is_admin" id="is-admin" value="1"
