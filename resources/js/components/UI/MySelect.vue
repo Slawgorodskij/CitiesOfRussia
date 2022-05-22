@@ -51,8 +51,8 @@ export default {
         return {
             visibleItem: false,
             searchElem: '',
-            selectedItem: '',
-            selectedItemId: '',
+            selectedItem: this.modelValue ? this.searchById(this.modelValue) : '',
+            selectedItemId: this.modelValue ?? '',
         }
     },
     computed: {
@@ -75,10 +75,12 @@ export default {
             if (elem.id) {
                 this.selectedItemId = elem.id;
             }
-
             this.visibleItem = false;
-            this.$emit("update:modelValue", elem.key);
-        }
+            this.$emit("update:modelValue", elem.id);
+        },
+        searchById(id) {
+            return this.elemArray.find(elem => elem['id'] == id)['name'];
+        },
     },
 
 }

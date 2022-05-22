@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="app">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet"> {{-- костыль --}}
 
 <div class="container-fluid p-3 text-center bg-white border" style="background-image: url(/storage/images/road.jpg); background-size: cover;">
 <h3 class="text-white-50">Добро пожаловать!</h3>
@@ -188,7 +188,7 @@
     <div class="col">
                  <h4 id="s3" class="text-primary">Стать попутчиком</h4>
                   <p>Введите необходимые данные о пассажире:</p>
-<form method="POST" 
+<form method="POST"
 action="{{ isset($user_id) ? route('account', $user_id) : route('profile') }}"
 class="needs-validation" novalidate>
 @csrf
@@ -203,24 +203,24 @@ class="needs-validation" novalidate>
   </div>
   <div class="form-group col">
     <label for="uname">Фамилия:</label>
-    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>   
+    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" required>
   </div>
 
   <div class="form-group col">
     <label for="uname">Отчество:</label>
-    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic"> 
+    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic">
   </div>
 
 </div>
 <div class="form-group">
     <label for="pwd">Обо мне:</label>
     <input type="password" class="form-control" id="passinfo" placeholder="Краткая информация о пассажире" name="passinfo">
-   
+
   </div>
   <div class="form-group form-check">
     <label class="form-check-label">
       <input class="form-check-input" type="checkbox" name="remember" required> Запомнить меня
-      
+
     </label>
   </div>
   <button type="submit" class="btn btn-primary">Ввести</button>
@@ -238,6 +238,9 @@ class="needs-validation" novalidate>
 
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
+<select-relation relation-name="commentable" selected-type="{{ request()->get('commentable_type') }}"
+    selected-id="{{ request()->get('commentable_id') }}" :relations="{{ json_encode($commentRelations) }}">
+</select-relation>
 <div class="row">
   <div class="col-sm-4">
     <label for="sel1">Выберите город:</label>
@@ -245,7 +248,7 @@ class="needs-validation" novalidate>
     <selectCityAcc></selectCityAcc>
 <!--    <select-city></select-city>
 
- <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">   
+ <input id="myInput" class="form-control" type="text" name="cityname" placeholder="Город">
      <select class="form-control" id="focusedInput" name="cityname">
         <option>Москва</option>
         <option>Санкт-Петербург</option>
@@ -308,7 +311,6 @@ class="needs-validation" novalidate>
     </div>
 </div>
 
-</div>
 </div>
 
 @endsection

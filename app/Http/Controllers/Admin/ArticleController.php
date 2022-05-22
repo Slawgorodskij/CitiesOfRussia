@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArticleFormRequest;
+use App\Services\ModelService;
 
 class ArticleController extends Controller
 {
@@ -28,15 +29,15 @@ class ArticleController extends Controller
                 'url' => "/admin/articles/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'title',
+                        'id' => 'title',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
@@ -52,7 +53,13 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.articles.editor');
+        $relations = [];
+        foreach (app(ModelService::class)->getModelsByMethod("articles") as $modelName) {
+            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
+                $relations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
+            }
+        };
+        return view('admin.articles.editor', ['relations' => $relations]);
     }
 
     /**
@@ -65,8 +72,8 @@ class ArticleController extends Controller
     {
         $validated = $request->validated();
         $validated['articleable_type'] = match ($validated['articleable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
+            City::TITLE => City::class,
+            Sight::TITLE => Sight::class,
         };
         $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
