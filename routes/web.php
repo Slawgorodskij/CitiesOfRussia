@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,12 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-        Route::view('/', 'admin.index')->name('index');
+        Route::get('/', function () {
+            return redirect()->route('admin.cities.index');
+        })->name('index');
         Route::resource('/cities', AdminCityController::class)->except(['show']);
         Route::resource('/sights', AdminSightController::class)->except(['show']);
         Route::resource('/articles', AdminArticleController::class)->except(['show']);
         Route::resource('/images', AdminImageController::class)->except(['show', 'edit', 'update']);
         Route::resource('/users', AdminUserController::class)->except(['show']);
+        Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
     });
 });
 

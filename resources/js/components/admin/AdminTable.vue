@@ -119,7 +119,7 @@ export default {
                     this.data.forEach((item) => {
                         options.add(item[filterField["id"]]);
                     });
-                    options = Array.from(options);
+                    options = Array.from(options).sort();
                     options = options.map((option) => {
                         return {
                             id: option,
