@@ -25,4 +25,9 @@ class Driver extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

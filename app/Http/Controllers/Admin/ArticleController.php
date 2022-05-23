@@ -53,13 +53,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $relations = [];
-        foreach (app(ModelService::class)->getModelsByMethod("articles") as $modelName) {
-            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
-                $relations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
-            }
-        };
-        return view('admin.articles.editor', ['relations' => $relations]);
+        return view(
+            'admin.articles.editor',
+            ['relations' => app(ModelService::class)->getRelationsByMethod("articles", ['id', 'name'])]
+        );
     }
 
     /**
@@ -71,7 +68,7 @@ class ArticleController extends Controller
     public function store(ArticleFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = app(ModelService::class)->getModelByTitle($validated['articleable_type']);
+        $validated['articleable_type'] = app(ModelService::class)->getModelNameSpaceByTitle($validated['articleable_type']);
         $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
             'articles',

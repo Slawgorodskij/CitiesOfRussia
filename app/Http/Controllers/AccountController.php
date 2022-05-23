@@ -62,18 +62,11 @@ class AccountController extends Controller
             }
         }
 
-        $commentRelations = [];
-        foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
-            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
-                $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
-            }
-        };
-
         return view('account', [
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
-            'commentRelations' => $commentRelations
+            'commentRelations' => app(ModelService::class)->getRelationsByMethod("comments", ['id', 'name'])
         ]);
     }
 }

@@ -18,7 +18,7 @@ class ModelService
         return $models;
     }
 
-    public function getModelsByMethod(string $methodName): array
+    public function getModelsNameSpaceByMethod(string $methodName): array
     {
         return array_filter(
             $this->getAvailableModels(),
@@ -26,12 +26,17 @@ class ModelService
         );
     }
 
-    public function checkModelHasColumn(string $modelName, string $column): bool
+    public function checkModelHasColumns(string $modelName, array $columns): bool
     {
-        return Schema::hasColumn($modelName::TABLE, $column);
+        foreach ($columns as $column) {
+            if (!Schema::hasColumn($modelName::TABLE, $column)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public function getModelByTitle(string $title): string|false
+    public function getModelNameSpaceByTitle(string $title): string|false
     {
         foreach ($this->getAvailableModels() as $model) {
             if ($model::TITLE == $title) {
@@ -39,5 +44,16 @@ class ModelService
             }
         }
         return false;
+    }
+
+    public function getRelationsByMethod(string $methodName, array $columns): array
+    {
+        $relations = [];
+        foreach ($this->getModelsNameSpaceByMethod($methodName) as $modelName) {
+            if ($this->checkModelHasColumns($modelName, $columns)) {
+                $relations[$modelName::TITLE] = $modelName::all($columns)->toArray();
+            }
+        };
+        return $relations;
     }
 }

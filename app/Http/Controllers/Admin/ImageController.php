@@ -51,13 +51,10 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $relations = [];
-        foreach (app(ModelService::class)->getModelsByMethod("images") as $modelName) {
-            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
-                $relations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
-            }
-        };
-        return view('admin.images.editor', ['relations' => $relations]);
+        return view(
+            'admin.images.editor',
+            ['relations' => app(ModelService::class)->getRelationsByMethod("images", ['id', 'name'])]
+        );
     }
 
     /**
@@ -69,7 +66,8 @@ class ImageController extends Controller
     public function store(ImageFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['imageable_type'] = app(ModelService::class)->getModelByTitle($validated['imageable_type']);
+        $validated['imageable_type'] = app(ModelService::class)
+            ->getModelNameSpaceByTitle($validated['imageable_type']);
 
         try {
             for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {

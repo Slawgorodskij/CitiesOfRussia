@@ -138,7 +138,7 @@ export default {
         background-color: var(--color-background-body);
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         overflow-y: auto;
     }
 
