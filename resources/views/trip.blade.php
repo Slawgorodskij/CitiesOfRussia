@@ -55,8 +55,7 @@
                 <select-city></select-city>
 
                 <button type="submit"
-                        class="block-form__button"
-                        value="save">
+                        class="block-form__button">
                     Продолжить регистрацию
                 </button>
 

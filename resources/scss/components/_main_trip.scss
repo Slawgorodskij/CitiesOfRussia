@@ -76,6 +76,10 @@
 .block-form {
     width: 100%;
 
+    &_mb {
+        @include adaptive-value("margin-bottom", 80, 5, 0);
+    }
+
     &__input {
         margin-bottom: 2vh;
         width: 100%;
@@ -86,7 +90,8 @@
             border: var(--color-error) solid 2px;
         }
     }
-    &__label{
+
+    &__label {
         padding-bottom: 3px;
     }
 

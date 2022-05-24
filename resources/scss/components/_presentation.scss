@@ -1,0 +1,83 @@
+.presentation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    &-block {
+        position: relative;
+        height: 40vh;
+        cursor: pointer;
+
+        &__photo {
+            @include photo-image;
+            z-index: 2;
+        }
+
+        &__text {
+            @include flex-all-center;
+            position: absolute;
+            padding: 0 10px;
+            bottom: 2vh;
+            width: 100%;
+            min-height: 4vh;
+            background-color: var(--color-background-body-dark);
+            font-weight: 900;
+            color: var(--color-text);
+            z-index: 3;
+        }
+
+        &__people {
+            @include flex-h-center;
+            flex-direction: column;
+            position: absolute;
+            padding: 0 15px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: url(/images/dots.png);
+            z-index: 4;
+        }
+
+        &__hover {
+            @include block-hover;
+
+            &_link {
+                color: var(--color-link);
+            }
+
+
+            &_trip {
+                color: var(--color-link);
+            }
+        }
+
+        &:hover .presentation-block__hover {
+            z-index: 5;
+            cursor: auto;
+        }
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            font-size: 1.5rem;
+            gap: 10px;
+
+            &_label {
+                cursor: pointer;
+            }
+
+            &_label:hover {
+                color: var(--color-link-hover);
+            }
+
+
+        }
+    }
+}
+
+input[type=checkbox]:checked ~ span {
+    font-size: 1.8rem;
+    color: var(--color-link-hover);
+
+}
