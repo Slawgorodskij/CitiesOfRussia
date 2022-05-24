@@ -13,15 +13,20 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin.js', 'public/js')
+    .js('resources/js/select.js', 'public/js')
     .vue()
     .sass('resources/scss/app.scss', 'public/css')
     .sass('resources/scss/auth.scss', 'public/css')
     .sass('resources/scss/admin.scss', 'public/css')
     .options({
-    processCssUrls: false
-});
+        processCssUrls: false
+    });
 
 mix.copyDirectory([
     'vendor/tinymce/tinymce',
     'vendor/pradosoft/tinymce-langs'
 ], 'public/js/tinymce');
+
+if (mix.inProduction()) {
+    mix.version();
+}

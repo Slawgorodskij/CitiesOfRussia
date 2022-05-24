@@ -25,30 +25,30 @@ class CityController extends Controller
                 'url' => "/admin/cities/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'name',
+                        'id' => 'name',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
                 'deleteConfirmation' => "Подтвердите удаление города с #ID",
                 'polymorphic' => [
                     [
-                        'key' => 'articleable',
+                        'id' => 'articleable',
                         'url' => route('admin.articles.create'),
-                        'type' => class_basename(City::class),
+                        'type' => City::TITLE,
                         'message' => 'Добавить статью',
                     ],
                     [
-                        'key' => 'imageable',
+                        'id' => 'imageable',
                         'url' => route('admin.images.create'),
-                        'type' => class_basename(City::class),
+                        'type' => City::TITLE,
                         'message' => 'Загрузить фото',
                     ],
                 ],

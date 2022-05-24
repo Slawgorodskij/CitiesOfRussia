@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SightController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
 use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
@@ -16,8 +17,8 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use App\Http\Controllers\Api\ImageableController as ApiImageableController;
-use App\Http\Controllers\Api\ArticleableController as ApiArticleableController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,17 +36,22 @@ Auth::routes();
 Route::view('/', 'index')->name('index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get','post'],'/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get','post'],'/profile', [ProfileController::class, 'store'])->name('profile');
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
     Route::post('/joint-trip', [JointTripController::class, 'index'])->name('joint-trip');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-        Route::view('/', 'admin.index')->name('index');
+        Route::get('/', function () {
+            return redirect()->route('admin.cities.index');
+        })->name('index');
         Route::resource('/cities', AdminCityController::class)->except(['show']);
         Route::resource('/sights', AdminSightController::class)->except(['show']);
         Route::resource('/articles', AdminArticleController::class)->except(['show']);
         Route::resource('/images', AdminImageController::class)->except(['show', 'edit', 'update']);
         Route::resource('/users', AdminUserController::class)->except(['show']);
+        Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
     });
 });
 
@@ -54,8 +60,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::get('/cityList', [ApiCityController::class, 'cityList']);
     Route::get('/carousel/City/{id}', [ApiCarouselCityController::class, 'index']);
     Route::get('/carousel/Sight/{id}', [ApiCarouselSightController::class, 'index']);
-    Route::get('/articleables', [ApiArticleableController::class, 'index']);
-    Route::get('/imageables', [ApiImageableController::class, 'index']);
     Route::post('/images/store', [ApiImageController::class, 'store'])->name('images.store');
 });
 

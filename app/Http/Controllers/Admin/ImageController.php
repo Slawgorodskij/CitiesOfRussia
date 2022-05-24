@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\City;
 use App\Models\Image;
-use App\Models\Sight;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ImageFormRequest;
+use App\Services\ModelService;
 
 class ImageController extends Controller
 {
@@ -28,15 +27,15 @@ class ImageController extends Controller
                 'url' => "/admin/images/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'name',
+                        'id' => 'name',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
@@ -52,7 +51,10 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('admin.images.editor');
+        return view(
+            'admin.images.editor',
+            ['relations' => app(ModelService::class)->getRelationsByMethod("images", ['id', 'name'])]
+        );
     }
 
     /**
@@ -64,10 +66,8 @@ class ImageController extends Controller
     public function store(ImageFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['imageable_type'] = match ($validated['imageable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
-        };
+        $validated['imageable_type'] = app(ModelService::class)
+            ->getModelNameSpaceByTitle($validated['imageable_type']);
 
         try {
             for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {

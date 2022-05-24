@@ -9,6 +9,9 @@ class Driver extends Model
 {
     use HasFactory;
 
+    const TITLE = 'Водитель';
+    const TABLE = 'drivers';
+
     protected $fillable = [
         'user_id',
         'driving_license',
@@ -21,5 +24,10 @@ class Driver extends Model
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

@@ -1,27 +1,27 @@
 <template>
     <div class="block-form__group">
-        <custom-input
+        <my-input
             v-model="searchQuery"
             placeholder="Поиск...."
             class="block-form__input"
-        ></custom-input>
+        ></my-input>
         <my-select
             v-for="filterField in filterFields"
-            :key="filterField.key"
+            :key="filterField.id"
             :elemArray="filterField.options"
-            :placeholder-name="filterField.name"
-            v-model="selectedFilters[filterField.key]"
+            :placeholderName="filterField.name"
+            v-model="selectedFilters[filterField.id]"
         ></my-select>
         <my-select
             :elemArray="fields"
-            placeholder-name="Способ сортировки"
+            placeholderName="Способ сортировки"
             v-model="selectedSort"
         ></my-select>
     </div>
     <table class="admin-panel__table">
         <thead>
             <tr>
-                <th v-for="field in fields" :key="field.key">
+                <th v-for="field in fields" :key="field.id">
                     {{ field.name }}
                 </th>
                 <th>Действия</th>
@@ -29,8 +29,8 @@
         </thead>
         <tbody>
             <tr v-for="item in sortedFilteredAndSearched" :key="item.id">
-                <td v-for="field in fields" :key="field.key">
-                    {{ item[field.key] }}
+                <td v-for="field in fields" :key="field.id">
+                    {{ item[field.id] }}
                 </td>
                 <td>
                     <a :href="`${this.url}${item.id}/edit`" class="admin-panel__button">
@@ -44,8 +44,8 @@
                     </delete-button>
                     <a
                         v-for="relation in polymorphic"
-                        :key="relation.key"
-                        :href="`${relation.url}?${relation.key}_type=${relation.type}&${relation.key}_id=${item.id}`"
+                        :key="relation.id"
+                        :href="`${relation.url}?${relation.id}_type=${relation.type}&${relation.id}_id=${item.id}`"
                         class="admin-panel__button"
                     >
                         {{ relation.message }}
@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import customInput from "./../UI/CustomInput";
+import myInput from "./../UI/MyInput";
 import mySelect from "./../UI/MySelect";
 
 export default {
     components: {
-        customInput,
+        myInput,
         mySelect,
     },
     props: {
@@ -97,7 +97,7 @@ export default {
             if (filterFields) {
                 return items.map((item) => {
                     filterFields.forEach((filterField) => {
-                        item[filterField["key"]] = item[filterField["key"]]["name"];
+                        item[filterField["id"]] = item[filterField["id"]]["name"];
                     });
                     return item;
                 });
@@ -117,12 +117,12 @@ export default {
                 return filterFields.map((filterField) => {
                     let options = new Set();
                     this.data.forEach((item) => {
-                        options.add(item[filterField["key"]]);
+                        options.add(item[filterField["id"]]);
                     });
-                    options = Array.from(options);
+                    options = Array.from(options).sort();
                     options = options.map((option) => {
                         return {
-                            key: option,
+                            id: option,
                             name: option,
                         };
                     });

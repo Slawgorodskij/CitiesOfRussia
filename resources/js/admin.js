@@ -8,18 +8,16 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 
-import selectArticleable from './components/admin/SelectArticleable.vue';
-import selectImageable from './components/admin/SelectImageable.vue';
 import imagesUpload from './components/admin/ImagesUpload.vue';
 import deleteButton from './components/admin/DeleteButton.vue';
 import adminTable from './components/admin/AdminTable.vue';
+import selectRelation from './components/SelectRelation.vue';
 
 const app = createApp({})
 
-app.component('select-articleable', selectArticleable)
-    .component('select-imageable', selectImageable)
-    .component('images-upload', imagesUpload)
+app.component('images-upload', imagesUpload)
     .component('delete-button', deleteButton)
-    .component('admin-table', adminTable);
+    .component('admin-table', adminTable)
+    .component('select-relation', selectRelation);
 
 app.mount("#app")

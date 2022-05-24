@@ -8,6 +8,7 @@ use App\Models\Sight;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ModelService;
 
 class AccountController extends Controller
 {
@@ -25,14 +26,13 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        $user = User::find(1);   // для отладки
-
         $cityComments = [];
 
         foreach (Comment::select('commentable_id', 'comment_body', 'created_at')
             ->where('user_id', $user->id)
             ->where('commentable_type', City::class)
             ->orderByDesc('created_at')
+            ->take(2)
             ->get() as $comment) {
             if (array_key_exists($comment->commentable_id, $cityComments)) {
                 $cityComments[$comment->commentable_id]['comments'][] = $comment;
@@ -50,6 +50,7 @@ class AccountController extends Controller
             ->where('user_id', $user->id)
             ->where('commentable_type', Sight::class)
             ->orderByDesc('created_at')
+            ->take(2)
             ->get() as $comment) {
             if (array_key_exists($comment->commentable_id, $sightComments)) {
                 $sightComments[$comment->commentable_id]['comments'][] = $comment;
@@ -65,6 +66,7 @@ class AccountController extends Controller
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
+            'commentRelations' => app(ModelService::class)->getRelationsByMethod("comments", ['id', 'name'])
         ]);
     }
 }

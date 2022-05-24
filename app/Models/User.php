@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const TITLE = 'Пользователь';
+    const TABLE = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,8 +52,13 @@ class User extends Authenticatable
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function comments()
+    public function commentsAboutUser()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function commentsFromUser()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 }

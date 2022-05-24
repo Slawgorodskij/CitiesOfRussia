@@ -25,24 +25,24 @@ class UserController extends Controller
                 'url' => "/admin/users/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'name',
+                        'id' => 'name',
                         'name' => 'Имя',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
                 'deleteConfirmation' => "Подтвердите удаление пользователя с #ID",
                 'polymorphic' => [
                     [
-                        'key' => 'imageable',
+                        'id' => 'imageable',
                         'url' => route('admin.images.create'),
-                        'type' => class_basename(User::class),
+                        'type' => User::TITLE,
                         'message' => 'Загрузить фото',
                     ],
                 ],

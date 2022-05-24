@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Services\UploadService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArticleFormRequest;
+use App\Services\ModelService;
 
 class ArticleController extends Controller
 {
@@ -28,15 +29,15 @@ class ArticleController extends Controller
                 'url' => "/admin/articles/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'title',
+                        'id' => 'title',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
@@ -52,7 +53,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.articles.editor');
+        return view(
+            'admin.articles.editor',
+            ['relations' => app(ModelService::class)->getRelationsByMethod("articles", ['id', 'name'])]
+        );
     }
 
     /**
@@ -64,10 +68,7 @@ class ArticleController extends Controller
     public function store(ArticleFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = match ($validated['articleable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
-        };
+        $validated['articleable_type'] = app(ModelService::class)->getModelNameSpaceByTitle($validated['articleable_type']);
         $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
             'articles',
