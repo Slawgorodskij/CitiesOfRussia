@@ -1,7 +1,6 @@
 .trip-presentation {
     position: relative;
     height: 40vh;
-    // @include adaptive-value("margin-bottom", 100, 5, 0);
     background-color: var(--color-background-dark);
     color: var(--color-white);
 
@@ -47,7 +46,6 @@
         @include adaptive-value("margin-bottom", 100, 5, 0);
         padding-top: 5%;
         padding-bottom: 5%;
-        //background-color: var(--color-background-dark);
     }
 
     &-rules {
