@@ -61,4 +61,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'user_id', 'id');
     }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
+    }
 }
