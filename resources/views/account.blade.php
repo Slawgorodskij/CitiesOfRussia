@@ -100,7 +100,7 @@
         <h4 id="s1" class="text-primary">Мой статус: </h4>       
         @if($car)
         <p>Водитель</p>
-        <p>Автомобиль <span style="font-weight:bold">{{$car->car}}</span> госномер <span>{{$car->registration_number}}</span></p>
+        <p>Автомобиль <span style="font-weight:bold">{{$car->car}}</span> госномер <span style="font-weight:bold">{{$car->registration_number}}</span></p>
         @endif
      
     </div>
