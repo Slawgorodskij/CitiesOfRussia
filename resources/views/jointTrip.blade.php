@@ -25,6 +25,123 @@
 
         </div>
 
+        <div class="container wrapper">
+            <h2 class="title">Вы можете продолжить регистрацию</h2>
+            <form class="block-form block-form_mb" action="">
+                @csrf
+
+                <input name="trip_role" type="text"
+                       class="block-form__input @error('trip_role') block-form__input_error @enderror"
+                       placeholder="Роль в поездке*"
+                       value="{{$tripRole}}"
+                />
+
+                @error('trip_role')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
+                <input name="departure_city" type="text"
+                       class="block-form__input @error('departure_city') block-form__input_error @enderror"
+                       placeholder="Город отправления*"
+                       value="{{$departureCity}}"
+                />
+
+                @error('departure_city')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
+                <input name="city_of_arrival" type="text"
+                       class="block-form__input @error('city_of_arrival') block-form__input_error @enderror"
+                       placeholder="Город прибытия*"
+                       value="{{$cityOfArrival}}"
+                />
+
+                @error('city_of_arrival')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
+
+                <button type="submit"
+                        class="block-form__button">
+                    Зарегистрировать поездку
+                </button>
+            </form>
+            @isset($dataTrips[0])
+                <h2 class="title">Или присоединиться к одной из существующих поездок</h2>
+                <div class="presentation">
+                    @foreach($dataTrips as $dataTrip)
+                        <div class="presentation-block">
+                            <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"
+                                 alt="фотография города">
+                            <div class="presentation-block__people">
+
+                                <p>Водитель:
+                                    <span>{{$dataTrip['driverFirstname'] ?: 'место свободно'}} {{$dataTrip['driverLastname']?:''}}</span>
+                                </p>
+
+
+                                <p>Пассажир:
+                                    <span>{{$dataTrip['passengerFirstFirstname'] ?: 'место свободно'}} {{$dataTrip['passengerFirstLastname']?:''}}</span>
+                                </p>
+
+                                <p>Пассажир:
+                                    <span>{{$dataTrip['passengerTwoFirstname'] ?: 'место свободно'}} {{$dataTrip['passengerTwoLastname']?:''}}</span>
+                                </p>
+
+                                <p>Пассажир:
+                                    <span>{{$dataTrip['passengerThreeFirstname'] ?: 'место свободно'}} {{$dataTrip['passengerThreeLastname']?:''}}</span>
+                                </p>
+
+                            </div>
+
+                            <div class="presentation-block__hover presentation-block__hover_trip">
+                                <h2>Желаю присоединиться в качестве:</h2>
+                                <form class="presentation-block__form" action="">
+                                    @csrf
+                                    @if(empty($dataTrip['driverName']))
+                                        <label class="presentation-block__form_label">
+                                            <input hidden
+                                                   type="checkbox"
+                                                   name="driver"
+                                                   value="{{$userId}}">
+                                            <span>водителя</span>
+                                        </label>
+                                    @endif
+
+                                    @if(empty($dataTrip['passengerFirstName']))
+                                        <label class="presentation-block__form_label">
+                                            <input hidden type="checkbox" name="passenger_first" value="{{$userId}}">
+                                            <span>пассажира</span>
+                                        </label>
+                                    @endif
+
+                                    @if(empty($dataTrip['passengerTwoName']))
+                                        <label class="presentation-block__form_label">
+                                            <input hidden type="checkbox" name="passenger_two" value="{{$userId}}">
+                                            <span>пассажира</span>
+                                        </label>
+                                    @endif
+
+                                    @if(empty($dataTrip['passengerThreeName']))
+                                        <label class="presentation-block__form_label">
+                                            <input hidden type="checkbox" name="passenger_three" value="{{$userId}}">
+                                            <span>пассажира</span>
+                                        </label>
+                                    @endif
+                                    <button type="submit"
+                                            class="block-form__button">
+                                        Присоединиться к поездке
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+            @endisset
+        </div>
+
+
         <div class="feedback-block">
 
             <h2 class="title">Отзывы наших пользователей</h2>
@@ -45,6 +162,27 @@
 
     </main>
 
+    {{--    <div class="presentation-block__people">--}}
+    {{--        <div class="presentation-block__text">--}}
+    {{--            <p>Водитель:--}}
+    {{--                <span>{{$dataTrip['driverFirstname']}} {{$dataTrip['driverLastname']}}</span></p>--}}
+    {{--        </div>--}}
+    {{--        <div class="presentation-block__text">--}}
+    {{--            <p>Пассажир:--}}
+    {{--                <span>{{$dataTrip['passengerFirstFirstname']}} {{$dataTrip['passengerFirstLastname']}}</span>--}}
+    {{--            </p>--}}
+    {{--        </div>--}}
+    {{--        <div class="presentation-block__text">--}}
+    {{--            <p>Пассажир:--}}
+    {{--                <span>{{$dataTrip['passengerTwoFirstname']}} {{$dataTrip['passengerTwoLastname']}}</span>--}}
+    {{--            </p>--}}
+    {{--        </div>--}}
+    {{--        <div class="presentation-block__text">--}}
+    {{--            <p>Пассажир:--}}
+    {{--                <span>{{$dataTrip['passengerThreeFirstname']}} {{$dataTrip['passengerThreeLastname']}}</span>--}}
+    {{--            </p>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection
 
 

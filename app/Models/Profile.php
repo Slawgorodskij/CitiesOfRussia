@@ -9,6 +9,9 @@ class Profile extends Model
 {
     use HasFactory;
 
+    const TITLE = 'Профиль';
+    const TABLE = 'profiles';
+
     protected $fillable = [
         'user_id',
         'lastname',
@@ -17,4 +20,8 @@ class Profile extends Model
         'date_of_birth',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

@@ -18,7 +18,8 @@ class CommentController extends Controller
     public function store(CommentFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['commentable_type'] = app(ModelService::class)->getModelByTitle($validated['commentable_type']);
+        $validated['commentable_type'] = app(ModelService::class)
+            ->getModelNameSpaceByTitle($validated['commentable_type']);
         $validated['user_id'] = Auth::user()->id;
         $created = Comment::create($validated);
 

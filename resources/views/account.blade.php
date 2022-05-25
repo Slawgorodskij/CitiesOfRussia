@@ -249,8 +249,11 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
 <!--Мой вариант-->
 
 <div class="container p-5 mt-4 bg-white">
-    <div class="row">
-        <h4 id="s4" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
+  <h4 id="s4" class="text-primary">Отправить комментарий</h4>
+  <form method="POST" action="{{ route('comments.store') }}" class="needs-validation" novalidate>
+    @csrf
+    <select-relation relation-name="commentable" :relations="{{ json_encode($commentRelations) }}">
+    </select-relation>
 
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
@@ -302,6 +305,13 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
   <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
     </div>
+
+    @error('comment_body')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
 </div>
 
 <!--Вариант Григория-->

@@ -52,8 +52,23 @@ class User extends Authenticatable
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function comments()
+    public function commentsAboutUser()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function commentsFromUser()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
     }
 }

@@ -19,10 +19,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/auth.scss', 'public/css')
     .sass('resources/scss/admin.scss', 'public/css')
     .options({
-    processCssUrls: false
-});
+        processCssUrls: false
+    });
 
 mix.copyDirectory([
     'vendor/tinymce/tinymce',
     'vendor/pradosoft/tinymce-langs'
 ], 'public/js/tinymce');
+
+if (mix.inProduction()) {
+    mix.version();
+}

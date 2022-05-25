@@ -13,8 +13,9 @@
     <form method="POST" action="{{ route('admin.images.store') }}" enctype="multipart/form-data">
         @csrf
 
-        <select-imageable selected-type="{{ request()->get('imageable_type') }}"
-            selected-id="{{ request()->get('imageable_id') }}"></select-imageable>
+        <select-relation relation-name="imageable" selected-type="{{ request()->get('imageable_type') }}"
+            selected-id="{{ request()->get('imageable_id') }}" :relations="{{ json_encode($relations) }}">
+        </select-relation>
 
         @error('imageable_type')
         <p class="block-form__text-error">{{ $message }}</p>

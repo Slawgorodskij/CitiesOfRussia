@@ -21,10 +21,9 @@
 
         <input type="hidden" name="user_id" id="userId" value="{{ Auth::user()->id }}">
 
-        <select-articleable
-            selected-type="{{ isset($article) ? class_basename($article->articleable_type) : old('articleable_type') ?? request()->get('articleable_type') }}"
-            selected-id="{{ $article->articleable_id ?? old('articleable_id') ?? request()->get('articleable_id') }}">
-        </select-articleable>
+        <select-relation relation-name="articleable" selected-type="{{ request()->get('articleable_type') }}"
+            selected-id="{{ request()->get('articleable_id') }}" :relations="{{ json_encode($relations) }}">
+        </select-relation>
 
         @error('articleable_type')
         <p class="block-form__text-error">{{ $message }}</p>

@@ -21,7 +21,6 @@ class Sight extends Model
         'slug',
     ];
 
-
     public function articles()
     {
         return $this->morphMany(Article::class, 'articleable');

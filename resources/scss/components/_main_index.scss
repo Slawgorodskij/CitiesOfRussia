@@ -6,43 +6,4 @@
     color: var(--color-white);
 }
 
-.presentation {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
 
-    &-block {
-        position: relative;
-        height: 40vh;
-        cursor: pointer;
-
-        &__photo {
-            @include photo-image;
-            z-index: 2;
-        }
-
-        &__text {
-            @include flex-all-center;
-            position: absolute;
-            bottom: 2vh;
-            width: 100%;
-            height: 4vh;
-            background-color: var(--color-background-body-dark);
-            font-weight: 900;
-            color: var(--color-text);
-            z-index: 3;
-        }
-
-        &__hover {
-            @include block-hover;
-
-            &_link {
-                color: var(--color-link);
-            }
-        }
-
-        &:hover .presentation-block__hover {
-            z-index: 5;
-        }
-    }
-}

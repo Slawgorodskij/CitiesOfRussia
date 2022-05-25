@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             SightSeeder::class,
             ArticleSeeder::class,
-            ProfileSeeder::class,
-            DriverSeeder::class,
             TripSeeder::class,
             CommentSeeder::class,
         ]);

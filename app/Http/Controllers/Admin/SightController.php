@@ -26,36 +26,36 @@ class SightController extends Controller
                 'url' => "/admin/sights/",
                 'fields' => [
                     [
-                        'key' => 'id',
+                        'id' => 'id',
                         'name' => '#ID',
                     ],
                     [
-                        'key' => 'name',
+                        'id' => 'name',
                         'name' => 'Название',
                     ],
                     [
-                        'key' => 'created_at',
+                        'id' => 'created_at',
                         'name' => 'Дата добавления',
                     ],
                 ],
                 'filterFields' => [
                     [
-                        'key' => "cities",
+                        'id' => "cities",
                         'name' => 'Город',
                     ],
                 ],
                 'deleteConfirmation' => "Подтвердите удаление достопримечательности с #ID",
                 'polymorphic' => [
                     [
-                        'key' => 'articleable',
+                        'id' => 'articleable',
                         'url' => route('admin.articles.create'),
-                        'type' => class_basename(Sight::class),
+                        'type' => Sight::TITLE,
                         'message' => 'Добавить статью',
                     ],
                     [
-                        'key' => 'imageable',
+                        'id' => 'imageable',
                         'url' => route('admin.images.create'),
-                        'type' => class_basename(Sight::class),
+                        'type' => Sight::TITLE,
                         'message' => 'Загрузить фото',
                     ],
                 ],

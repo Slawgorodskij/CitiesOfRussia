@@ -11,10 +11,10 @@
     <title>@section('title'){{ config('app.name', 'CitiesOfRussia') }}@show</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ mix('js/admin.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
 
     <x-head.tinymce-config />
 </head>

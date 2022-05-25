@@ -6,6 +6,12 @@
         width: 100%;
         height: 8vh;
         border: var(--color-border) solid 2px;
+        border-radius: 5px;
+        padding: 15px;
+
+        &:focus-visible {
+            outline: none;
+        }
 
         &_error {
             border: var(--color-error) solid 2px;
@@ -38,5 +44,12 @@
 
     &__group {
         @include flex;
+    }
+
+    &__fieldset {
+        margin: 2vh 0;
+        width: 100%;
+        border: var(--color-border) solid 2px;
+        border-radius: 5px;
     }
 }

@@ -14,6 +14,7 @@
             v-model="searchElem"
             type="text"
             :placeholder="placeholderName"
+            @click="visibleItem = true"
         >
         <input
             class="my-select__input"
@@ -51,8 +52,8 @@ export default {
         return {
             visibleItem: false,
             searchElem: '',
-            selectedItem: '',
-            selectedItemId: '',
+            selectedItem: this.modelValue ? this.searchById(this.modelValue) : '',
+            selectedItemId: this.modelValue ?? '',
         }
     },
     computed: {
@@ -75,10 +76,12 @@ export default {
             if (elem.id) {
                 this.selectedItemId = elem.id;
             }
-
             this.visibleItem = false;
-            this.$emit("update:modelValue", elem.key);
-        }
+            this.$emit("update:modelValue", elem.id);
+        },
+        searchById(id) {
+            return this.elemArray.find(elem => elem['id'] == id)['name'];
+        },
     },
 
 }
@@ -94,7 +97,6 @@ export default {
     height: 8vh;
     border: var(--color-border) solid 2px;
     border-radius: 5px;
-
 
     &__arrow {
         position: absolute;
@@ -120,6 +122,10 @@ export default {
         padding: 15px;
         width: 100%;
         height: 7vh;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     &__items {
@@ -132,7 +138,7 @@ export default {
         background-color: var(--color-background-body);
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         overflow-y: auto;
     }
 
