@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Sight;
 use App\Models\Comment;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ModelService;
@@ -25,6 +26,8 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        $user = User::find(1);   // для отладки
 
         $cityComments = [];
 
@@ -61,12 +64,24 @@ class AccountController extends Controller
                 ];
             }
         }
+/*
+        $commentRelations = [];
+        foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
+            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
+                $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
+            }
+        };
+*/
+        $carinfo = Driver::select(['car', 'registration_number'])
+        ->where('user_id', $user->id)
+        ->first();
 
         return view('account', [
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
-            'commentRelations' => app(ModelService::class)->getRelationsByMethod("comments", ['id', 'name'])
+/*            'commentRelations' => $commentRelations,*/
+            'carinfo' => $carinfo,
         ]);
     }
 }
