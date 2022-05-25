@@ -98,9 +98,9 @@
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
         <h4 id="s1" class="text-primary">Мой статус: </h4>       
-        @if($car)
+        @if($carinfo)
         <p>Водитель</p>
-        <p>Автомобиль <span style="font-weight:bold">{{$car->car}}</span> госномер <span style="font-weight:bold">{{$car->registration_number}}</span></p>
+        <p>Автомобиль <span style="font-weight:bold">{{$carinfo->car}}</span> госномер <span style="font-weight:bold">{{$carinfo->registration_number}}</span></p>
         @endif
      
     </div>
@@ -249,21 +249,12 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
 <!--Мой вариант-->
 
 <div class="container p-5 mt-4 bg-white">
-  <h4 id="s4" class="text-primary">Отправить комментарий</h4>
-  <form method="POST" action="{{ route('comments.store') }}" class="needs-validation" novalidate>
-    @csrf
-    <select-relation relation-name="commentable" :relations="{{ json_encode($commentRelations) }}">
-    </select-relation>
+    <div class="row">
+        <h4 id="s4" class="text-primary">Отправить информацию или комментарии о городе и его достопримечательностях</h4>
 
 <form method="POST" action="{{ route('account') }}" class="needs-validation" novalidate>
 @csrf
-<select-relation relation-name="commentable" :relations="{{ json_encode($commentRelations) }}">
-    </select-relation>
-<!--    
-<select-relation relation-name="commentable" selected-type="{{ request()->get('commentable_type') }}"
-    selected-id="{{ request()->get('commentable_id') }}" :relations="{{ json_encode($commentRelations) }}">
-</select-relation>
--->
+
 <div class="row">
   <div class="col-sm-4">
     <label for="sel1">Выберите город:</label>
@@ -305,46 +296,6 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
   <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
     </div>
-
-    @error('comment_body')
-    <p class="block-form__text-error">{{ $message }}</p>
-    @enderror
-
-    <button type="submit" class="btn btn-primary">Добавить</button>
-  </form>
-</div>
-
-<!--Вариант Григория-->
-
-<div class="container p-5 mt-4 bg-white">
-  <h4 id="s4" class="text-primary">Отправить комментарий</h4>
-  <form method="POST" action="{{ route('comments.store') }}" class="needs-validation" novalidate>
-    @csrf
-    <select-relation relation-name="commentable" :relations="{{ json_encode($commentRelations) }}">
-    </select-relation>
-
-    @error('commentable_type')
-    <p class="block-form__text-error">{{ $message }}</p>
-    @enderror
-
-    @error('commentable_id')
-    <p class="block-form__text-error">{{ $message }}</p>
-    @enderror
-
-    <div class="col">
-      <div class="form-group">
-        <label for="comment_body">Комментарий:</label>
-        <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body"
-          required></textarea>
-      </div>
-    </div>
-
-    @error('comment_body')
-    <p class="block-form__text-error">{{ $message }}</p>
-    @enderror
-
-    <button type="submit" class="btn btn-primary">Добавить</button>
-  </form>
 </div>
 
 

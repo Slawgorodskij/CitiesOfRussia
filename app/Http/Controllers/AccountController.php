@@ -64,15 +64,15 @@ class AccountController extends Controller
                 ];
             }
         }
-
+/*
         $commentRelations = [];
         foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
             if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
                 $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
             }
         };
-
-        $car = Driver::select(['car', 'registration_number'])
+*/
+        $carinfo = Driver::select(['car', 'registration_number'])
         ->where('user_id', $user->id)
         ->first();
 
@@ -80,8 +80,8 @@ class AccountController extends Controller
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
-            'commentRelations' => $commentRelations,
-            'car' => $car,
+/*            'commentRelations' => $commentRelations,*/
+            'carinfo' => $carinfo,
         ]);
     }
 }
