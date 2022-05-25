@@ -11,6 +11,9 @@ class City extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
+    const TITLE = 'Город';
+    const TABLE = 'cities';
+    
     protected $fillable = [
         'name',
         'description',

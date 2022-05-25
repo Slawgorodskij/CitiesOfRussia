@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UploadService::class);
         $this->app->bind(TripService::class);
+        $this->app->bind(ModelService::class);
     }
 
     /**

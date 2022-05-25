@@ -6,8 +6,10 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Sight;
 use App\Models\Comment;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ModelService;
 
 class AccountController extends Controller
 {
@@ -63,10 +65,23 @@ class AccountController extends Controller
             }
         }
 
+        $commentRelations = [];
+        foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
+            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
+                $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
+            }
+        };
+
+        $car = Driver::select(['car', 'registration_number'])
+        ->where('user_id', $user->id)
+        ->first();
+
         return view('account', [
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
+            'commentRelations' => $commentRelations,
+            'car' => $car,
         ]);
     }
 }

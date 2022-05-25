@@ -11,6 +11,9 @@ class Sight extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
+    const TITLE = 'Достопримечательность';
+    const TABLE = 'sights';
+
     protected $fillable = [
         'city_id',
         'name',

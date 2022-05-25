@@ -10,6 +10,9 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const TITLE = 'Комментарий';
+    const TABLE = 'comments';
+
     protected $fillable =[
         'user_id',
         'comment_body',

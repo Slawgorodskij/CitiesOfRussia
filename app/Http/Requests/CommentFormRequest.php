@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileFormRequest extends FormRequest
+class CommentFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class ProfileFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'lastname' => ['required', 'string' , 'min:2', 'max:50'],
-            'firstname' => ['required', 'string' , 'min:2', 'max:50'],
+            'comment_body' => ['required', 'string'],
+            'commentable_id' => ['required', 'integer'],
+            'commentable_type' => ['required', 'string'],
         ];
     }
 }
