@@ -13,18 +13,17 @@
             </li>
 
             @guest
-
                 @if (Route::has('login'))
                     <li class="header__menu-item">
                         <a class="header__menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                 @endif
-
+                @if (Route::has('register'))
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
             @else
-
-                <li class="header__menu-item">
-                    <a class="header__menu-link" href="{{ route('account') }}">Кабинет</a>
-                </li>
 
                 <li class="header__menu-item">
                     <a class="header__menu-link" href="{{ route('trip') }}">Совместные поездки</a>
@@ -37,8 +36,12 @@
                 @endif
 
                 <li class="header__menu-item">
+                    <a class="header__menu-link" href="{{ route('account') }}">{{ Auth::user()->name }}</a>
+                </li>
+
+                <li class="header__menu-item">
                     <a class="header__menu-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" hidden>
