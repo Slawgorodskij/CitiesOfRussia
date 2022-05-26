@@ -64,17 +64,11 @@ class AccountController extends Controller
                 ];
             }
         }
-/*
-        $commentRelations = [];
-        foreach (app(ModelService::class)->getModelsByMethod("comments") as $modelName) {
-            if (app(ModelService::class)->checkModelHasColumn($modelName, 'name')) { //костыль
-                $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
-            }
-        };
 
-*/
+        $commentRelations = app(ModelService::class)->getRelationsByMethod("comments", ['id', 'name']);
+
         $comments = Comment::orderByRaw("RAND()")
-        ->where('commentable_type', User::class) 
+        ->where('commentable_type', User::class)
         ->take(4)
         ->get();
 
@@ -87,8 +81,8 @@ class AccountController extends Controller
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
-/*          'commentRelations' => $commentRelations, */
-            'comments' => $comments,            
+            'commentRelations' => $commentRelations,
+            'comments' => $comments,
             'carinfo' => $carinfo,
         ]);
     }
