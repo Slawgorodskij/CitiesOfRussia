@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 
 /*
