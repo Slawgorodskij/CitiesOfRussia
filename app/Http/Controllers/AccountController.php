@@ -71,7 +71,14 @@ class AccountController extends Controller
                 $commentRelations[$modelName::TITLE] = $modelName::all(['id', 'name'])->toArray();
             }
         };
+
 */
+        $comments = Comment::orderByRaw("RAND()")
+        ->where('commentable_type', User::class) 
+        ->take(4)
+        ->get();
+
+
         $carinfo = Driver::select(['car', 'registration_number'])
         ->where('user_id', $user->id)
         ->first();
@@ -80,7 +87,8 @@ class AccountController extends Controller
             'user' => $user,
             'cityComments' => $cityComments,
             'sightComments' => $sightComments,
-/*            'commentRelations' => $commentRelations,*/
+/*          'commentRelations' => $commentRelations, */
+            'comments' => $comments,            
             'carinfo' => $carinfo,
         ]);
     }
