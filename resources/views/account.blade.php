@@ -4,8 +4,9 @@
 
 <!--
 <div id="app">
+
 <link href="{{ asset('css/app.css') }}" rel="stylesheet"> {{-- костыль --}}
--->
+-->  
 <div class="container-fluid p-3 text-center bg-white border" style="background-image: url(/storage/images/road.jpg); background-size: cover;">
 <h3 class="text-white-50">Добро пожаловать!</h3>
 </div>
@@ -16,6 +17,7 @@
       <li class="nav-item">
         <a class="nav-link active" href="/account/profile">Профиль</a>
       </li>
+<!--      
       <li class="nav-item">
         <a class="nav-link" href="#">Мои города</a>
       </li>
@@ -25,8 +27,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Мои попутчики</a>
       </li>
+-->      
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Выход из кабинета</a>
+        <a class="nav-link" href="/">Вернуться на главную</a>
       </li>
     </ul>
   </div>
@@ -41,9 +44,9 @@
       <img src="/storage/images/face.jpg" class="rounded" alt="Cinque Terre">
       <h2>{{$user->name}}</h2>
       <h5>{{$user->email}}</h5>
-      <p>Информация обо мне</p>
+     
       <h3 class="mt-4">Переход по странице</h3>
-      <p>Lorem ipsum dolor sit ame.</p>
+     
 
       <ul class="nav nav-pills flex-column">
       <li class="nav-item">
@@ -61,9 +64,11 @@
         <li class="nav-item">
           <a class="nav-link" href="#s5">Отзывы обо мне</a>
         </li>
+<!--        
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Полезная информация</a>
         </li>
+-->        
       </ul>
 
       <hr class="d-sm-none">
@@ -105,13 +110,13 @@
      
     </div>
 </div>
-
+<!--
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
         <h4 class="text-primary">Информация о предложениях и возможностях </h4>
     </div>
 </div>
-
+-->
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
     <div class="col">
@@ -125,8 +130,9 @@ action="{{ isset($profile) ? route('account', $profile) : route('profile.store')
     <label for="uname">Имя:</label>
 
     <input type="hidden" name="user_id" value="{{$user->id}}">
-    <input name="firstname" type="text" class="form-control block-form__input @error('firstname') block-form__input_error @enderror"
-            placeholder="" value="{{ $profile->firstname ?? $user ->name }}" required/>
+    
+    <input type="text" class="form-control" class="firstname" placeholder="" name="firstname" 
+    value="{{ $profile->firstname ?? old('firstname') }}" required>   
 
   </div>
   <div class="form-group col">
@@ -174,26 +180,7 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
 @csrf
 <div class="row">
 
-  <div class="form-group col">  
-    <label for="uname">Имя:</label>
-    <input type="hidden" name="user_id" value="{{$user->id}}">
-    <input name="firstname" type="text" class="form-control block-form__input @error('firstname') block-form__input_error @enderror"
-            placeholder="" value="{{ $profile->firstname ?? $user->name }}" required/>
-    <div class="valid-feedback"></div>
-    <div class="invalid-feedback">Заполните поле</div>
-  </div>
-  <div class="form-group col">
-    <label for="lastname">Фамилия:</label>
-    <input type="text" class="form-control" class="lastname" placeholder="" name="lastname" 
-    value="{{ $profile->lastname ?? old('lastname') }}" required>   
-    <div class="valid-feedback"></div>
-    <div class="invalid-feedback">Заполните поле</div>
-  </div>
-  <div class="form-group col">
-    <label for="patronymic">Отчество:</label>
-    <input type="text" class="form-control" class="patronymic" placeholder="" name="patronymic" 
-    value="{{ $profile->patronymic ?? old('patronymic') }}"> 
-  </div>
+  
 </div>
 
   <div class="form-group">
@@ -298,37 +285,68 @@ action="{{ isset($driver) ? route('account', $driver) : route('driver.store') }}
     </div>
 </div>
 
+<!-- Новый вариант --> 
 
+<div class="container p-5 mt-4 bg-white">
+  <h4 id="s4" class="text-primary">Отправить комментарий</h4>
+  <form method="POST" action="{{ route('comments.store') }}" class="needs-validation" novalidate>
+    @csrf
+
+    <!--Удалила <select-relation> из-за ошибки-->
+    
+
+    @error('commentable_type')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
+
+    @error('commentable_id')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
+
+    <div class="col">
+      <div class="form-group">
+        <label for="comment_body">Комментарий:</label>
+        <textarea class="form-control" class="comment_body" rows="2" placeholder="" name="comment_body"
+          required></textarea>
+      </div>
+    </div>
+
+    @error('comment_body')
+    <p class="block-form__text-error">{{ $message }}</p>
+    @enderror
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+</div>
 
 
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
-        <h4 id="s4" class="text-primary">Отзывы о пользователе</h4>
+        <h4 id="s5" class="text-primary">Отзывы обо мне</h4>
 
             <div class="feedback-block__items container">
+                    @foreach($comments as $comment)
+                        <div class="feedback-block__item">
+                            <p class="feedback-block__text text">{{$comment['comment_body']}}</p>
+                <!--        <p class="feedback-block__author">{{$comment['firstname']}} {{$comment['lastname']}}</p> -->
+                        </div>
+                    @endforeach
 
-                <div class="feedback-block__item">
-                    <p class="feedback-block__text text">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur atque deleniti dolore doloribus eum expedita hic incidunt laborum, minus, omnis possimus quam quos repellendus sequi tempore ut, voluptatibus!</span>
-                    </p>
-                    <p class="feedback-block__author">Иван Иванов</p>
-                    <p class="feedback-block__text text">
-                        <span>Consectetur corporis cumque debitis dolorum earum eius, eligendi eos esse eum fugit illo in incidunt ipsum maxime minus nisi nostrum obcaecati quaerat quia, sed sit sunt totam vel? Ipsa, porro?</span>
-                    </p>
-                    <p class="feedback-block__author">Иван Иванов</p>
+              
                 </div>
-                </div>
+            </div>
 
             </div>
     </div>
 
-
+<!--
 <div class="container p-5 mt-4 bg-white">
     <div class="row">
         <h4 class="text-primary">Полезная информация</h4>
     </div>
 </div>
 
+-->
 </div>
 </div>
 <!--
