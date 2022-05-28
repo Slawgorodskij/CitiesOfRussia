@@ -130,7 +130,7 @@
             box-shadow: 0 0 0 0.25rem var(--color-background-hover);
         }
 
-        &-primary {
+        &_primary {
             color: var(--color-white);
             background-color: var(--color-button-backgraund);
             border-color: var(--color-button-backgraund);
@@ -141,7 +141,7 @@
             }
         }
 
-        &-link {
+        &_link {
             color: var(--color-button-backgraund);
             text-decoration: underline;
 
