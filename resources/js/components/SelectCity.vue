@@ -1,13 +1,5 @@
 <template>
     <div>
-        <p class="block-form__label">Выберите свою роль в поездке</p>
-
-        <my-select
-            :elemArray="roleArray"
-            :placeholderName="placeholderNameRole"
-            :inputName="inputNameRole"
-        />
-
         <p class="block-form__label">Выберите город отправления</p>
 
         <my-select
@@ -40,12 +32,7 @@ export default {
     data() {
         return {
             cityArray: [],
-            roleArray: [
-                {name: "Пассажир"},
-                {name: "Водитель"},
-            ],
             placeholderName: "Введите название города",
-            placeholderNameRole: "Введите роль в поездке",
             inputNameDeparture: "departure_city_name",
             inputNameDepartureId: "departure_city",
             inputNameArrival: "city_of_arrival_name",

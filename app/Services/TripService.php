@@ -55,6 +55,69 @@ class TripService
         return ((City::find($cityId))->images)[0];
     }
 
+    private function creatingAnArray($trips)
+    {
+        $dataTrips = [];
+        foreach ($trips as $trip) {
+            $dataTrip['driverFirstname'] = '';
+            $dataTrip['driverLastname'] = '';
+            $dataTrip['driverName'] = '';
+            $dataTrip['passengerFirstFirstname'] = '';
+            $dataTrip['passengerFirstLastname'] = '';
+            $dataTrip['passengerFirstName'] = '';
+            $dataTrip['passengerTwoFirstname'] = '';
+            $dataTrip['passengerTwoLastname'] = '';
+            $dataTrip['passengerTwoName'] = '';
+            $dataTrip['passengerThreeFirstname'] = '';
+            $dataTrip['passengerThreeLastname'] = '';
+            $dataTrip['passengerThreeName'] = '';
+            $dataTrip['trip'] = $trip;
+
+
+            if ($trip->driver) {
+                $driver = $this->dataUser($trip->driver);
+                $userName = $this->userName($trip->driver)->name;
+                $dataTrip['driverFirstname'] = $driver->firstname ?? $userName;
+                $dataTrip['driverLastname'] = $driver->lastname ?? '';
+                $dataTrip['driverName'] = $userName;
+            }
+
+            if ($trip->passenger_first) {
+                $user = $this->dataUser($trip->passenger_first);
+                $userName = $this->userName($trip->passenger_first)->name;
+                $dataTrip['passengerFirstFirstname'] = $user->firstname ?? $userName;
+                $dataTrip['passengerFirstLastname'] = $user->lastname ?? '';
+                $dataTrip['passengerFirstName'] = $userName;
+            }
+
+            if ($trip->passenger_two) {
+                $user = $this->dataUser($trip->passenger_two);
+                $userName = $this->userName($trip->passenger_two)->name;
+                $dataTrip['passengerTwoFirstname'] = $user->firstname ?? $userName;
+                $dataTrip['passengerTwoLastname'] = $user->lastname ?? '';
+                $dataTrip['passengerTwoName'] = $userName;
+            }
+
+            if ($trip->passenger_three) {
+                $user = $this->dataUser($trip->passenger_three);
+                $userName = $this->userName($trip->passenger_three)->name;
+                $dataTrip['passengerThreeFirstname'] = $user->firstname ?? $userName;
+                $dataTrip['passengerThreeLastname'] = $user->lastname ?? '';
+                $dataTrip['passengerThreeName'] = $userName;
+            }
+            if ($trip->departure_city) {
+                $dataTrip['departureCity'] = $this->cityName($trip->departure_city);
+            }
+            if ($trip->city_of_arrival) {
+                $dataTrip['cityOfArrival'] = $this->cityName($trip->city_of_arrival);
+                $dataTrip['PhotoCityOfArrival'] = $this->cityPhoto($trip->city_of_arrival)->name;
+            }
+
+            $dataTrips[] = $dataTrip;
+        }
+        return $dataTrips;
+    }
+
     public function tripComment($commentsDB)
     {
         $comments = [];
@@ -71,8 +134,6 @@ class TripService
 
     public function tripCity($dataRequest)
     {
-        $dataTrips = [];
-
         if (!$dataRequest->departure_city) {
             $trips = $this->dataCity($dataRequest->city_of_arrival);
         }
@@ -85,58 +146,17 @@ class TripService
             }
         }
 
-        foreach ($trips as $trip) {
-            $dataTrip['driverFirstname'] = '';
-            $dataTrip['driverLastname'] = '';
-            $dataTrip['driverName'] = '';
-            $dataTrip['passengerFirstFirstname'] = '';
-            $dataTrip['passengerFirstLastname'] = '';
-            $dataTrip['passengerFirstName'] = '';
-            $dataTrip['passengerTwoFirstname'] = '';
-            $dataTrip['passengerTwoLastname'] = '';
-            $dataTrip['passengerTwoName'] = '';
-            $dataTrip['passengerThreeFirstname'] = '';
-            $dataTrip['passengerThreeLastname'] = '';
-            $dataTrip['passengerThreeName'] = '';
+        return $this->creatingAnArray($trips);
+    }
 
+    public function myTravel($userId)
+    {
+        $trips = Trip::where('driver', $userId)
+            ->orWhere('passenger_first', $userId)
+            ->orWhere('passenger_two', $userId)
+            ->orWhere('passenger_three', $userId)
+            ->get();
 
-            if ($trip->driver) {
-                $driver = $this->dataUser($trip->driver);
-                $dataTrip['driverFirstname'] = $driver->firstname;
-                $dataTrip['driverLastname'] = $driver->lastname;
-                $dataTrip['driverName'] = $this->userName($trip->driver)->name;
-            }
-
-            if ($trip->passenger_first) {
-                $user = $this->dataUser($trip->passenger_first);
-                $dataTrip['passengerFirstFirstname'] = $user->firstname;
-                $dataTrip['passengerFirstLastname'] = $user->lastname;
-                $dataTrip['passengerFirstName'] = $this->userName($trip->passenger_first)->name;
-            }
-
-            if ($trip->passenger_two) {
-                $user = $this->dataUser($trip->passenger_two);
-                $dataTrip['passengerTwoFirstname'] = $user->firstname;
-                $dataTrip['passengerTwoLastname'] = $user->lastname;
-                $dataTrip['passengerTwoName'] = $this->userName($trip->passenger_two)->name;
-            }
-
-            if ($trip->passenger_three) {
-                $user = $this->dataUser($trip->passenger_three);
-                $dataTrip['passengerThreeFirstname'] = $user->firstname;
-                $dataTrip['passengerThreeLastname'] = $user->lastname;
-                $dataTrip['passengerThreeName'] = $this->userName($trip->passenger_three)->name;
-            }
-            if ($trip->departure_city) {
-                $dataTrip['departureCity'] = $this->cityName($trip->departure_city);
-            }
-            if ($trip->city_of_arrival) {
-                $dataTrip['cityOfArrival'] = $this->cityName($trip->city_of_arrival);
-                $dataTrip['PhotoCityOfArrival'] = $this->cityPhoto($trip->city_of_arrival)->name;
-            }
-
-            $dataTrips[] = $dataTrip;
-        }
-        return $dataTrips;
+        return $this->creatingAnArray($trips);
     }
 }

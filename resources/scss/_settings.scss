@@ -84,18 +84,19 @@ ul {
 }
 
 .wrapper {
-    @include adaptive-value("padding-top", 100, 5, 0);
-    @include adaptive-value("margin-bottom", 100, 5, 0);
+    @include adaptive-value("padding-top", 50, 5, 0);
+    @include adaptive-value("margin-bottom", 50, 5, 0);
 }
 
 .title {
     margin-top: 0;
     text-align: center;
 }
+
 .text {
     text-indent: 25px;
 }
 
-.model{
+.model {
     height: 30vh;
 }
