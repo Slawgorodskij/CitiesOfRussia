@@ -1,24 +1,24 @@
-
-// COLORS
 :root {
+    // COLORS
+
+
     // цвет фона
+
     --color-background-body: #e5ebf1; //финал
     --color-background-body-dark: #c6dcef; //финал
     --color-background-hover: rgba(158, 207, 250, .3);
     //--color-background-hover: rgba(10, 25, 39, 0.4);
-
     --color-table-backgraund: #a0ddfb;
     --color-table-backgraund-two: #5fa4c5;
-
     --color-button-backgraund: #0d6efd; //финал
     --color-button-backgraund-hover: #0b5ed7; //финал
-
     //--color-footer: rgb(10, 25, 39);
+
 
     //цвет шрифтов
 
     //--color-green: #2a862a;
-    --color-link:  #dadac5; //финал
+    --color-link: #dadac5; //финал
     --color-link-hover: #ece435; //финал
     --color-text: #224268; //финал
     --color-title: #634E00; //финал
@@ -30,41 +30,31 @@
 
     --color-border: #8691a1; //финал
     --color-border-hover: #162233; //финал
-
     --color-error: #f44e03; //финал
+    --color-error-hover: #f44e0340;
 
-}
+    //    --color-body: #e1eefd;
+    //    --color-background: rgba(10, 25, 39, 0.6);
+    //    --color-background-elem: #96bce8;
+    //
+    //    --color-text: #1859aa;
+    //    --color-text-hover: #ece435;
+    //
+    //    --color-background-text: #8cb4d4;
+    //    --color-background-dark: #91b5d4;
+    //    --color-background-hover: #5ea7e8;
+    //    --color-footer: rgb(10, 25, 39);
+    //    --color-black: #000;
+    //    --color-white: #fff;
+    //    --color-green: #2a862a;
+    //    --color-border: #5a6d6f;
+    //    --color-border-hover: #709195;
+    //    --color-error: #ee4242;
+    //    --color-title: #e6d0d0;
 
 
 
-
-
-
-
-// COLORS
-//:root {
-//    --color-body: #e1eefd;
-//    --color-background: rgba(10, 25, 39, 0.6);
-//    --color-background-elem: #96bce8;
-//
-//    --color-text: #1859aa;
-//    --color-text-hover: #ece435;
-//
-//    --color-background-text: #8cb4d4;
-//    --color-background-dark: #91b5d4;
-//    --color-background-hover: #5ea7e8;
-//    --color-footer: rgb(10, 25, 39);
-//    --color-black: #000;
-//    --color-white: #fff;
-//    --color-green: #2a862a;
-//    --color-border: #5a6d6f;
-//    --color-border-hover: #709195;
-//    --color-error: #ee4242;
-//    --color-title: #e6d0d0;
-//}
-
-// BURGER
-:root {
+    // BURGER
     --burger-width: 20px;
     --burger-height: 20px;
     --burger-line-height: 2px;

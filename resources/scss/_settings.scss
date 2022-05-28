@@ -12,7 +12,17 @@ body {
     margin: 0;
     font-family: "Rubik", sans-serif;
     color: var(--color-text);
-    background-color: var(--color-body);
+    background-color: var(--color-background-body);
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
 }
 
 img {

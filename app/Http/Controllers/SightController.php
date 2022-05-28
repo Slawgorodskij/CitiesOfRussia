@@ -18,7 +18,7 @@ class SightController extends Controller
         $arrayComments = [];
 
         foreach ($sight->comments as $commentItem) {
-            $user = Profile::where('user_id', $commentItem->user_id)->first;
+            $user = Profile::where('user_id', $commentItem->user_id)->first();
             $comment['comment_body'] = $commentItem->comment_body;
             $comment['firstname'] = $user->firstname;
             $comment['lastname'] = $user->lastname;

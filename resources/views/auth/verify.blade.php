@@ -1,28 +1,31 @@
-@extends('layouts.auth')
+@extends('layouts.main')
+
+@section('title')
+Подтвердите Ваш email-адрес - @parent
+@stop
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+<main class="auth">
+    <div class="card">
+        <div class="card__header">{{ __('Verify Your Email Address') }}</div>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
+        <div class="card__body">
+            @if (session('resent'))
+            <x-alert type="success"
+                message="{{ __('A fresh verification link has been sent to your email address.') }}">
+            </x-alert>
+            @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
-            </div>
+            <form method="POST" action="{{ route('verification.resend') }}">
+                @csrf
+                {{ __('Before proceeding, please check your email for a verification link.') }}
+                {{ __('If you did not receive the email') }},
+                <button type="submit" class="form__button form__button_link">
+                    {{ __('click here to request another') }}
+                </button>.
+            </form>
         </div>
     </div>
-</div>
+
+</main>
 @endsection

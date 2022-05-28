@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,6 +26,8 @@ class ProfileFormRequest extends FormRequest
         return [
             'lastname' => ['required', 'string' , 'min:2', 'max:50'],
             'firstname' => ['required', 'string' , 'min:2', 'max:50'],
+            'patronymic' => ['required', 'string' , 'min:2', 'max:50'],
+            'date_of_birth' => 'date',
         ];
     }
 }

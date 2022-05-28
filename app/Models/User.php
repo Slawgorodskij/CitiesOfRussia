@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function commentsAboutUser()
+    public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
     }

@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\SightController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Api\CityController as ApiCityController;
 use App\Http\Controllers\Api\CarouselCityController as ApiCarouselCityController;
 use App\Http\Controllers\Api\CarouselSightController as ApiCarouselSightController;
@@ -18,7 +20,6 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
 use App\Http\Controllers\Admin\SightController as AdminSightController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 
 /*
@@ -37,12 +38,14 @@ Auth::routes();
 Route::view('/', 'index')->name('index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::match(['get', 'post'], '/account', [AccountController::class, 'index'])->name('account');
-    Route::match(['get', 'post'], '/profile', [ProfileController::class, 'store'])->name('profile');
+
+    Route::match(['get','post'],'/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get','post'],'/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::match(['get','post'],'/profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::match(['get','post'],'/driver', [DriverController::class, 'store'])->name('driver.store');
+
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
     Route::resource('/joint', JointTripController::class);
-    Route::post('/joint-trip', [JointTripIndexController::class, 'index'])->name('joint-trip');
-
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {

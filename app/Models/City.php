@@ -13,7 +13,6 @@ class City extends Model
 
     const TITLE = 'Город';
     const TABLE = 'cities';
-
     protected $fillable = [
         'name',
         'description',

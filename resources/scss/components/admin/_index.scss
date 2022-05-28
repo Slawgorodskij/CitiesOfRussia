@@ -1,4 +1,6 @@
 .admin-panel {
+    width: 80vw;
+
     &__header {
         @include flex-all-sb;
         padding-top: 1rem;

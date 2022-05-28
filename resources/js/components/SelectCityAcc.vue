@@ -1,5 +1,6 @@
 <template>
     <div>
+    <!--
         <p class="block-form__label">Выберите свою роль в поездке</p>
 
         <my-select
@@ -7,8 +8,8 @@
             :placeholderName="placeholderNameRole"
             :inputName="inputNameRole"
         />
-
-        <p class="block-form__label">Выберите город отправления</p>
+    -->
+        <p class="block-form__label">Выберите город</p>
 
         <my-select
             :elemArray="cityArray"
@@ -16,7 +17,7 @@
             :inputName="inputNameDeparture"
             :inputNameId="inputNameDepartureId"
         />
-
+ <!--
         <p class="block-form__label">Выберите город прибытия</p>
 
         <my-select
@@ -25,7 +26,9 @@
             :inputName="inputNameArrival"
             :inputNameId="inputNameArrivalId"
         />
+-->        
     </div>
+    
 </template>
 
 <script>
