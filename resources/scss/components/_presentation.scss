@@ -35,7 +35,7 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-image: url(/images/dots.png);
+            background-color: var(--color-background-hover);
             z-index: 4;
         }
 
@@ -70,8 +70,6 @@
             &_label:hover {
                 color: var(--color-link-hover);
             }
-
-
         }
     }
 }

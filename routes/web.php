@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JointTripController;
+use App\Http\Controllers\JointTripIndexController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +37,12 @@ Auth::routes();
 Route::view('/', 'index')->name('index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::match(['get','post'],'/account', [AccountController::class, 'index'])->name('account');
-    Route::match(['get','post'],'/profile', [ProfileController::class, 'store'])->name('profile');
+    Route::match(['get', 'post'], '/account', [AccountController::class, 'index'])->name('account');
+    Route::match(['get', 'post'], '/profile', [ProfileController::class, 'store'])->name('profile');
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
-    Route::post('/joint-trip', [JointTripController::class, 'index'])->name('joint-trip');
+    Route::resource('/joint', JointTripController::class);
+    Route::post('/joint-trip', [JointTripIndexController::class, 'index'])->name('joint-trip');
+
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {

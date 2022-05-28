@@ -27,18 +27,8 @@
 
         <div class="container wrapper">
             <h2 class="title">Вы можете продолжить регистрацию</h2>
-            <form class="block-form block-form_mb" action="">
+            <form method="POST" class="block-form block-form_mb" action="{{route('joint.store')}}">
                 @csrf
-
-                <input name="trip_role" type="text"
-                       class="block-form__input @error('trip_role') block-form__input_error @enderror"
-                       placeholder="Роль в поездке*"
-                       value="{{$tripRole}}"
-                />
-
-                @error('trip_role')
-                <p class="block-form__text-error">{{ $message }}</p>
-                @enderror
 
                 <input name="departure_city" type="text"
                        class="block-form__input @error('departure_city') block-form__input_error @enderror"
@@ -60,12 +50,50 @@
                 <p class="block-form__text-error">{{ $message }}</p>
                 @enderror
 
+                <h3>В каком качестве вы желаете путешествовать</h3>
+                <label class="presentation-block__form_label">
+                    <input hidden
+                           type="checkbox"
+                           name="driver"
+                           value="{{$userId}}">
+                    <span class="block-form__role-user">водителя</span>
+                </label>
+
+                <label class="presentation-block__form_label">
+                    <input hidden type="checkbox" name="passenger_first" value="{{$userId}}">
+                    <span class="block-form__role-user">1-го пассажира</span>
+                </label>
+
+                <label class="presentation-block__form_label">
+                    <input hidden type="checkbox" name="passenger_two" value="{{$userId}}">
+                    <span class="block-form__role-user">2-го пассажира</span>
+                </label>
+
+                <label class="presentation-block__form_label">
+                    <input hidden type="checkbox" name="passenger_three" value="{{$userId}}">
+                    <span class="block-form__role-user">3-го пассажира</span>
+                </label>
+
+
+                <h3>Укажите период путешествия</h3>
+
+                <label>
+                    <span>Начало путешествия</span>
+                    <input class="block-form__input" type="date" name="start">
+                </label>
+
+                <label>
+                    <span>Окончание путешествия</span>
+                    <input class="block-form__input" type="date" name="finish">
+                </label>
+
 
                 <button type="submit"
                         class="block-form__button">
                     Зарегистрировать поездку
                 </button>
             </form>
+
             @isset($dataTrips[0])
                 <h2 class="title">Или присоединиться к одной из существующих поездок</h2>
                 <div class="presentation">
@@ -74,11 +102,11 @@
                             <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"
                                  alt="фотография города">
                             <div class="presentation-block__people">
+                                <h3 class="title">{{$dataTrip['departureCity']}} - {{$dataTrip['cityOfArrival']}}</h3>
 
                                 <p>Водитель:
                                     <span>{{$dataTrip['driverFirstname'] ?: 'место свободно'}} {{$dataTrip['driverLastname']?:''}}</span>
                                 </p>
-
 
                                 <p>Пассажир:
                                     <span>{{$dataTrip['passengerFirstFirstname'] ?: 'место свободно'}} {{$dataTrip['passengerFirstLastname']?:''}}</span>
@@ -95,44 +123,55 @@
                             </div>
 
                             <div class="presentation-block__hover presentation-block__hover_trip">
-                                <h2>Желаю присоединиться в качестве:</h2>
-                                <form class="presentation-block__form" action="">
-                                    @csrf
-                                    @if(empty($dataTrip['driverName']))
-                                        <label class="presentation-block__form_label">
-                                            <input hidden
-                                                   type="checkbox"
-                                                   name="driver"
-                                                   value="{{$userId}}">
-                                            <span>водителя</span>
-                                        </label>
-                                    @endif
+                                @if($dataTrip['driverName']
+                                 && $dataTrip['passengerFirstName']
+                                 && $dataTrip['passengerTwoName']
+                                 && $dataTrip['passengerThreeName'])
+                                    <p>Свободных мест нет</p>
+                                @else
+                                    <h2>Желаю присоединиться в качестве:</h2>
+                                    <form method="POST" class="presentation-block__form"
+                                          action="{{route('joint.update', $dataTrip['trip'])}}">
+                                        @csrf
+                                        @method('PUT')
+                                        @if(empty($dataTrip['driverName']))
+                                            <label class="presentation-block__form_label">
+                                                <input hidden
+                                                       type="checkbox"
+                                                       name="driver"
+                                                       value="{{$userId}}">
+                                                <span>водителя</span>
+                                            </label>
+                                        @endif
 
-                                    @if(empty($dataTrip['passengerFirstName']))
-                                        <label class="presentation-block__form_label">
-                                            <input hidden type="checkbox" name="passenger_first" value="{{$userId}}">
-                                            <span>пассажира</span>
-                                        </label>
-                                    @endif
+                                        @if(empty($dataTrip['passengerFirstName']))
+                                            <label class="presentation-block__form_label">
+                                                <input hidden type="checkbox" name="passenger_first"
+                                                       value="{{$userId}}">
+                                                <span>1-го пассажира</span>
+                                            </label>
+                                        @endif
 
-                                    @if(empty($dataTrip['passengerTwoName']))
-                                        <label class="presentation-block__form_label">
-                                            <input hidden type="checkbox" name="passenger_two" value="{{$userId}}">
-                                            <span>пассажира</span>
-                                        </label>
-                                    @endif
+                                        @if(empty($dataTrip['passengerTwoName']))
+                                            <label class="presentation-block__form_label">
+                                                <input hidden type="checkbox" name="passenger_two" value="{{$userId}}">
+                                                <span>2-го пассажира</span>
+                                            </label>
+                                        @endif
 
-                                    @if(empty($dataTrip['passengerThreeName']))
-                                        <label class="presentation-block__form_label">
-                                            <input hidden type="checkbox" name="passenger_three" value="{{$userId}}">
-                                            <span>пассажира</span>
-                                        </label>
-                                    @endif
-                                    <button type="submit"
-                                            class="block-form__button">
-                                        Присоединиться к поездке
-                                    </button>
-                                </form>
+                                        @if(empty($dataTrip['passengerThreeName']))
+                                            <label class="presentation-block__form_label">
+                                                <input hidden type="checkbox" name="passenger_three"
+                                                       value="{{$userId}}">
+                                                <span>3-го пассажира</span>
+                                            </label>
+                                        @endif
+                                        <button type="submit"
+                                                class="block-form__button">
+                                            Присоединиться к поездке
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     @endforeach
@@ -162,27 +201,6 @@
 
     </main>
 
-    {{--    <div class="presentation-block__people">--}}
-    {{--        <div class="presentation-block__text">--}}
-    {{--            <p>Водитель:--}}
-    {{--                <span>{{$dataTrip['driverFirstname']}} {{$dataTrip['driverLastname']}}</span></p>--}}
-    {{--        </div>--}}
-    {{--        <div class="presentation-block__text">--}}
-    {{--            <p>Пассажир:--}}
-    {{--                <span>{{$dataTrip['passengerFirstFirstname']}} {{$dataTrip['passengerFirstLastname']}}</span>--}}
-    {{--            </p>--}}
-    {{--        </div>--}}
-    {{--        <div class="presentation-block__text">--}}
-    {{--            <p>Пассажир:--}}
-    {{--                <span>{{$dataTrip['passengerTwoFirstname']}} {{$dataTrip['passengerTwoLastname']}}</span>--}}
-    {{--            </p>--}}
-    {{--        </div>--}}
-    {{--        <div class="presentation-block__text">--}}
-    {{--            <p>Пассажир:--}}
-    {{--                <span>{{$dataTrip['passengerThreeFirstname']}} {{$dataTrip['passengerThreeLastname']}}</span>--}}
-    {{--            </p>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
 @endsection
 
 

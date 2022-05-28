@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TripFormRequest;
 use App\Models\City;
 use App\Models\Comment;
 use App\Models\Driver;
-use App\Models\Profile;
 use App\Models\Trip;
-use App\Models\User;
 use App\Services\TripService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,71 +14,62 @@ use Illuminate\Support\Facades\Auth;
 class JointTripController extends Controller
 {
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $departureCity = '';
-        $tripRole = '';
-        $dataTrips = app(TripService::class)->tripCity($request);
-        $commentsDB = Comment::orderByRaw("RAND()")->take(4)->get();
-        $comments = app(TripService::class)->tripComment($commentsDB);
-        $cityOfArrival = $request->city_of_arrival_name;
-        $userId = Auth::user()->id;
-
-        if (isset($request->departure_city_name)) {
-            $departureCity = $request->departure_city_name;
-        }
-        if (isset($request->trip_role)) {
-            $tripRole = $request->trip_role;
-        }
-        if (!isset($request->trip_role)) {
-            $driver = Driver::where('user_id', $userId);
-            if (isset($driver->document_verification) && $driver->document_verification === 'checked') {
-                $tripRole = 'Водитель';
-            } else {
-                $tripRole = 'Пассажир';
-            }
-        }
-        //dd($dataTrips);
-        return view('jointTrip', ['comments' => $comments,
-            'dataTrips' => $dataTrips,
-            'cityOfArrival' => $cityOfArrival,
-            'departureCity' => $departureCity,
-            'tripRole' => $tripRole,
-            'userId' => $userId,
-        ]);
-    }
-
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param TripFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public
-    function store(Request $request)
+    public function store(TripFormRequest $request)
     {
-        $trip = Trip::create($request->validated());
+        $validated = $request->validated();
+        $validated['departure_city'] = City::where('name', $validated['departure_city'])->first()->id;
+        $validated['city_of_arrival'] = City::where('name', $validated['city_of_arrival'])->first()->id;
 
-        return to_route('joint-trip');
+        Trip::create([
+            "departure_city" => $validated['departure_city'],
+            "city_of_arrival" => $validated['city_of_arrival'],
+            "driver" => $validated['driver'] ?? null,
+            "passenger_first" => $validated['passenger_first'] ?? null,
+            "passenger_two" => $validated['passenger_two'] ?? null,
+            "passenger_three" => $validated['passenger_three'] ?? null,
+            "start" => $validated['start'],
+            "finish" => $validated['finish'],
+        ]);
+
+        return to_route('trip');
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Trip $trip
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function update(Request $request, Trip $trip)
+    //TODO почему не срабатывает TripFormRequest $request
+    public function update(Request $request, $id)
     {
-        $trip->update($request->validated());
-        return to_route('joint-trip');
+        Trip::find($id)->update($request->validate([
+            "driver" => ['nullable', 'integer'],
+            "passenger_first" => ['nullable', 'integer'],
+            "passenger_two" => ['nullable', 'integer'],
+            "passenger_three" => ['nullable', 'integer'],
+        ]));
+        return to_route('trip');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
