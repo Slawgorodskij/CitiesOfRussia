@@ -95,9 +95,6 @@ export default {
     margin: 2vh 0;
     width: 100%;
     height: 8vh;
-    border: var(--color-border) solid 2px;
-    border-radius: 5px;
-    background-color: var(--color-white);
 
     &__arrow {
         position: absolute;
@@ -122,7 +119,10 @@ export default {
         border: none;
         padding: 15px;
         width: 100%;
-        height: 7vh;
+        height: 8vh;
+        border: var(--color-border) solid 2px;
+        border-radius: 5px;
+        background-color: var(--color-white);
 
         &:focus-visible {
             outline: none;
@@ -131,6 +131,7 @@ export default {
 
     &__items {
         position: absolute;
+        top: calc(100% - 3px);
         width: 100%;
         min-height: 7vh;
         max-height: 30vh;
