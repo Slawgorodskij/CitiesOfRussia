@@ -9,7 +9,7 @@ $browser-context: 16; // Default
 }
 
 @function prc($pxOne, $pxTwo) {
-    @return #{$pxOne/$pxTwo*100}\%;
+    @return #{$pxOne/$pxTwo*100%};
 }
 
 //необходим эксперемент с переменными
