@@ -97,6 +97,7 @@ export default {
     height: 8vh;
     border: var(--color-border) solid 2px;
     border-radius: 5px;
+    background-color: var(--color-white);
 
     &__arrow {
         position: absolute;
