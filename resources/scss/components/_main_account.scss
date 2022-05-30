@@ -1,0 +1,264 @@
+.account {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+
+    &__container {
+        @include flex-h-center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 960px;
+        flex-direction: column;
+
+        @include desktop {
+            max-width: 1200px;
+        }
+
+        @include tablet {
+            max-width: 720px;
+        }
+
+        @include mobile {
+            max-width: 540px;
+        }
+    }
+
+    &__card {
+        background-color: var(--color-white);
+        padding: 3rem;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.575rem;
+    }
+
+    h4 {
+        font-size: 1.35rem;
+    }
+
+    h5 {
+        font-size: 1.125rem;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .text-primary {
+        color: var(--color-button-backgraund);
+    }
+
+    .banner {
+        background-image: url(/images/road.jpg);
+        background-size: cover;
+        text-align: center;
+        padding: 1rem;
+
+        &__text {
+            color: var(--color-white);
+            opacity: 0.5;
+        }
+    }
+
+    .navbar {
+        @include flex-all-center;
+        flex-wrap: nowrap;
+        padding: 0.5rem 15px;
+        background-color: var(--color-white);
+        box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+
+        &__list {
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 0 15px;
+            margin: 0;
+            list-style: none;
+        }
+
+        &__link {
+            display: block;
+            color: var(--color-black);
+            opacity: 0.55;
+            padding: 0.5rem;
+            text-decoration: none;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        }
+    }
+
+    .grid-col-1-2 {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 1.5rem;
+    }
+
+    .grid-col-1-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.5rem;
+    }
+
+    .grid-12 {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 1.5rem;
+    }
+
+    .avatar {
+        border-radius: 0.25rem rem;
+    }
+
+    .page-navigation {
+        margin-top: 1.5rem;
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        &__link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--color-button-backgraund);
+            text-decoration: none;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        }
+    }
+
+    .comment-block {
+        margin-bottom: 3rem;
+    }
+
+    .form {
+
+        &__group {
+            width: 100%;
+
+            &_row {
+                display: flex;
+                flex-direction: row;
+            }
+
+            &_col {
+                padding-right: 0.75rem;
+                padding-left: 0.75rem;
+                margin-top: 0;
+            }
+        }
+
+        &__label {
+            display: inline-block;
+        }
+
+        &__button {
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.6;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            -webkit-appearance: button;
+            text-transform: none;
+
+            &:focus {
+                outline: 0;
+                box-shadow: 0 0 0 0.25rem var(--color-background-hover);
+            }
+
+            &_primary {
+                color: var(--color-white);
+                background-color: var(--color-button-backgraund);
+                border-color: var(--color-button-backgraund);
+
+                &:hover {
+                    background-color: var(--color-button-backgraund-hover);
+                    border-color: var(--color-button-backgraund-hover);
+                }
+            }
+
+            &_link {
+                background-color: var(--color-white);
+                color: var(--color-button-backgraund);
+                text-decoration: underline;
+
+                &:hover {
+                    color: var(--color-button-backgraund-hover);
+                }
+            }
+        }
+
+        .firstname {
+            grid-column: 1 / 5;
+        }
+
+        .lastname {
+            grid-column: 5 / 9;
+        }
+
+        .patronymic {
+            grid-column: 9 / 13;
+        }
+
+        .birthday {
+            grid-column: 1 / 4;
+        }
+
+        .personalinfo {
+            grid-column: 4 / 13;
+        }
+    }
+
+    .my-select__input {
+        width: 100%;
+        flex: 0 0 auto;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-text);
+        background-color: var(--color-field-background);
+        background-clip: padding-box;
+        border: 1px solid var(--color-border);
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:focus {
+            border-color: var(--color-border-hover);
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem var(--color-background-hover);
+        }
+    }
+}

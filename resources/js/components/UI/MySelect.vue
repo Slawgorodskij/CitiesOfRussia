@@ -34,7 +34,7 @@
                 @click="selectElem(elem)"
                 v-for="elem in filterElem"
                 :key="elem.id">
-                <p>{{ elem.name }}</p>
+                {{ elem.name }}
             </div>
         </div>
 
