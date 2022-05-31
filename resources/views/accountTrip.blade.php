@@ -41,6 +41,7 @@
                 </div>
                 <div>
                     <div>
+                        @if(isset($dataCurrentTrips[0]))
                         <h2 class="title">Действующие поездки</h2>
                         @foreach($dataCurrentTrips as $trip)
                             <div class="comment-block">
@@ -53,23 +54,30 @@
                                 @endforeach
                             </div>
                         @endforeach
+                        @else
+                            <h2 class="title">У вас незапланированно поездок</h2>
+                        @endif
                     </div>
 
                     <div>
-                        <h2 class="title">Архив поездок</h2>
-                        <div class="archive-block">
-                            @foreach($dataAllTrips as $trip)
-                                <div class="archive-block__item">
-                                    <p>{{$trip['departureCity']}} - {{$trip['cityOfArrival']}}</p>
-                                    <p>с <span> {{$trip['start']}}</span> - по
-                                        <span>{{$trip['finish']}}</span></p>
-                                    @foreach($trip['roles'] as $role)
-                                        <p>Роль: {{$role}} </p>
-                                    @endforeach
-                                </div>
-                            @endforeach
-                        </div>
+                        @if(isset($dataArchiveTrips[0]))
+                            <h2 class="title">Архив поездок</h2>
 
+                            <div class="archive-block">
+                                @foreach($dataArchiveTrips as $trip)
+                                    <div class="archive-block__item">
+                                        <p>{{$trip['departureCity']}} - {{$trip['cityOfArrival']}}</p>
+                                        <p>с <span> {{$trip['start']}}</span> - по
+                                            <span>{{$trip['finish']}}</span></p>
+                                        @foreach($trip['roles'] as $role)
+                                            <p>Роль: {{$role}} </p>
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <h2 class="title">У вас нет поездок в архиве</h2>
+                        @endif
                     </div>
                 </div>
 

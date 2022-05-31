@@ -67,12 +67,24 @@ class AccountTripService
         return $currentTrips;
     }
 
+    private function archiveTrips($trips, $userId)
+    {
+        $arrayTrips = $this->creatingAnArray($trips, $userId);
+        $archiveTrips = [];
+        foreach ($arrayTrips as $trip) {
+            if ($trip['finish'] < date('Y-m-d')) {
+                $archiveTrips[] = $trip;
+            }
+        }
 
-    public function myAllTravel($userId)
+        return $archiveTrips;
+    }
+
+    public function myArchiveTravel($userId)
     {
         $trips = $this->dataBaseTrip($userId);
 
-        return $this->creatingAnArray($trips, $userId);
+        return $this->archiveTrips($trips, $userId);
     }
 
     public function myCurrentTravel($userId)

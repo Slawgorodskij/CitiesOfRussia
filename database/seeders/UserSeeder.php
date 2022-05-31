@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory(20)
-            ->has(Profile::factory()->count(2))
-            ->has(Driver::factory()->count(2))
+            ->has(Profile::factory()->count(1))
+            ->has(Driver::factory()->count(1))
             ->create();
     }
 }

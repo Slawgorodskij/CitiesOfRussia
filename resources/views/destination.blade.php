@@ -79,8 +79,9 @@
                         </h2>
                         <form method="POST" action="{{route('joint-trip')}}">
                             @csrf
-                            <input type="hidden" name="city_of_arrival" value="{{$cityId}}">
-                            <input type="hidden" name="city_of_arrival_name" value="{{$cityName}}">
+                            <input type="hidden" name="departure_city_name" value="{{$departureCityName}}">
+
+                            <input type="hidden" name="city_of_arrival_name" value="{{$cityArrivalName}}">
 
                             <button class="destination-invitation__advertlink">
                                 Выберите маршрут и попутчика прямо сейчас!

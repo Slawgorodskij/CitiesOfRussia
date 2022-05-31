@@ -27,6 +27,7 @@ class ProfileFormRequest extends FormRequest
             'lastname' => ['required', 'string' , 'min:2', 'max:50'],
             'firstname' => ['required', 'string' , 'min:2', 'max:50'],
             'patronymic' => ['required', 'string' , 'min:2', 'max:50'],
+            'city' => ['required', 'string' , 'min:2', 'max:50'],
             'date_of_birth' => 'date',
         ];
     }

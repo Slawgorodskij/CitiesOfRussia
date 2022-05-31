@@ -24,7 +24,7 @@ class TripFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "departure_city" => ['required', 'exists:cities,name'],
+            "departure_city" => ['required',],
             "city_of_arrival" => ['required', 'exists:cities,name'],
             "driver" => ['nullable', 'integer'],
             "passenger_first" => ['nullable', 'integer'],

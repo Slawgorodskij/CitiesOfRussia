@@ -17,6 +17,7 @@ class Profile extends Model
         'lastname',
         'firstname',
         'patronymic',
+        'city',
         'date_of_birth',
     ];
 

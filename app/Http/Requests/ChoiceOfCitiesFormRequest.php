@@ -24,7 +24,7 @@ class ChoiceOfCitiesFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "departure_city_name" => ['required', 'exists:cities,name'],
+            "departure_city_name" => ['required',],
             "city_of_arrival_name" => ['required', 'exists:cities,name'],
         ];
     }
