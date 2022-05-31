@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChoiceOfCitiesFormRequest;
 use App\Models\Comment;
 use App\Models\Driver;
 use App\Services\TripService;
@@ -13,13 +14,13 @@ class JointTripIndexController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
+     * @param ChoiceOfCitiesFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(ChoiceOfCitiesFormRequest $request)
     {
         $departureCity = '';
-    //    $tripRole = '';
+        //    $tripRole = '';
         $dataTrips = app(TripService::class)->tripCity($request);
         $commentsDB = Comment::orderByRaw("RAND()")->take(4)->get();
         $comments = app(TripService::class)->tripComment($commentsDB);
@@ -45,7 +46,7 @@ class JointTripIndexController extends Controller
             'dataTrips' => $dataTrips,
             'cityOfArrival' => $cityOfArrival,
             'departureCity' => $departureCity,
-           // 'tripRole' => $tripRole,
+            // 'tripRole' => $tripRole,
             'userId' => $userId,
         ]);
     }

@@ -1,11 +1,11 @@
 .presentation {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
     &-block {
         position: relative;
-        height: 40vh;
+        min-height: 60vh;
         cursor: pointer;
 
         &__photo {

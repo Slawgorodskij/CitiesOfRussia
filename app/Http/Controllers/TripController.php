@@ -14,6 +14,7 @@ class TripController extends Controller
         $commentsDB = Comment::orderByRaw("RAND()")->take(4)->get();
         $comments = app(TripService::class)->tripComment($commentsDB);
         $myTravels = app(TripService::class)->myTravel($userId);
+
         return view('trip', [
             'comments' => $comments,
             'dataTrips' => $myTravels,
