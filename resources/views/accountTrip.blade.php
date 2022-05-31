@@ -40,26 +40,46 @@
                     <h5>{{ $user->email }}</h5>
                 </div>
                 <div>
-                    <div>
+                    <div class="wrapper">
                         @if(isset($dataCurrentTrips[0]))
-                        <h2 class="title">Действующие поездки</h2>
-                        @foreach($dataCurrentTrips as $trip)
-                            <div class="comment-block">
-                                <p><span>{{$trip['departureCity']}}</span></p>
-                                <p>Город прибытия: <span>{{$trip['cityOfArrival']}}</span></p>
-                                <p>Период: с <span> {{$trip['start']}}</span> - по
-                                    <span>{{$trip['finish']}}</span></p>
-                                @foreach($trip['roles'] as $role)
-                                    <p>Роль: {{$role}} </p>
-                                @endforeach
-                            </div>
-                        @endforeach
+                            <h2 class="title">Действующие поездки</h2>
+                            @foreach($dataCurrentTrips as $trip)
+                                <div class="current-block">
+                                    <p>Город отправления: <span>{{$trip['departureCity']}}</span></p>
+                                    <p>Город прибытия: <span>{{$trip['cityOfArrival']}}</span></p>
+                                    <p>Период: с <span> {{$trip['start']}}</span> - по
+                                        <span>{{$trip['finish']}}</span></p>
+                                    @foreach($trip['roles'] as $key => $role)
+                                        <div class="current-block__item">
+                                            <p>Роль: {{$role}} </p>
+
+                                            <form method="POST" class="presentation-block__form"
+                                                  action="{{route('joint-update', $trip['trip'])}}">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <input hidden
+                                                       type="text"
+                                                       name="{{$key}}"
+                                                       value="">
+
+
+                                                <button type="submit"
+                                                        class="block-form__button">
+                                                    отказаться от поездки
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    @endforeach
+                                </div>
+                            @endforeach
                         @else
                             <h2 class="title">У вас незапланированно поездок</h2>
                         @endif
                     </div>
 
-                    <div>
+                    <div class="wrapper">
                         @if(isset($dataArchiveTrips[0]))
                             <h2 class="title">Архив поездок</h2>
 

@@ -37,16 +37,16 @@ class AccountTripService
             $dataTrip['finish'] = $trip->finish;
             $dataTrip['roles'] = [];
             if ($trip->driver === $userId) {
-                $dataTrip['roles'][] = 'водитель';
+                $dataTrip['roles']['driver'] = 'водитель';
             }
             if ($trip->passenger_first === $userId) {
-                $dataTrip['roles'][] = 'первый пассажир';
+                $dataTrip['roles']['passenger_first'] = 'первый пассажир';
             }
             if ($trip->passenger_two === $userId) {
-                $dataTrip['roles'][] = 'второй пассажир';
+                $dataTrip['roles']['passenger_two'] = 'второй пассажир';
             }
             if ($trip->passenger_three === $userId) {
-                $dataTrip['roles'][] = 'третий пассажир';
+                $dataTrip['roles']['passenger_three'] = 'третий пассажир';
             }
             $dataTrips[] = $dataTrip;
         }

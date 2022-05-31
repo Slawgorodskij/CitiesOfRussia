@@ -91,7 +91,7 @@ class AccountController extends Controller
 
         $dataCurrentTrips = app(AccountTripService::class)->myCurrentTravel($user->id);
         $dataArchiveTrips = app(AccountTripService::class)->myArchiveTravel($user->id);
-
+//dd($dataCurrentTrips[0]['roles']);
         return view('accountTrip', [
             'user' => $user,
             'dataCurrentTrips' => $dataCurrentTrips,
