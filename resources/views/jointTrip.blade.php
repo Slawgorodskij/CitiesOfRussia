@@ -96,7 +96,7 @@
 
             @isset($dataTrips[0])
                 <h2 class="title">Или присоединиться к одной из существующих поездок</h2>
-                <div class="presentation">
+                <div class="presentation presentation_trip">
                     @foreach($dataTrips as $dataTrip)
                         <div class="presentation-block">
                             <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"

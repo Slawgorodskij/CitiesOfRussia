@@ -72,9 +72,9 @@
 
         @isset($dataTrips)
 
-            <div class="presentation container wrapper">
+            <div class="presentation container wrapper presentation_trip">
                 @foreach($dataTrips as $dataTrip)
-                    <div class="presentation-block">
+                    <div class="presentation-block presentation-block_trip">
                         <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"
                              alt="фотография города">
                         <div class="presentation-block__people">
