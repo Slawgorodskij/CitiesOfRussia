@@ -146,8 +146,10 @@ class TripService
         foreach ($commentsDB as $commentItem) {
             $user = self::dataUser($commentItem->user_id);
             $comment['comment_body'] = $commentItem->comment_body;
-            $comment['firstname'] = $user->firstname;
-            $comment['lastname'] = $user->lastname;
+            $comment['firstname'] = 'Иван';
+            $comment['lastname'] = 'Петров';
+        //    $comment['firstname'] = $user->firstname;
+        //    $comment['lastname'] = $user->lastname;
             $comment['object'] = self::dataObject($commentItem->commentable_type, $commentItem->commentable_id);
             $comments[] = $comment;
         }

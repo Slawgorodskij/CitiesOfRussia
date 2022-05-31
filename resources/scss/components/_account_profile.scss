@@ -1,0 +1,51 @@
+.account_profile {
+    @include flex-all-center;
+    height: 10vh;
+    background-image: url(/storage/images/road.jpg);
+    @include bg-cover;
+    color: var(--color-white);
+
+  &_container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;  
+    background-color: var(--color-white);
+    padding: 2% 4%;
+  }
+  &_form_v {
+    margin-right: 10%;
+  }
+  &_form_h {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  &_form_all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &_input{
+    padding: 10px 15px;
+    margin: 8px 0;
+    width: 100%; 
+    font-size: 15px;
+  }
+  
+  &_input_wide{
+    width: 49.5%; 
+    font-size: 15px;
+  }
+  
+  &_input_narrow{
+    width: 15%; 
+    font-size: 15px;
+  }
+  
+  &_button{
+    color: var(--color-white);
+    background-color: var(--color-button-backgraund);
+    border-color: var(--color-button-backgraund);
+  }
+  
+}
