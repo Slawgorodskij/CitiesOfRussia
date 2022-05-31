@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::match(['get', 'post'], '/account', [AccountController::class, 'index'])->name('account');
     Route::match(['get', 'post'], '/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/account/trip', [AccountController::class, 'trip'])->name('account.trip');
     Route::match(['get', 'post'], '/profile', [ProfileController::class, 'store'])->name('profile.store');
     Route::match(['get', 'post'], '/driver', [DriverController::class, 'store'])->name('driver.store');
 
