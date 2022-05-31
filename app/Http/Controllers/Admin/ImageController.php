@@ -66,18 +66,21 @@ class ImageController extends Controller
     public function store(ImageFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['imageable_type'] = app(ModelService::class)
-            ->getModelNameSpaceByTitle($validated['imageable_type']);
 
         try {
+            $imageable = app(ModelService::class)
+                ->getModelNameSpaceByTitle($validated['imageable_type'])
+                ::find($validated['imageable_id']);
+
+            $images = [];
             for ($i = 0, $files = $validated['file']; $i < count($files); $i++) {
-                Image::create([
+                $images[] = new Image([
                     'name' => '/../storage/' . app(UploadService::class)->saveFile($files[$i], 'images'),
                     'description' => $validated['description'][$i],
-                    'imageable_id' => $validated['imageable_id'],
-                    'imageable_type' => $validated['imageable_type'],
                 ]);
             }
+            $imageable->images()->saveMany($images);
+
             return to_route('admin.images.index');
         } catch (\Exception $e) {
             return back()->withInput();
