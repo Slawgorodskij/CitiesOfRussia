@@ -1,7 +1,7 @@
 <template>
 
     <div class="presentation-block" v-for="city in cityArray" :key="city.id">
-        <img class="presentation-block__photo" :src="city.images[0]['name']" alt="фотография города">
+        <img v-if="city.images.length > 0" class="presentation-block__photo" :src="city.images[0]['name']" alt="фотография города">
         <div class="presentation-block__text">
             {{ city.name }}
         </div>
@@ -35,7 +35,6 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response);
                     this.cityArray = this.cityArray.concat(response.data)
                 })
                 .finally(response => this.loading = false)
@@ -53,7 +52,6 @@ export default {
 
 
             if ((offsetTop + clientHeight - scrollTopDoc) < viewportHeight) {
-                console.log('выполняю запрос')
                 this.fetch(this.cityArray.length)
             }
 
