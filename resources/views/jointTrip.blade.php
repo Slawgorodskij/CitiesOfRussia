@@ -96,13 +96,15 @@
 
             @isset($dataTrips[0])
                 <h2 class="title">Или присоединиться к одной из существующих поездок</h2>
-                <div class="presentation">
+                <div class="presentation presentation_trip">
                     @foreach($dataTrips as $dataTrip)
                         <div class="presentation-block">
                             <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"
                                  alt="фотография города">
                             <div class="presentation-block__people">
                                 <h3 class="title">{{$dataTrip['departureCity']}} - {{$dataTrip['cityOfArrival']}}</h3>
+                                <h3>Период</h3>
+                                <p>с <span> {{$dataTrip['start']}}</span> - по <span>{{$dataTrip['finish']}}</span></p>
 
                                 <p>Водитель:
                                     <span>{{$dataTrip['driverFirstname'] ?: 'место свободно'}} {{$dataTrip['driverLastname']?:''}}</span>

@@ -132,15 +132,17 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'attributes' => [
-            'title' => 'заголовок',
-            'name' => 'Ваше имя',
-            'password' => 'Ваше имя',
-            'email' => 'Ваш email',
-            'phone' => 'Номер вашего телефона',
-            'message' => 'текст обращения',
-            'description' => 'описание',
-            'articles_body' => 'текст статьи',
-        ],
+    ],
+    'attributes' => [
+        'departure_city_name' => 'город отправления',
+        'city_of_arrival_name' => 'город прибытия',
+        'title' => 'заголовок',
+        'name' => 'Ваше имя',
+        'password' => 'Ваше имя',
+        'email' => 'Ваш email',
+        'phone' => 'Номер вашего телефона',
+        'message' => 'текст обращения',
+        'description' => 'описание',
+        'articles_body' => 'текст статьи',
     ],
 ];

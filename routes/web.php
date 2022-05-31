@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JointTripController;
 use App\Http\Controllers\JointTripIndexController;
+use App\Http\Controllers\JointTripUpdateController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,11 +42,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::match(['get', 'post'], '/account', [AccountController::class, 'index'])->name('account');
     Route::match(['get', 'post'], '/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/account/trip', [AccountController::class, 'trip'])->name('account.trip');
     Route::match(['get', 'post'], '/profile', [ProfileController::class, 'store'])->name('profile.store');
     Route::match(['get', 'post'], '/driver', [DriverController::class, 'store'])->name('driver.store');
 
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
     Route::post('/joint-trip', [JointTripIndexController::class, 'index'])->name('joint-trip');
+    Route::put('/joint-update/{id}', [JointTripUpdateController::class, 'update'])->name('joint-update');
     Route::resource('/joint', JointTripController::class);
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 

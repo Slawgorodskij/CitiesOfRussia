@@ -52,6 +52,14 @@
             <form method="POST" action="{{route('joint-trip')}}">
                 @csrf
 
+                @error('departure_city_name')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
+                @error('city_of_arrival_name')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
                 <select-city></select-city>
 
                 <button type="submit"
@@ -64,13 +72,16 @@
 
         @isset($dataTrips)
 
-            <div class="presentation container wrapper">
+            <div class="presentation container wrapper presentation_trip">
                 @foreach($dataTrips as $dataTrip)
-                    <div class="presentation-block">
+                    <div class="presentation-block presentation-block_trip">
                         <img class="presentation-block__photo" src="{{$dataTrip['PhotoCityOfArrival']}}"
                              alt="фотография города">
                         <div class="presentation-block__people">
                             <h3 class="title">{{$dataTrip['departureCity']}} - {{$dataTrip['cityOfArrival']}}</h3>
+
+                            <h3>Период</h3>
+                            <p>с <span> {{$dataTrip['start']}}</span> - по <span>{{$dataTrip['finish']}}</span></p>
 
                             <p>Водитель:
                                 <span>{{$dataTrip['driverFirstname'] ?: 'место свободно'}} {{$dataTrip['driverLastname']?:''}}</span>

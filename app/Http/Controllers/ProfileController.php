@@ -18,7 +18,7 @@ class ProfileController extends Controller
     }
 
     public function index()
-    {   
+    {
 
         $user = Auth::user();
 
@@ -26,25 +26,27 @@ class ProfileController extends Controller
 
         return view('profile', [
             'user' => $user]);
-    }    
+    }
+
     public function store(ProfileFormRequest $request)
-    {   
+    {
         Profile::create([
             'user_id' => $request->get('user_id'),
             'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname'),          
-            'patronymic'=> $request->get('patronymic'),
+            'lastname' => $request->get('lastname'),
+            'patronymic' => $request->get('patronymic'),
+            'city' => $request->get('city'),
             'date_of_birth' => $request->get('date_of_birth'),
         ]);
 
-       /* 
-       $validated = $request->validated();
-        $created = Profile::create($validated);
+        /*
+        $validated = $request->validated();
+         $created = Profile::create($validated);
 
-        if ($created) {
-            return to_route('profile');
-        }
-      */
+         if ($created) {
+             return to_route('profile');
+         }
+       */
         return back()->withInput();
     }
 

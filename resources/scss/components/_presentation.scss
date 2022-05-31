@@ -3,10 +3,18 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 
+    &_trip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     &-block {
         position: relative;
-        height: 40vh;
+        min-height: 40vh;
         cursor: pointer;
+
+        &_trip {
+            min-height: 60vh;
+        }
 
         &__photo {
             @include photo-image;

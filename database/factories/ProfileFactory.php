@@ -20,6 +20,7 @@ class ProfileFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'firstname' => $this->faker->firstName(),
             'patronymic' => $this->faker->firstNameMale(),
+            'city' => $this->faker->city(),
             'date_of_birth' => date('Y-m-d'),
         ];
     }

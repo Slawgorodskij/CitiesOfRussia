@@ -1,0 +1,23 @@
+.archive-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+
+    &__item {
+        padding: 10px;
+        border: 1px solid var(--color-border);
+    }
+}
+
+.current-block {
+    padding: 10px;
+    border: 1px solid var(--color-border);
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        background-color: var(--color-background-body);
+    }
+}

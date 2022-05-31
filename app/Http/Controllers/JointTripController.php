@@ -38,7 +38,7 @@ class JointTripController extends Controller
             "finish" => $validated['finish'],
         ]);
 
-        return to_route('trip');
+        return to_route('account.trip');
     }
 
 
@@ -58,18 +58,21 @@ class JointTripController extends Controller
             "passenger_two" => ['nullable', 'integer'],
             "passenger_three" => ['nullable', 'integer'],
         ]));
-        return to_route('trip');
+        return to_route('account.trip');
     }
+
+
 
 
     /**
      * Remove the specified resource from storage.
      *
+     ** @param Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        dd($request);
     }
 }

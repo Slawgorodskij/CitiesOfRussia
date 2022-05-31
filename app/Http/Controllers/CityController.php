@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
     public function index($slug)
     {
+        $arrayComments = [];
         $city = City::with('images', 'articles', 'sights', 'comments')
             ->where('slug', $slug)
             ->first();
-        $arrayComments = [];
+
+        $profile = Auth::user()->profiles;
 
         foreach ($city->comments as $commentItem) {
             $user = Profile::where('user_id', $commentItem->user_id)->first();
@@ -30,7 +33,8 @@ class CityController extends Controller
             'sights' => $city->sights,
             'comments' => $comments,
             'cityId' => $city->id,
-            'cityName' => $city->name,
+            'cityArrivalName' => $city->name,
+            'departureCityName' => $profile[0]['city'],
             'citySlug' => $city->slug,
         ]);
     }

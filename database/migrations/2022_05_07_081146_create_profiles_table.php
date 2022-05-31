@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('lastname');
             $table->string('firstname');
             $table->string('patronymic');
+            $table->string('city');
             $table->date('date_of_birth');
             $table->timestamps();
         });
