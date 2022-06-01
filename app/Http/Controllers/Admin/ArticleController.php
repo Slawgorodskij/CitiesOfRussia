@@ -117,16 +117,17 @@ class ArticleController extends Controller
     public function update(ArticleFormRequest $request, Article $article)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = match ($validated['articleable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
-        };
-        app(UploadService::class)->saveText(
+        unset($validated['articleable_type']);
+        $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
             'articles',
             $article->article_body,
         );
-        return to_route('admin.articles.index');
+        $updated = $article->fill($validated)->save();
+        if ($updated) {
+            return to_route('admin.articles.index');
+        }
+        return back()->withInput();
     }
 
     /**
