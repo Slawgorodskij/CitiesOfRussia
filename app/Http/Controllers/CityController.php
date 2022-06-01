@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Profile;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
@@ -34,7 +33,7 @@ class CityController extends Controller
             'comments' => $comments,
             'cityId' => $city->id,
             'cityArrivalName' => $city->name,
-            'departureCityName' => $profile[0]['city'],
+            'departureCityName' => isset($profile[0]) ? $profile[0]['city'] : null,
             'citySlug' => $city->slug,
         ]);
     }
