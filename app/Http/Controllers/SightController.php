@@ -13,13 +13,14 @@ class SightController extends Controller
     {
         $arrayComments = [];
 
-
         $city = City::with('sights')->where('slug', $citySlug)
             ->first();
         $sight = Sight::with('images', 'articles')->where('slug', $sightSlug)
             ->first();
 
-        $profile = Auth::user()->profiles;
+        if (Auth::user()) {
+            $profile = Auth::user()->profiles;
+        }
 
 
         foreach ($sight->comments as $commentItem) {

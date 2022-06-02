@@ -16,7 +16,9 @@ class CityController extends Controller
             ->where('slug', $slug)
             ->first();
 
-        $profile = Auth::user()->profiles;
+        if (Auth::user()) {
+            $profile = Auth::user()->profiles;
+        }
 
         foreach ($city->comments as $commentItem) {
             $user = Profile::where('user_id', $commentItem->user_id)->first();
