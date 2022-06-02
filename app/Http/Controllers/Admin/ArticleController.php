@@ -68,18 +68,29 @@ class ArticleController extends Controller
     public function store(ArticleFormRequest $request)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = app(ModelService::class)->getModelNameSpaceByTitle($validated['articleable_type']);
-        $validated['article_body'] = app(UploadService::class)->saveText(
-            $validated['article_body'],
-            'articles',
-        );
-        $created = Article::create($validated);
 
-        if ($created) {
+        try {
+            $articleable = app(ModelService::class)
+                ->getModelNameSpaceByTitle($validated['articleable_type'])
+                ::find($validated['articleable_id']);
+
+            $articles = [
+                new Article([
+                    'article_body' => app(UploadService::class)->saveText(
+                        $validated['article_body'],
+                        'articles',
+                    ),
+                    'user_id' => $validated['user_id'],
+                    'title' => $validated['title'],
+                    'description' => $validated['description'],
+                ])
+            ];
+            $articleable->articles()->saveMany($articles);
+
             return to_route('admin.articles.index');
+        } catch (\Exception $e) {
+            return back()->withInput();
         }
-
-        return back()->withInput();
     }
 
     /**
@@ -92,6 +103,7 @@ class ArticleController extends Controller
     {
         return view('admin.articles.editor', [
             'article' => $article,
+            'relations' => app(ModelService::class)->getRelationsByMethod("articles", ['id', 'name']),
         ]);
     }
 
@@ -105,16 +117,17 @@ class ArticleController extends Controller
     public function update(ArticleFormRequest $request, Article $article)
     {
         $validated = $request->validated();
-        $validated['articleable_type'] = match ($validated['articleable_type']) {
-            class_basename(City::class) => City::class,
-            class_basename(Sight::class) => Sight::class,
-        };
-        app(UploadService::class)->saveText(
+        unset($validated['articleable_type']);
+        $validated['article_body'] = app(UploadService::class)->saveText(
             $validated['article_body'],
             'articles',
             $article->article_body,
         );
-        return to_route('admin.articles.index');
+        $updated = $article->fill($validated)->save();
+        if ($updated) {
+            return to_route('admin.articles.index');
+        }
+        return back()->withInput();
     }
 
     /**
