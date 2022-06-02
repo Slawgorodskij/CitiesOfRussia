@@ -12,17 +12,14 @@ class SightController extends Controller
     public function index($citySlug, $sightSlug)
     {
         $arrayComments = [];
-        $departureCityName = '';
+
 
         $city = City::with('sights')->where('slug', $citySlug)
             ->first();
         $sight = Sight::with('images', 'articles')->where('slug', $sightSlug)
             ->first();
 
-        if (Auth::user()) {
-            $profile = Auth::user()->profiles;
-            $departureCityName = $profile[0]['city'];
-        }
+        $profile = Auth::user()->profiles;
 
 
         foreach ($sight->comments as $commentItem) {
@@ -41,7 +38,7 @@ class SightController extends Controller
             'comments' => $comments,
             'cityId' => $city->id,
             'cityArrivalName' => $city->name,
-            'departureCityName' => $departureCityName,
+            'departureCityName' => isset($profile[0]) ? $profile[0]['city'] : null,
             'citySlug' => $city->slug,
         ]);
     }
