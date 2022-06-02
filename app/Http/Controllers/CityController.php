@@ -12,11 +12,16 @@ class CityController extends Controller
     public function index($slug)
     {
         $arrayComments = [];
+        $departureCityName = '';
+
         $city = City::with('images', 'articles', 'sights', 'comments')
             ->where('slug', $slug)
             ->first();
 
-        $profile = Auth::user()->profiles;
+        if (Auth::user()) {
+            $profile = Auth::user()->profiles;
+            $departureCityName = $profile[0]['city'];
+        }
 
         foreach ($city->comments as $commentItem) {
             $user = Profile::where('user_id', $commentItem->user_id)->first();
@@ -34,7 +39,7 @@ class CityController extends Controller
             'comments' => $comments,
             'cityId' => $city->id,
             'cityArrivalName' => $city->name,
-            'departureCityName' => $profile[0]['city'],
+            'departureCityName' => $departureCityName,
             'citySlug' => $city->slug,
         ]);
     }
