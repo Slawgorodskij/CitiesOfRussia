@@ -21,10 +21,14 @@
             </div>
         </div>
 
-        <div class="carousel wrapper">
-            <h2 class="title">Что вы можете увидеть посетив "{{$destination_data->name}}" </h2>
-            <carousel type="{{ class_basename($destination_data::class) }}" id="{{ $destination_data->id }}"></carousel>
-        </div>
+        @isset($destination_data->images[0])
+            <div class="carousel wrapper">
+                <h2 class="title">Что вы можете увидеть посетив "{{$destination_data->name}}" </h2>
+                <carousel type="{{ class_basename($destination_data::class) }}"
+                          id="{{ $destination_data->id }}"></carousel>
+            </div>
+        @endisset
+
 
         <div class="container wrapper">
             @isset($destination_data->articles[0])
