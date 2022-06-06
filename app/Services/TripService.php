@@ -7,7 +7,6 @@ use App\Models\Profile;
 use App\Models\Sight;
 use App\Models\Trip;
 use App\Models\User;
-use Illuminate\Support\Facades\Date;
 
 class TripService
 {
@@ -70,9 +69,6 @@ class TripService
 
         foreach ($trips as $trip) {
             if ($trip->finish > date('Y-m-d')) {
-//                if (isset($dataTrip)) {
-//                    $dataTrip = $this->elemArrayEmpty($dataTrip);
-//                }
 
                 $dataTrip['driverFirstname'] = '';
                 $dataTrip['driverLastname'] = '';
@@ -146,10 +142,8 @@ class TripService
         foreach ($commentsDB as $commentItem) {
             $user = self::dataUser($commentItem->user_id);
             $comment['comment_body'] = $commentItem->comment_body;
-            $comment['firstname'] = 'Иван';
-            $comment['lastname'] = 'Петров';
-        //    $comment['firstname'] = $user->firstname;
-        //    $comment['lastname'] = $user->lastname;
+            $comment['firstname'] = $user->firstname;
+            $comment['lastname'] = $user->lastname;
             $comment['object'] = self::dataObject($commentItem->commentable_type, $commentItem->commentable_id);
             $comments[] = $comment;
         }
@@ -158,17 +152,14 @@ class TripService
 
     public function tripCity($dataRequest)
     {
-        if (!$dataRequest->departure_city) {
-            $trips = $this->dataCity($dataRequest->city_of_arrival);
-        }
+        $cityDeparture = City::where('name', $dataRequest->departure_city_name)->first();
+        $cityArrival = City::where('name', $dataRequest->city_of_arrival_name)->first();
 
-        if ($dataRequest->departure_city) {
-            $trips = $this->dataTwoCity($dataRequest->departure_city, $dataRequest->city_of_arrival);
+            $trips = $this->dataTwoCity($cityDeparture->id, $cityArrival->id);
 
             if (empty($trips[0])) {
-                $trips = $this->dataCity($dataRequest->departure_city);
+                $trips = $this->dataCity($cityDeparture->id);
             }
-        }
 
         return $this->creatingAnArray($trips);
     }

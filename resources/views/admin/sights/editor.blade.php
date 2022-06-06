@@ -22,8 +22,14 @@
                 @method('PUT')
             @endif
 
+            <select-city-acc></select-city-acc>
+
+            @error('city_id')
+            <p class="block-form__text-error">{{ $message }}</p>
+            @enderror
+
             <input name="name" type="text" class="block-form__input @error('name') block-form__input_error @enderror"
-                   placeholder="Название достопримечательности" value="{{ $sight->name ?? old('name') }}" required />
+                   placeholder="Название достопримечательности" value="{{ $sight->name ?? old('name') }}" required/>
 
             @error('name')
             <p class="block-form__text-error">{{ $message }}</p>
@@ -31,8 +37,9 @@
 
             <input name="description" type="text"
                    class="block-form__input @error('description') block-form__input_error @enderror"
-                   placeholder="Короткая информация о достопримечательности" value="{{ $sight->description ?? old('description') }}"
-                   required />
+                   placeholder="Короткая информация о достопримечательности"
+                   value="{{ $sight->description ?? old('description') }}"
+                   required/>
 
             @error('description')
             <p class="block-form__text-error">{{ $message }}</p>
@@ -47,3 +54,4 @@
     </div>
 
 @endsection
+

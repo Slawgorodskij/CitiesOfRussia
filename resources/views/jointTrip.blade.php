@@ -55,6 +55,7 @@
                     <input hidden
                            type="checkbox"
                            name="driver"
+                           checked
                            value="{{$userId}}">
                     <span class="block-form__role-user">водителя</span>
                 </label>
@@ -82,11 +83,18 @@
                     <input class="block-form__input" type="date" name="start">
                 </label>
 
+                @error('start')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
+
                 <label>
                     <span>Окончание путешествия</span>
                     <input class="block-form__input" type="date" name="finish">
                 </label>
 
+                @error('finish')
+                <p class="block-form__text-error">{{ $message }}</p>
+                @enderror
 
                 <button type="submit"
                         class="block-form__button">

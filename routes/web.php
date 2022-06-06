@@ -47,8 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::match(['get', 'post'], '/driver', [DriverController::class, 'store'])->name('driver.store');
 
     Route::get('/trip', [TripController::class, 'index'])->name('trip');
-    Route::post('/joint-trip', [JointTripIndexController::class, 'index'])->name('joint-trip');
-    Route::put('/joint-update/{id}', [JointTripUpdateController::class, 'update'])->name('joint-update');
+    Route::post('/trip-registration', [JointTripIndexController::class, 'index'])->name('joint-trip');
+    Route::put('/trip-registration/{id}', [JointTripUpdateController::class, 'update'])->name('joint-update');
     Route::resource('/joint', JointTripController::class);
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 

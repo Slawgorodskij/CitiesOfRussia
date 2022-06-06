@@ -1,34 +1,17 @@
 <template>
     <div>
-    <!--
-        <p class="block-form__label">Выберите свою роль в поездке</p>
 
-        <my-select
-            :elemArray="roleArray"
-            :placeholderName="placeholderNameRole"
-            :inputName="inputNameRole"
-        />
-    -->
         <p class="block-form__label">Выберите город</p>
 
         <my-select
             :elemArray="cityArray"
             :placeholderName="placeholderName"
-            :inputName="inputNameDeparture"
-            :inputNameId="inputNameDepartureId"
+            :inputName="inputNameCity"
+            :inputNameId="inputNameCityId"
         />
- <!--
-        <p class="block-form__label">Выберите город прибытия</p>
 
-        <my-select
-            :elemArray="cityArray"
-            :placeholderName="placeholderName"
-            :inputName="inputNameArrival"
-            :inputNameId="inputNameArrivalId"
-        />
--->        
     </div>
-    
+
 </template>
 
 <script>
@@ -43,17 +26,10 @@ export default {
     data() {
         return {
             cityArray: [],
-            roleArray: [
-                {name: "Пассажир"},
-                {name: "Водитель"},
-            ],
+
             placeholderName: "Введите название города",
-            placeholderNameRole: "Введите роль в поездке",
-            inputNameDeparture: "departure_city_name",
-            inputNameDepartureId: "departure_city",
-            inputNameArrival: "city_of_arrival_name",
-            inputNameArrivalId: "city_of_arrival",
-            inputNameRole: "trip_role",
+            inputNameCityId: "city_id",
+            inputNameCity: "city_name",
         }
     },
 
@@ -71,6 +47,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>

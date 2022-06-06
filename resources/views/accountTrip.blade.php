@@ -44,7 +44,7 @@
                         @if(isset($dataCurrentTrips[0]))
                             <h2 class="title">Действующие поездки</h2>
                             @foreach($dataCurrentTrips as $trip)
-                                <div class="current-block">
+                                <div class="current-block wrapper">
                                     <p>Город отправления: <span>{{$trip['departureCity']}}</span></p>
                                     <p>Город прибытия: <span>{{$trip['cityOfArrival']}}</span></p>
                                     <p>Период: с <span> {{$trip['start']}}</span> - по

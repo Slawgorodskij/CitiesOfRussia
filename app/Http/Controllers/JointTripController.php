@@ -49,7 +49,6 @@ class JointTripController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    //TODO почему не срабатывает TripFormRequest $request
     public function update(Request $request, $id)
     {
         Trip::find($id)->update($request->validate([
@@ -61,18 +60,4 @@ class JointTripController extends Controller
         return to_route('account.trip');
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     ** @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        dd($request);
-    }
 }

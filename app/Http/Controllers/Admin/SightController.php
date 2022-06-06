@@ -81,14 +81,10 @@ class SightController extends Controller
      */
     public function store(SightFormRequest $request)
     {
-        // $validated = $request->validated();
-        // $created = Sight::create($validated);
+        Sight::create($request->validated());
 
-        // if ($created) {
-        //     return to_route('admin.sights.index');
-        // }
+        return to_route('admin.sights.index');
 
-        // return back()->withInput();
     }
 
     /**
@@ -113,8 +109,8 @@ class SightController extends Controller
      */
     public function update(SightFormRequest $request, Sight $sight)
     {
-        // $sight->update($request->validated());
-        // return to_route('admin.sights.index');
+         $sight->update($request->validated());
+         return to_route('admin.sights.index');
     }
 
     /**
